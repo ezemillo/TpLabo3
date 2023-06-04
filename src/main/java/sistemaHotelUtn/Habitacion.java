@@ -1,7 +1,6 @@
-package org.example;
+package sistemaHotelUtn;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Habitacion {
 

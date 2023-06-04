@@ -1,4 +1,4 @@
-package org.example;
+package sistemaHotelUtn;
 
 public enum ServiciosHabitacion {
 

@@ -1,4 +1,4 @@
-package org.example;
+package sistemaHotelUtn;
 
 public abstract class Empleado extends Persona {
 
