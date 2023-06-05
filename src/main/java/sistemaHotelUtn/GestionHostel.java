@@ -19,8 +19,6 @@ public class GestionHostel {
         System.out.println("cliente = " + cliente );
         System.out.println("reserva = " +reserva);
 
-
-
     }
 
 }
