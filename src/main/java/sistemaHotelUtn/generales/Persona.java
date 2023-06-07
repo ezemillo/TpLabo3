@@ -1,13 +1,11 @@
-package sistemaHotelUtn;
+package sistemaHotelUtn.generales;
 
 public abstract class Persona {
 
     // region Atributos
-    private String usuario;
-
-    private String contraseña;
     private int id;
     private static int ultimoId;
+    private Usuario usuario;
     private String nombre;
     private String apellido;
     private String dni;
@@ -23,9 +21,8 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(String usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono) {
+    public Persona(Usuario usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono) {
         this.usuario = usuario;
-        this.contraseña = contraseña;
         this.id = Persona.ultimoId;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -39,16 +36,8 @@ public abstract class Persona {
 
     // region Getters y Setters
 
-    public String getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
     }
 
     public int getId() {
@@ -115,7 +104,6 @@ public abstract class Persona {
     public String toString() {
         return "Persona{" +
                 "usuario='" + usuario + '\'' +
-                ", contraseña='" + contraseña + '\'' +
                 ", id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +

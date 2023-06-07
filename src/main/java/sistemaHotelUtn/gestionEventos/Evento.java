@@ -4,7 +4,7 @@
 * por Blanco, Santiago.
 * */
 
-package sistemaHotelUtn;
+package sistemaHotelUtn.gestionEventos;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

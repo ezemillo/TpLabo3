@@ -1,4 +1,6 @@
-package sistemaHotelUtn;
+package sistemaHotelUtn.gestionEmpleados;
+
+import sistemaHotelUtn.generales.Persona;
 
 public abstract class Empleado extends Persona {
 

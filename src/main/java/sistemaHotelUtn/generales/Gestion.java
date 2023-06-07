@@ -1,4 +1,4 @@
-package sistemaHotelUtn;
+package sistemaHotelUtn.generales;
 
 import java.util.ArrayList;
 

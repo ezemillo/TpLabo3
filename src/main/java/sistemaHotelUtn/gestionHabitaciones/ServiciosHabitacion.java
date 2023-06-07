@@ -1,4 +1,4 @@
-package sistemaHotelUtn;
+package sistemaHotelUtn.gestionHabitaciones;
 
 public enum ServiciosHabitacion {
 

@@ -1,4 +1,7 @@
-package sistemaHotelUtn;
+package sistemaHotelUtn.gestionReservas;
+
+import sistemaHotelUtn.gestionClientes.Cliente;
+import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 
 import java.time.LocalDate;
 

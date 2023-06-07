@@ -1,6 +1,8 @@
-package sistemaHotelUtn;
+package sistemaHotelUtn.gestionClientes;
 
-public class Cliente extends Persona{
+import sistemaHotelUtn.generales.Persona;
+
+public class Cliente extends Persona {
 
     private Double saldo;
     private boolean estaActivo;
