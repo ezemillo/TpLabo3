@@ -1,6 +1,8 @@
 package sistemaHotelUtn.generales;
 
 import sistemaHotelUtn.gestionClientes.GestionClientes;
+import sistemaHotelUtn.gestionClientes.Cliente;
+import sistemaHotelUtn.gestionEmpleados.Empleado;
 import sistemaHotelUtn.gestionEmpleados.GestionEmpleados;
 import sistemaHotelUtn.gestionEventos.GestionEventos;
 import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
@@ -21,5 +23,13 @@ public class GestionHotel
 
     }
 
-
+    public void menuPrincipal(){
+        if(usuarioActual instanceof Cliente)
+        {
+            gestionClientes.menuCliente((Cliente) usuarioActual);
+        }else
+        {
+            gestionEmpleados.menuEmpleado((Empleado) usuarioActual);
+        }
+    }
 }

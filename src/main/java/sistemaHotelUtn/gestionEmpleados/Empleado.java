@@ -39,6 +39,8 @@ public class Empleado extends Persona {
         this.antiguedad = antiguedad;
     }
 
+
+
     @Override
     public String toString() {
         return "Empleado{" +
