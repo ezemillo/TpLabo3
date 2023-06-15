@@ -1,14 +1,20 @@
 package sistemaHotelUtn.gestionEmpleados;
 
 import sistemaHotelUtn.generales.Persona;
+import sistemaHotelUtn.generales.Usuario;
 
-public abstract class Empleado extends Persona {
+public class Empleado extends Persona {
 
     private Double salario;
     private int antiguedad;
 
-    public Empleado(String usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono, Double salario, int antiguedad) {
-        super(usuario, contraseña, nombre, apellido, dni, domicilio, telefono);
+    private String puesto;
+
+    public Empleado(Usuario usuario, String contraseña, String nombre,
+                    String apellido, String dni, String domicilio,
+                    String telefono, Double salario, int antiguedad)
+    {
+        super(usuario, nombre, apellido, dni, domicilio, telefono);
         this.salario = salario;
         this.antiguedad = antiguedad;
     }

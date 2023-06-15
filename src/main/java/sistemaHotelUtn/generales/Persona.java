@@ -4,8 +4,8 @@ public abstract class Persona {
 
     // region Atributos
     private int id;
-    private static int ultimoId;
-    private Usuario usuario;
+    private static int ultimoId = 0;
+    private Usuario usuario = null;
     private String nombre;
     private String apellido;
     private String dni;
@@ -21,18 +21,37 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(Usuario usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono) {
+    public Persona(Usuario usuario, String nombre, String apellido, String dni, String domicilio, String telefono) {
+        this.id = ++Persona.ultimoId;
         this.usuario = usuario;
-        this.id = Persona.ultimoId;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        Persona.ultimoId++;
+    }
+
+    public Persona(String nombre, String apellido, String dni, String domicilio, String telefono)
+    {
+        this.id = ++Persona.ultimoId;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
     }
     // endregion
 
+    public Persona(String username, String password, String nombre, String apellido,
+                   String dni, String domicilio,String telefono)
+    {
+        this.usuario = new Usuario(username, password);
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+    }
 
     // region Getters y Setters
 
@@ -40,20 +59,14 @@ public abstract class Persona {
         return usuario;
     }
 
+    public void generarUsuario(String username, String password)
+    {
+        if( this.usuario != null )
+            this.usuario = new Usuario(username, password);
+    }
+
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public static int getUltimoId() {
-        return ultimoId;
-    }
-
-    public static void setUltimoId(int ultimoId) {
-        Persona.ultimoId = ultimoId;
     }
 
     public String getNombre() {

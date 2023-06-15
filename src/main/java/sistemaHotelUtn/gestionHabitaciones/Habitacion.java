@@ -15,7 +15,8 @@ public class Habitacion {
 
     private ArrayList serviciosHabitacion;
 
-    public Habitacion(boolean esReservable, Double precioDiario, int capacidadMax, ArrayList serviciosHabitacion) {
+    public Habitacion(boolean esReservable, Double precioDiario, int capacidadMax,
+                      ArrayList serviciosHabitacion) {
         this.id = ultimoId;
         Habitacion.ultimoId++;
         this.esReservable = esReservable;
