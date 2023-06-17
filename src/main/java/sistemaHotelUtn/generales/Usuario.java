@@ -4,6 +4,14 @@ public class Usuario
 {
     private String username;
     private String password;
+    private String tipoUsuario; // cliente o empleado
+
+    public Usuario(String username, String password, String tipoUsuario)
+    {
+        this.username = username;
+        this.password = password;
+        this.tipoUsuario = tipoUsuario;
+    }
 
     public Usuario(String username, String password)
     {
@@ -27,10 +35,19 @@ public class Usuario
         this.password = password;
     }
 
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+
     public String toString()
     {
         return "{\n" +
                 "\tUsername: " + username +
+                "\tTipo Usuario: " + tipoUsuario +
                 "\n}";
     }
 }

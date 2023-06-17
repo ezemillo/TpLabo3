@@ -45,11 +45,13 @@ public class Main
 
         Evento e = new Evento("Mardel Valley", "UTN MDP", 200,t,t2);
         Evento e2 = new Evento("Hackathon", "Accenture", 70,t,t2);
+        Evento e3 = new Evento("Encuentro Innovación", "Facultad Ingeniería", 30);
 
         GestionEventos ge = new GestionEventos();
 
         ge.agregar(e);
         ge.agregar(e2);
+        ge.agregar(e3);
 
         System.out.println( ge.listar() );
 
@@ -61,7 +63,8 @@ public class Main
 
         Cliente cliente = new Cliente("usuario1","1234","eze","fran","3562","gascon 1000","155",0.0,true);
         Habitacion habitacion = new Habitacion(true,250.20,3,serviciosHabitacionList);
-        Reserva reserva = new Reserva(LocalDate.of(2023,7,25),LocalDate.of(2023,7,28),cliente,habitacion);
+        Reserva reserva = new Reserva(LocalDateTime.of(2023,7,25, 15,30),
+                LocalDateTime.of(2023,7,28, 15, 30),cliente,habitacion);
 
         System.out.println("habitacion = " +habitacion );
         System.out.println("cliente = " + cliente );
@@ -70,8 +73,24 @@ public class Main
     }
     public static void main(String[] args)
     {
+        //TESTS
+
         //testearClaseGestionHotel();
         //testearClaseEvento();
-        //testearClaseGestionEvento();
+        testearClaseGestionEvento();
+
+        //abrir 5 json
+
+        //****comienza el loop
+
+        //logearse o registrarse
+
+        //mostrar menu disponible (si es empleado o cliente)
+
+        //realizar operacion y guardar en listas
+
+        //****salida del loop
+
+        //actualizar 5 json si hay cambios
     }
 }

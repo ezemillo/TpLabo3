@@ -21,7 +21,8 @@ public abstract class Persona {
     public Persona() {
     }
 
-    public Persona(Usuario usuario, String nombre, String apellido, String dni, String domicilio, String telefono) {
+    public Persona(Usuario usuario, String nombre, String apellido, String dni,
+                   String domicilio, String telefono) {
         this.id = ++Persona.ultimoId;
         this.usuario = usuario;
         this.nombre = nombre;
@@ -43,7 +44,7 @@ public abstract class Persona {
     // endregion
 
     public Persona(String username, String password, String nombre, String apellido,
-                   String dni, String domicilio,String telefono)
+                   String dni, String domicilio, String telefono)
     {
         this.usuario = new Usuario(username, password);
         this.nombre = nombre;

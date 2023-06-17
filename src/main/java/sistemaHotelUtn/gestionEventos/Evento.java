@@ -6,6 +6,7 @@
 
 package sistemaHotelUtn.gestionEventos;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,7 +18,15 @@ public class Evento
     private String organizador = "";
     private int participantes = 0;
     private LocalDateTime fechaHoraInicio = LocalDateTime.now();
-    private LocalDateTime fechaHoraFin = LocalDateTime.now();
+    private LocalDateTime fechaHoraFin = LocalDateTime.now().plusHours(2);
+
+    public Evento(String nombreEvento, String organizador, int participantes)
+    {
+        this.id = ++contadorEventos;
+        this.nombreEvento = nombreEvento;
+        this.organizador = organizador;
+        this.participantes = participantes;
+    }
 
     public Evento(String nombreEvento, String organizador, int participantes,
                   LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin)

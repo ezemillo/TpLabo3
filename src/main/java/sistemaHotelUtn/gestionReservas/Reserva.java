@@ -2,85 +2,69 @@ package sistemaHotelUtn.gestionReservas;
 
 import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
+import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Reserva {
 
     private final int id;
     private static int ultimoId;
-
-    private LocalDate diaCheckIn;
-    private LocalDate diaCheckOut;
-
+    private LocalDateTime diaCheckIn;
+    private LocalDateTime diaCheckOut;
     private Cliente cliente;
-
     private Habitacion habitacion;
+    private Double montoPagar;
+    private Boolean estaPago;
 
+    //private ServiciosGastronomia List<ServiciosGastronomia>; agregar servicioGastronomia
 
-    private Double saldo;
-
-
-    public Reserva(LocalDate diaCheckIn, LocalDate diaCheckOut, Cliente cliente, Habitacion habitacion) {
-        this.id = Reserva.ultimoId;
-        Reserva.ultimoId++;
+    public Reserva(LocalDateTime diaCheckIn, LocalDateTime diaCheckOut, Cliente cliente,
+                   Habitacion habitacion)
+    {
+        this.id = ++Reserva.ultimoId;
         this.diaCheckIn = diaCheckIn;
         this.diaCheckOut = diaCheckOut;
         this.cliente = cliente;
         this.habitacion = habitacion;
-
     }
-
     public int getId() {
         return id;
     }
-
-
-
     public static int getUltimoId() {
         return ultimoId;
     }
-
-
-    public LocalDate getDiaCheckIn() {
+    public LocalDateTime getDiaCheckIn() {
         return diaCheckIn;
     }
-
-    public void setDiaCheckIn(LocalDate diaCheckIn) {
+    public void setDiaCheckIn(LocalDateTime diaCheckIn) {
         this.diaCheckIn = diaCheckIn;
     }
-
-    public LocalDate getDiaCheckOut() {
+    public LocalDateTime getDiaCheckOut() {
         return diaCheckOut;
     }
-
-    public void setDiaCheckOut(LocalDate diaCheckOut) {
+    public void setDiaCheckOut(LocalDateTime diaCheckOut) {
         this.diaCheckOut = diaCheckOut;
     }
-
     public Cliente getCliente() {
         return cliente;
     }
-
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
     public Habitacion getHabitacion() {
         return habitacion;
     }
-
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
     }
 
-
-    public Double getSaldo() {
-        return saldo;
+    public Double getMontoPagar() {
+        return montoPagar;
     }
 
-    public void setSaldo(Double saldo) {
-        this.saldo = (double) this.diaCheckIn.compareTo(this.diaCheckOut)*this.habitacion.getPrecioDiario();
+    public void setMontoPagar(Double montoPagar) {
+        this.montoPagar = (double) this.diaCheckIn.compareTo(this.diaCheckOut)*this.habitacion.getPrecioDiario();
     }
 
     @Override
@@ -91,7 +75,7 @@ public class Reserva {
                 ", diaCheckOut=" + diaCheckOut +
                 ", cliente=" + cliente +
                 ", habitacion=" + habitacion +
-                ", saldo=" + saldo +
+                ", saldo=" + montoPagar +
                 '}';
     }
 }
