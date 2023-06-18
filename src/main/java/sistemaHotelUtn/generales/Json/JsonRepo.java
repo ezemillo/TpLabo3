@@ -12,13 +12,9 @@ import java.util.List;
 public class JsonRepo <T> {
 
     private String nombreArchivo;
-
     private final ObjectMapper mapper = new ObjectMapper();
-
     private List<T> lista;
-
     private Class dato;
-
 
     public JsonRepo(String nombreArchivo, List<T> lista, Class dato) {
         this.nombreArchivo = nombreArchivo;

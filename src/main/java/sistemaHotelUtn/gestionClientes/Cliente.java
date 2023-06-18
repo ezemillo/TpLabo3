@@ -17,7 +17,7 @@ public class Cliente extends Persona  {
         this.saldo = saldo;
         this.estaActivo = estaActivo;
     }
-
+    //region Getters y Setters
     public Double getSaldo() {
         return saldo;
     }
@@ -33,7 +33,7 @@ public class Cliente extends Persona  {
     public void setEstaActivo(boolean estaActivo) {
         this.estaActivo = estaActivo;
     }
-
+    //endregion
     @Override
     public String toString() {
         return "Cliente{" +

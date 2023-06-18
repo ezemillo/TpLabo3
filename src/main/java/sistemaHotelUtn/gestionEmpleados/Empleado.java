@@ -5,10 +5,12 @@ import sistemaHotelUtn.generales.Usuario;
 
 public class Empleado extends Persona {
 
+    //region Atributos
     private Double salario;
     private int antiguedad;
-
     private String puesto;
+    //endregion
+
 
     public Empleado(Usuario usuario, String contraseña, String nombre,
                     String apellido, String dni, String domicilio,
@@ -22,7 +24,7 @@ public class Empleado extends Persona {
     public Empleado() {
 
     }
-
+    //region Getters y setters
     public Double getSalario() {
         return salario;
     }
@@ -39,7 +41,7 @@ public class Empleado extends Persona {
         this.antiguedad = antiguedad;
     }
 
-
+    //endregion
 
     @Override
     public String toString() {

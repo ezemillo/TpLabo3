@@ -43,7 +43,6 @@ public abstract class Persona implements Serializable {
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
-    // endregion
 
     public Persona(String username, String password, String nombre, String apellido,
                    String dni, String domicilio, String telefono)
@@ -55,6 +54,9 @@ public abstract class Persona implements Serializable {
         this.domicilio = domicilio;
         this.telefono = telefono;
     }
+
+    // endregion
+
 
     // region Getters y Setters
 

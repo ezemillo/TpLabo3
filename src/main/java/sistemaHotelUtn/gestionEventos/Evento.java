@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Evento
 {
+    //region Atributos
     private static int contadorEventos = 0;
     private int id;
     private String nombreEvento = "";
@@ -17,7 +18,9 @@ public class Evento
     private int participantes = 0;
     private LocalDateTime fechaHoraInicio = LocalDateTime.now();
     private LocalDateTime fechaHoraFin = LocalDateTime.now().plusHours(2);
+    //endregion
 
+    //region Constructores
     public Evento(){}
 
     public Evento(String nombreEvento, String organizador, int participantes)
@@ -27,7 +30,6 @@ public class Evento
         this.organizador = organizador;
         this.participantes = participantes;
     }
-
 
     public Evento(String nombreEvento, String organizador, int participantes,
                   LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin)
@@ -44,7 +46,9 @@ public class Evento
         if( argFechaEsCorrecta(fechaHoraFin) )
             this.fechaHoraFin = fechaHoraFin;
     }
+    //endregion
 
+    //region Getters y Setters
     public int getId() {
         return id;
     }
@@ -90,6 +94,7 @@ public class Evento
     public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
         this.fechaHoraFin = fechaHoraFin;
     }
+    //endregion
 
     private boolean argParticipantesEsCorrecto(int part) throws IllegalArgumentException
     {

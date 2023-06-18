@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 
 public class Reserva implements Serializable {
-
+    //region Atributos
     private  int id;
     private static int ultimoId;
     private boolean estaPago;
@@ -20,6 +20,7 @@ public class Reserva implements Serializable {
     private Habitacion habitacion;
     private double saldo;
     private double montoPagar;
+    //endregion
 
     //private ServiciosGastronomia List<ServiciosGastronomia>; agregar servicioGastronomia
 
@@ -33,15 +34,14 @@ public class Reserva implements Serializable {
         this.cliente = cliente;
         this.habitacion = habitacion;
     }
+    //region Getters y Setters
     public int getId()
     {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public LocalDate getDiaCheckIn() {
         return diaCheckIn;
     }
@@ -66,12 +66,12 @@ public class Reserva implements Serializable {
     public void setHabitacion(Habitacion habitacion) {
         this.habitacion = habitacion;
     }
-
     public Double getMontoPagar() {
         return montoPagar;
     }
+    //endregion
 
-    public void setMontoPagar(Double montoPagar) {
+    public void setMontoPagar(Double montoPagar) { /// revisar
         this.montoPagar = (double) this.diaCheckIn.compareTo(this.diaCheckOut)*this.habitacion.getPrecioDiario();
     }
 

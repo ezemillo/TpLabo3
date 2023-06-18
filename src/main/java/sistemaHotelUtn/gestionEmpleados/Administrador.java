@@ -10,8 +10,6 @@ public class Administrador extends Empleado {
         super(usuario, contraseña, nombre, apellido, dni, domicilio, telefono, salario, antiguedad);
     }
 
-
-
     public void editarEmpleado(Empleado empleado){}
     public void altaEmpleado(){}
     public void bajaEmpleado(Empleado empleado){}

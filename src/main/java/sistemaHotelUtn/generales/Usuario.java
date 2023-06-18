@@ -4,10 +4,14 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable
 {
+    // region Atributos
     private String username;
     private String password;
     private String tipoUsuario; // cliente o empleado
 
+    //endregion
+
+    //region Constructores
     public Usuario(String username, String password, String tipoUsuario)
     {
         this.username = username;
@@ -23,7 +27,9 @@ public class Usuario implements Serializable
 
     public Usuario() {
     }
+    //endregion
 
+    //region Getters y Setters
     public String getUsername() {
         return username;
     }
@@ -47,7 +53,7 @@ public class Usuario implements Serializable
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
-
+    //endregion
     public String toString()
     {
         return "{\n" +
