@@ -20,6 +20,8 @@ public class Evento implements Serializable
     private LocalDateTime fechaHoraInicio = LocalDateTime.now();
     private LocalDateTime fechaHoraFin = LocalDateTime.now();
 
+    public Evento(){}
+
     public Evento(String nombreEvento, String organizador, int participantes,
                   LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin)
     {
@@ -66,38 +68,20 @@ public class Evento implements Serializable
             this.participantes = participantes;
     }
 
-    public String getFechaHoraInicio()
-    {
-        /*
-        Devuelve la hora en formato dia-mes-año hora:min
-        ej: 04-06-2022 18:40
-         */
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:MM");
-        String fechaFormateada = this.fechaHoraInicio.format(formato);
-
-        return fechaFormateada;
+    public LocalDateTime getFechaHoraInicio() {
+        return fechaHoraInicio;
     }
 
     public void setFechaHoraInicio(LocalDateTime fechaHoraInicio) {
         this.fechaHoraInicio = fechaHoraInicio;
     }
 
-    public String getFechaHoraFin()
-    {
-        /*
-        Devuelve la hora en formato dia-mes-año hora:min
-        ej: 04-06-2022 18:40
-         */
-
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:MM");
-        String fechaFormateada = this.fechaHoraFin.format(formato);
-
-        return fechaFormateada;
+    public LocalDateTime getFechaHoraFin() {
+        return fechaHoraFin;
     }
-    public void setFechaHoraFin(LocalDateTime fechaHoraFin)
-    {
-        if( argFechaEsCorrecta(fechaHoraFin) )
-            this.fechaHoraFin = fechaHoraFin;
+
+    public void setFechaHoraFin(LocalDateTime fechaHoraFin) {
+        this.fechaHoraFin = fechaHoraFin;
     }
 
     private boolean argParticipantesEsCorrecto(int part) throws IllegalArgumentException

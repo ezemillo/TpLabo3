@@ -55,6 +55,7 @@ public class JsonRepo <T> {
         try {
             File archivo = new File("src\\main\\java\\sistemaHotelUtn\\jsonFiles\\"+ this.nombreArchivo +".json");
             mapper.registerModule(new JavaTimeModule());
+            mapper.findAndRegisterModules();
             CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, dato);
             lista = mapper.readValue(archivo, collectionType);
         } catch (IOException e) {

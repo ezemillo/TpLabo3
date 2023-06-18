@@ -53,7 +53,17 @@ public class Main
         ge.agregar(e);
         ge.agregar(e2);
 
-        System.out.println( ge.listar() );
+        //System.out.println( ge.listar() );
+        JsonRepo<Evento> jsonEventos = new JsonRepo<>("eventos", ge.getLista(), Evento.class);
+
+        jsonEventos.guardar();
+
+        List<Evento> listaTest = new ArrayList<>();
+
+        listaTest = jsonEventos.cargar();
+
+        System.out.println("Contenido json:");
+        System.out.println( listaTest );
 
     }
     public static void testearClaseGestionHotel()
@@ -98,9 +108,8 @@ public class Main
     {
         //testearClaseGestionHotel();
         //testearClaseEvento();
-        //testearClaseGestionEvento();
-        testearJson();
-
+        testearClaseGestionEvento();
+        //testearJson();
 
     }
 }

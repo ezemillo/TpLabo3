@@ -49,9 +49,7 @@ abstract public class Gestion<T>
         }
     }
 
-
-
-
-
-
+    public ArrayList<T> getLista() {
+        return lista;
+    }
 }
