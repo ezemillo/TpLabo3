@@ -6,6 +6,7 @@ abstract public class Gestion<T>
 {
     private ArrayList<T> lista = new ArrayList<>();
 
+
     public void agregar(T elem)
     {
         this.lista.add(elem);
@@ -47,6 +48,10 @@ abstract public class Gestion<T>
             }
         }
     }
+
+
+
+
 
 
 }

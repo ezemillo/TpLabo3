@@ -6,10 +6,11 @@
 
 package sistemaHotelUtn.gestionEventos;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Evento
+public class Evento implements Serializable
 {
     private static int contadorEventos = 0;
     private int id;

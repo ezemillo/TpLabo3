@@ -1,0 +1,53 @@
+[ {
+  "id" : 0,
+  "diaCheckIn" : [ 2023, 7, 25 ],
+  "diaCheckOut" : [ 2023, 7, 28 ],
+  "cliente" : {
+    "id" : 0,
+    "usuario" : {
+      "username" : "usuario",
+      "password" : "1234"
+    },
+    "nombre" : "eze",
+    "apellido" : "fran",
+    "dni" : "3562",
+    "domicilio" : "gascon 1000",
+    "telefono" : "155",
+    "saldo" : 0.0,
+    "estaActivo" : true
+  },
+  "habitacion" : {
+    "id" : 0,
+    "esReservable" : true,
+    "precioDiario" : 250.2,
+    "capacidadMax" : 3,
+    "serviciosHabitacion" : [ "JACUZZI" ]
+  },
+  "saldo" : null
+}, {
+  "id" : 1,
+  "diaCheckIn" : [ 2024, 7, 25 ],
+  "diaCheckOut" : [ 2023, 7, 28 ],
+  "cliente" : {
+    "id" : 0,
+    "usuario" : {
+      "username" : "usuario",
+      "password" : "1234"
+    },
+    "nombre" : "eze",
+    "apellido" : "fran",
+    "dni" : "3562",
+    "domicilio" : "gascon 1000",
+    "telefono" : "155",
+    "saldo" : 0.0,
+    "estaActivo" : true
+  },
+  "habitacion" : {
+    "id" : 0,
+    "esReservable" : true,
+    "precioDiario" : 250.2,
+    "capacidadMax" : 3,
+    "serviciosHabitacion" : [ "JACUZZI" ]
+  },
+  "saldo" : null
+} ]

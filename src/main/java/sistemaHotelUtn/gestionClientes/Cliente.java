@@ -2,10 +2,15 @@ package sistemaHotelUtn.gestionClientes;
 
 import sistemaHotelUtn.generales.Persona;
 
-public class Cliente extends Persona {
+import java.io.Serializable;
+
+public class Cliente extends Persona  {
 
     private Double saldo;
     private boolean estaActivo;
+
+    public Cliente() {
+    }
 
     public Cliente(String usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono, Double saldo, boolean estaActivo) {
         super(usuario, contraseña, nombre, apellido, dni, domicilio, telefono);

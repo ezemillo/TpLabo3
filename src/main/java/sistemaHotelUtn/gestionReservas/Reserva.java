@@ -1,23 +1,20 @@
 package sistemaHotelUtn.gestionReservas;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Reserva {
+public class Reserva implements Serializable {
 
-    private final int id;
+    private  int id;
     private static int ultimoId;
-
     private LocalDate diaCheckIn;
     private LocalDate diaCheckOut;
-
     private Cliente cliente;
-
     private Habitacion habitacion;
-
-
     private Double saldo;
 
 
@@ -35,7 +32,12 @@ public class Reserva {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public Reserva() {
+    }
 
     public static int getUltimoId() {
         return ultimoId;
