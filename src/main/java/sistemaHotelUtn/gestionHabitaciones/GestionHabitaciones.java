@@ -13,61 +13,66 @@ public class GestionHabitaciones extends Gestion<Habitacion>
     public GestionHabitaciones(){}
 
     public void menuHabitaciones(Persona usuario, GestionReservas gestionReservas){
+
+        if(usuario instanceof Empleado)
+        {
+            menuHabEmpleado(gestionReservas);
+        }else
+        {
+            menuHabCliente(gestionReservas);
+        }
+    }
+
+    private void menuHabCliente(GestionReservas gestionReservas){
+        gestionReservas.menuReserva();
+    }
+
+    private void menuHabEmpleado(GestionReservas gestionReservas){
         int opcion,confirma;
         Scanner scanner =new Scanner(System.in);
         boolean retener=true;
         Habitacion aux;
-        if(usuario instanceof Empleado)
-        {
-            while (retener) {
-                System.out.println("1. Agregar Habitacion");
-                System.out.println("2. Eliminar Habitacion");
-                System.out.println("3. Modificar Habitacion");
-                System.out.println("4. Menu reserva");
-                System.out.println("0. Salir");
-                opcion = scanner.nextInt();
-                scanner.nextLine();
-                switch (opcion) {
-                    case 1:
-                        agregar(nuevaHabitacion());
-                        break;
-                    case 2:
-                        System.out.println("Ingrese el ID de la habitacion que desea eliminar");
-                        System.out.println(listar());
-                        opcion = scanner.nextInt();
-                        aux = buscarHabitacion(opcion);
-                        if (aux != null) {
-                            System.out.println("¿Esta seguro que quiere eliminar esta habtacion? Ingrese 0 para confirmar");
-                            confirma = scanner.nextInt();
-                            if (confirma == 0) {
-                                eliminar(aux);
-                            }
+        while (retener) {
+            System.out.println("1. Agregar Habitacion");
+            System.out.println("2. Eliminar Habitacion");
+            System.out.println("3. Modificar Habitacion");
+            System.out.println("4. Menu reserva");
+            System.out.println("0. Salir");
+            opcion = scanner.nextInt();
+            scanner.nextLine();
+            switch (opcion) {
+                case 1 -> agregar(nuevaHabitacion());
+                case 2 -> {
+                    System.out.println("Ingrese el ID de la habitacion que desea eliminar");
+                    System.out.println(listar());
+                    opcion = scanner.nextInt();
+                    aux = buscarHabitacion(opcion);
+                    if (aux != null) {
+                        System.out.println("¿Esta seguro que quiere eliminar esta habtacion? Ingrese 0 para confirmar");
+                        confirma = scanner.nextInt();
+                        if (confirma == 0) {
+                            eliminar(aux);
                         }
-                        break;
-                    case 3:
-                        System.out.println("Ingrese el ID de la habitacion que desea eliminar");
-                        System.out.println(listar());
-                        opcion = scanner.nextInt();
-                        scanner.nextLine();
-                        aux = buscarHabitacion(opcion);
-                        if (aux != null) {
+                    }
+                }
+                case 3 -> {
+                    System.out.println("Ingrese el ID de la habitacion que desea eliminar");
+                    System.out.println(listar());
+                    opcion = scanner.nextInt();
+                    scanner.nextLine();
+                    aux = buscarHabitacion(opcion);
+                    if (aux != null) {
                         System.out.println("Ingrese el campo que quiere modificar");
                         System.out.println("1. Condicion de reserva");
                         System.out.println("2. Precio por dia");
                         System.out.println("3. Capacidad maxima");
                         System.out.println("4. Servicio de habitacion");
-                        modificar(aux,scanner.nextLine());
-                        }
-                        break;
-                    case 4:
-                        gestionReservas.menuReserva();
-                        break;
-                    case 0:
-                        retener = false;
-                        break;
-                    default:
-                        System.out.println("Opcion no valida");
+                        modificar(aux, scanner.nextLine());
+                    }
                 }
+                case 4 -> gestionReservas.menuReserva();
+                case 0 -> retener = false;
+                default -> System.out.println("Opcion no valida");
             }
         }
     }
