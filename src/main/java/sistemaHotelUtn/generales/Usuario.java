@@ -1,6 +1,8 @@
 package sistemaHotelUtn.generales;
 
-public class Usuario
+import java.io.Serializable;
+
+public class Usuario implements Serializable
 {
     private String username;
     private String password;
@@ -17,6 +19,9 @@ public class Usuario
     {
         this.username = username;
         this.password = password;
+    }
+
+    public Usuario() {
     }
 
     public String getUsername() {

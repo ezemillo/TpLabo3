@@ -1,13 +1,16 @@
 package sistemaHotelUtn.gestionHabitaciones;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Habitacion {
+public class Habitacion implements Serializable {
 
-    private final int id;
+    private int id;
     private static int ultimoId;
 
     private boolean esReservable;
+
+
 
     private Double precioDiario;
 
@@ -15,6 +18,8 @@ public class Habitacion {
 
     private ArrayList serviciosHabitacion;
 
+    public Habitacion() {
+    }
     public Habitacion(boolean esReservable, Double precioDiario, int capacidadMax,
                       ArrayList serviciosHabitacion) {
         this.id = ultimoId;

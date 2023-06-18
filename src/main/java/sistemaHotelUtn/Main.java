@@ -1,6 +1,7 @@
 package sistemaHotelUtn;
 
 
+import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionEventos.Evento;
 import sistemaHotelUtn.gestionEventos.GestionEventos;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime; //test clase evento
 import java.time.format.DateTimeFormatter; //test clase evento
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main
 {
@@ -53,7 +55,17 @@ public class Main
         ge.agregar(e2);
         ge.agregar(e3);
 
-        System.out.println( ge.listar() );
+        //System.out.println( ge.listar() );
+        JsonRepo<Evento> jsonEventos = new JsonRepo<>("eventos", ge.getLista(), Evento.class);
+
+        jsonEventos.guardar();
+
+        List<Evento> listaTest = new ArrayList<>();
+
+        listaTest = jsonEventos.cargar();
+
+        System.out.println("Contenido json:");
+        System.out.println( listaTest );
 
     }
     public static void testearClaseGestionHotel()
@@ -63,21 +75,45 @@ public class Main
 
         Cliente cliente = new Cliente("usuario1","1234","eze","fran","3562","gascon 1000","155",0.0,true);
         Habitacion habitacion = new Habitacion(true,250.20,3,serviciosHabitacionList);
-        Reserva reserva = new Reserva(LocalDateTime.of(2023,7,25, 15,30),
-                LocalDateTime.of(2023,7,28, 15, 30),cliente,habitacion);
+        Reserva reserva = new Reserva(LocalDate.of(2023,7,25),
+                LocalDate.of(2023,7,28),cliente,habitacion);
 
         System.out.println("habitacion = " +habitacion );
         System.out.println("cliente = " + cliente );
         System.out.println("reserva = " +reserva);
 
     }
+
+    public static void testearJson(){
+
+        ArrayList<ServiciosHabitacion> serviciosHabitacionList = new ArrayList<ServiciosHabitacion>();
+        serviciosHabitacionList.add(ServiciosHabitacion.JACUZZI);
+        Habitacion habitacion = new Habitacion(true,250.20,3,serviciosHabitacionList);
+
+        Cliente cliente = new Cliente("usuario","1234","eze","fran","3562","gascon 1000","155",0.0,true);
+        Reserva reserva = new Reserva(LocalDate.of(2028,7,25),LocalDate.of(2023,7,28),cliente,habitacion);
+        Reserva reserva2 = new Reserva(LocalDate.of(2024,7,25),LocalDate.of(2023,7,28),cliente,habitacion);
+
+
+        List<Reserva> reservaList = new ArrayList<>();
+        reservaList.add(reserva);
+
+        JsonRepo<Reserva> jsonReserva = new JsonRepo<>("reservas",reservaList, reserva.getClass());
+        System.out.println("reservaList = " + reservaList);
+
+        reservaList = jsonReserva.cargar();
+        System.out.println("reservaList = " + reservaList);
+
+    }
+
+
     public static void main(String[] args)
     {
         //TESTS
 
         //testearClaseGestionHotel();
         //testearClaseEvento();
-        testearClaseGestionEvento();
+        //testearClaseGestionEvento();
 
         //abrir 5 json
 
@@ -92,5 +128,7 @@ public class Main
         //****salida del loop
 
         //actualizar 5 json si hay cambios
+
+        //testearJson();
     }
 }
