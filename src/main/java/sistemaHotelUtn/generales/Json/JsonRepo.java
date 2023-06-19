@@ -13,10 +13,10 @@ public class JsonRepo <T> {
 
     private String nombreArchivo;
     private final ObjectMapper mapper = new ObjectMapper();
-    private List<T> lista;
+    private ArrayList<T> lista;
     private Class dato;
 
-    public JsonRepo(String nombreArchivo, List<T> lista, Class dato) {
+    public JsonRepo(String nombreArchivo, ArrayList<T> lista, Class dato) {
         this.nombreArchivo = nombreArchivo;
         this.lista = lista;
         this.dato=dato;
@@ -37,22 +37,22 @@ public class JsonRepo <T> {
         return mapper;
     }
 
-    public List<T> getLista() {
+    public ArrayList<T> getLista() {
         return lista;
     }
 
-    public void setLista(List<T> lista) {
+    public void setLista(ArrayList<T> lista) {
         this.lista = lista;
     }
 
-    public List<T> cargar() {
+    public ArrayList<T> cargar() {
 
-        List<T> lista = null;
+        ArrayList<T> lista = null;
         try {
             File archivo = new File("src\\main\\java\\sistemaHotelUtn\\jsonFiles\\"+ this.nombreArchivo +".json");
             mapper.registerModule(new JavaTimeModule());
             mapper.findAndRegisterModules();
-            CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(List.class, dato);
+            CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, dato);
             lista = mapper.readValue(archivo, collectionType);
         } catch (IOException e) {
             System.out.println("entra en la excepcion " + e.getMessage() );

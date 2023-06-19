@@ -7,6 +7,7 @@ import sistemaHotelUtn.gestionEventos.Evento;
 import sistemaHotelUtn.gestionEventos.GestionEventos;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
+import sistemaHotelUtn.gestionReservas.GestionReservas;
 import sistemaHotelUtn.gestionReservas.Reserva;
 
 import java.time.LocalDate;
@@ -60,7 +61,7 @@ public class Main
 
         jsonEventos.guardar();
 
-        List<Evento> listaTest = new ArrayList<>();
+        ArrayList<Evento> listaTest = new ArrayList<>();
 
         listaTest = jsonEventos.cargar();
 
@@ -84,6 +85,22 @@ public class Main
 
     }
 
+    public static void testearClaseGestionReserva()
+    {
+        LocalDateTime t = LocalDateTime.of(2023, 6, 4, 20, 00);
+        LocalDateTime t2 = LocalDateTime.of(2023, 6, 4, 22, 00);
+        System.out.println(t);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        String formattedDateTime= t.format(dateTimeFormatter);
+        System.out.println(formattedDateTime);
+
+        GestionReservas gestionReservas = new GestionReservas();
+        System.out.println(gestionReservas.getLista());
+
+
+
+    }
+
     public static void testearJson(){
 
         ArrayList<ServiciosHabitacion> serviciosHabitacionList = new ArrayList<ServiciosHabitacion>();
@@ -95,11 +112,17 @@ public class Main
         Reserva reserva2 = new Reserva(LocalDate.of(2024,7,25),LocalDate.of(2023,7,28),cliente,habitacion);
 
 
-        List<Reserva> reservaList = new ArrayList<>();
+        ArrayList<Reserva> reservaList = new ArrayList<>();
         reservaList.add(reserva);
+        reservaList.add(reserva2);
 
-        JsonRepo<Reserva> jsonReserva = new JsonRepo<>("reservas",reservaList, reserva.getClass());
+
+
+        JsonRepo<Reserva> jsonReserva = new JsonRepo<>("reservas",reservaList, Reserva.class);
         System.out.println("reservaList = " + reservaList);
+
+
+        jsonReserva.guardar();
 
         reservaList = jsonReserva.cargar();
         System.out.println("reservaList = " + reservaList);
@@ -130,5 +153,7 @@ public class Main
         //actualizar 5 json si hay cambios
 
         //testearJson();
+
+        testearClaseGestionReserva();
     }
 }

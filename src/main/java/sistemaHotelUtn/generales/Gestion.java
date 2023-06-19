@@ -7,6 +7,8 @@ abstract public class Gestion<T>
     private ArrayList<T> lista = new ArrayList<>();
     private String pathJson = ""; //esto lo define luego cada gestion con su json
 
+
+
     public void agregar(T elem)
     {
         this.lista.add(elem);
@@ -46,6 +48,14 @@ abstract public class Gestion<T>
                 break;
             }
         }
+    }
+
+    public void setLista(ArrayList<T> lista) {
+        this.lista = lista;
+    }
+
+    public void setPathJson(String pathJson) {
+        this.pathJson = pathJson;
     }
 
     public ArrayList<T> getLista()

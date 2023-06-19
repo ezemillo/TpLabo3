@@ -21,6 +21,7 @@ public class GestionHotel
     public GestionHotel()
     {
 
+
     }
 
     public void menuPrincipal(){

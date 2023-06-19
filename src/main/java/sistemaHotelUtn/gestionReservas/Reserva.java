@@ -7,6 +7,7 @@ import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class Reserva implements Serializable {
@@ -86,4 +87,7 @@ public class Reserva implements Serializable {
                 ", saldo=" + montoPagar +
                 '}';
     }
+
+
+
 }

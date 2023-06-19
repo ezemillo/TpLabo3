@@ -1,8 +1,10 @@
 package sistemaHotelUtn.gestionHabitaciones;
 
 import sistemaHotelUtn.generales.Gestion;
+import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.generales.Persona;
 import sistemaHotelUtn.gestionEmpleados.Empleado;
+import sistemaHotelUtn.gestionEventos.Evento;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
 
 import java.util.ArrayList;
@@ -10,7 +12,13 @@ import java.util.Scanner;
 
 public class GestionHabitaciones extends Gestion<Habitacion>
 {
-    public GestionHabitaciones(){}
+    public GestionHabitaciones(){
+        ArrayList<Habitacion> habitacionesList = new ArrayList<>();
+        JsonRepo<Habitacion> habitacionesJson = new JsonRepo<>("habitaciones",habitacionesList, Habitacion.class);
+        habitacionesList=habitacionesJson.cargar();
+        this.setLista(habitacionesList);
+
+    }
 
     public void menuHabitaciones(Persona usuario, GestionReservas gestionReservas){
 
