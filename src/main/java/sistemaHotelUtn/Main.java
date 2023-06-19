@@ -87,17 +87,18 @@ public class Main
 
     public static void testearClaseGestionReserva()
     {
-        LocalDateTime t = LocalDateTime.of(2023, 6, 4, 20, 00);
-        LocalDateTime t2 = LocalDateTime.of(2023, 6, 4, 22, 00);
-        System.out.println(t);
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        String formattedDateTime= t.format(dateTimeFormatter);
-        System.out.println(formattedDateTime);
+        LocalDate t = LocalDate.of(2023, 7, 22);
+        LocalDate t2 = LocalDate.of(2023, 7, 28);
 
         GestionReservas gestionReservas = new GestionReservas();
-        System.out.println(gestionReservas.getLista());
 
+        System.out.println("lista" + gestionReservas.getLista());
 
+        if (gestionReservas.isDisponiblePorFecha(0,t,t2 )){
+        System.out.println("habitacion disponible");
+    }else{
+            System.out.println("no disponible");
+    }
 
     }
 
@@ -108,8 +109,8 @@ public class Main
         Habitacion habitacion = new Habitacion(true,250.20,3,serviciosHabitacionList);
 
         Cliente cliente = new Cliente("usuario","1234","eze","fran","3562","gascon 1000","155",0.0,true);
-        Reserva reserva = new Reserva(LocalDate.of(2028,7,25),LocalDate.of(2023,7,28),cliente,habitacion);
-        Reserva reserva2 = new Reserva(LocalDate.of(2024,7,25),LocalDate.of(2023,7,28),cliente,habitacion);
+        Reserva reserva = new Reserva(LocalDate.of(2023,7,25),LocalDate.of(2023,7,28),cliente,habitacion);
+        Reserva reserva2 = new Reserva(LocalDate.of(2023,8,2),LocalDate.of(2023,7,28),cliente,habitacion);
 
 
         ArrayList<Reserva> reservaList = new ArrayList<>();
@@ -154,6 +155,6 @@ public class Main
 
         //testearJson();
 
-        testearClaseGestionReserva();
+        //testearClaseGestionReserva(); tambien testea el habitaciondisponible por fecha
     }
 }

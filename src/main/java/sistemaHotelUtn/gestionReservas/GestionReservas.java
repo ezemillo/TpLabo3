@@ -19,11 +19,14 @@ public class GestionReservas extends Gestion<Reserva>
     }
 
     public boolean isDisponiblePorFecha(int idHabitacion, LocalDate checkIn, LocalDate checkOut) {
-
+        System.out.println("entro al disponible");
+        System.out.println("this = " + this);
         for (Reserva reserva: this.getLista()
              ) {
+            
+            System.out.println("reserva = " + reserva);
 
-            if (idHabitacion == reserva.getId()
+            if (idHabitacion == reserva.getHabitacion().getId()
                     && (checkOut.isAfter(reserva.getDiaCheckIn()) || checkOut.isEqual(reserva.getDiaCheckOut()))
                     && (checkIn.isBefore(reserva.getDiaCheckOut()) || checkIn.isEqual(reserva.getDiaCheckIn()))) {
                 return false;
