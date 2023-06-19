@@ -9,40 +9,20 @@ import java.util.Scanner;
 
 public class GestionClientes extends Gestion<Cliente>
 {
-
     public GestionClientes(){
         ArrayList<Cliente> clientesList = new ArrayList<>();
         JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes",clientesList, Cliente.class);
         clientesList = clientesJson.cargar();
         this.setLista(clientesList);
-
-
-
     }
 
-    public void menuCliente(Cliente cliente)
+    public Cliente crearNuevoCliente()
     {
-        boolean retener = true;
-        int opcion=0;
-        Scanner scanner= new Scanner(System.in);
-        while (retener)
-        {
-            System.out.println("Eliga una opcion:");
-            System.out.println("1. Cuenta");
-            System.out.println("2. Habitaciones");
-            System.out.println("0. Salir");
-            opcion=scanner.nextInt();
-            switch (opcion)
-            {
-                case 1:
+        //SEGUIR
+        /*Pide informacion por la consola y crea un nuevo cliente listo para agregar a la lista*/
 
-                    break;
-                case 2:
-                    break;
-                case 0:
-                    retener=false;
-                    break;
-            }
-        }
+        Cliente nuevo = new Cliente();
+
+        return nuevo;
     }
 }

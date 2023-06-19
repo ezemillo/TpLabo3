@@ -12,6 +12,11 @@ public class Cliente extends Persona  {
     public Cliente() {
     }
 
+    public Cliente(String username, String password)
+    {
+        this.generarUsuario(username, password);
+    }
+
     public Cliente(String usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono, Double saldo, boolean estaActivo) {
         super(usuario, contraseña, nombre, apellido, dni, domicilio, telefono);
         this.saldo = saldo;

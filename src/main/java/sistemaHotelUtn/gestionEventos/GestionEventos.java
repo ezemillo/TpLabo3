@@ -13,8 +13,5 @@ public class GestionEventos extends Gestion<Evento>
         JsonRepo<Evento> eventosJson = new JsonRepo<>("eventos",eventosList, Evento.class);
         eventosList=eventosJson.cargar();
         this.setLista(eventosList);
-
-
-
     }
 }

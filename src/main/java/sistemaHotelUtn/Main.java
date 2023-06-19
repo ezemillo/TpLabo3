@@ -1,6 +1,7 @@
 package sistemaHotelUtn;
 
 
+import sistemaHotelUtn.generales.GestionHotel;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionEventos.Evento;
@@ -10,11 +11,13 @@ import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
 import sistemaHotelUtn.gestionReservas.Reserva;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime; //test clase evento
 import java.time.format.DateTimeFormatter; //test clase evento
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main
 {
@@ -130,31 +133,10 @@ public class Main
 
     }
 
-
     public static void main(String[] args)
     {
-        //TESTS
+        GestionHotel gestionHotel = new GestionHotel();
 
-        //testearClaseGestionHotel();
-        //testearClaseEvento();
-        //testearClaseGestionEvento();
-
-        //abrir 5 json
-
-        //****comienza el loop
-
-        //logearse o registrarse
-
-        //mostrar menu disponible (si es empleado o cliente)
-
-        //realizar operacion y guardar en listas
-
-        //****salida del loop
-
-        //actualizar 5 json si hay cambios
-
-        //testearJson();
-
-        //testearClaseGestionReserva(); tambien testea el habitaciondisponible por fecha
+        gestionHotel.iniciar();
     }
 }

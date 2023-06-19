@@ -7,12 +7,11 @@ abstract public class Gestion<T>
     private ArrayList<T> lista = new ArrayList<>();
     private String pathJson = ""; //esto lo define luego cada gestion con su json
 
-
-
     public void agregar(T elem)
     {
         this.lista.add(elem);
     }
+
     public String listar()
     {
         String listaString = "";
@@ -62,4 +61,5 @@ abstract public class Gestion<T>
     {
         return lista;
     }
+
 }

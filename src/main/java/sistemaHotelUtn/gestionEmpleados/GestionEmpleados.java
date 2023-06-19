@@ -15,32 +15,13 @@ public class GestionEmpleados extends Gestion<Empleado>
         JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados",empleadosList, Empleado.class);
         empleadosList=empleadosJson.cargar();
         this.setLista(empleadosList);
-
-
     }
 
-    public void menuEmpleado(Empleado empleado){
-        boolean retener = true;
-        int opcion=0;
-        Scanner scanner= new Scanner(System.in);
-        while (retener)
-        {
-            System.out.println("Eliga una opcion:");
-            System.out.println("1. Cuenta");
-            System.out.println("2. Habitaciones");
-            System.out.println("0. Salir");
-            opcion=scanner.nextInt();
-            switch (opcion)
-            {
-                case 1:
+    public Empleado crearNuevoEmpleado()
+    {
+        Empleado nuevo = new Empleado();
 
-                    break;
-                case 2:
-                    break;
-                case 0:
-                    retener=false;
-                    break;
-            }
-        }
+        return nuevo;
     }
+
 }

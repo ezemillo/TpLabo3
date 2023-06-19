@@ -35,8 +35,4 @@ public class GestionReservas extends Gestion<Reserva>
         }
         return true;
     }
-
-
-
-    public void menuReserva(){}
 }

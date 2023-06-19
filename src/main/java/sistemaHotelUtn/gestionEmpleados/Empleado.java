@@ -11,7 +11,14 @@ public class Empleado extends Persona {
     private String puesto;
     //endregion
 
+    public Empleado() {
 
+    }
+
+    public Empleado(String username, String password)
+    {
+        this.generarUsuario(username, password);
+    }
     public Empleado(Usuario usuario, String contraseña, String nombre,
                     String apellido, String dni, String domicilio,
                     String telefono, Double salario, int antiguedad)
@@ -21,9 +28,7 @@ public class Empleado extends Persona {
         this.antiguedad = antiguedad;
     }
 
-    public Empleado() {
 
-    }
     //region Getters y setters
     public Double getSalario() {
         return salario;
