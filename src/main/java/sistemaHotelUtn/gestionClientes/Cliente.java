@@ -41,9 +41,9 @@ public class Cliente extends Persona  {
     //endregion
     @Override
     public String toString() {
-        return "Cliente{" +
-                "saldo=" + saldo +
-                ", estaActivo=" + estaActivo +
-                '}';
+        return super.toString().replace(
+                super.toString().charAt(super.toString().length() - 1),
+                ' '
+        ) + "\tSaldo: " + saldo + "\n\tActivo: " + estaActivo+ "\n" + "}";
     }
 }

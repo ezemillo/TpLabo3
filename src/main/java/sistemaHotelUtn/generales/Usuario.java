@@ -7,27 +7,25 @@ public class Usuario implements Serializable
     // region Atributos
     private String username;
     private String password;
-    private String tipoUsuario; // cliente o empleado
+    private TipoUsuario tipoUsuario; // cliente o empleado
 
     //endregion
 
     //region Constructores
-    public Usuario(String username, String password, String tipoUsuario)
-    {
-        this.username = username;
-        this.password = password;
-        this.tipoUsuario = tipoUsuario;
+    public Usuario() {
     }
-
+    //endregion
     public Usuario(String username, String password)
     {
         this.username = username;
         this.password = password;
     }
 
-    public Usuario() {
+    public Usuario(String username, String password, String tipoUsuario)
+    {
+        this.username = username;
+        this.password = password;
     }
-    //endregion
 
     //region Getters y Setters
     public String getUsername() {
@@ -46,11 +44,11 @@ public class Usuario implements Serializable
         this.password = password;
     }
 
-    public String getTipoUsuario() {
+    public TipoUsuario getTipoUsuario() {
         return tipoUsuario;
     }
 
-    public void setTipoUsuario(String tipoUsuario) {
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
     //endregion

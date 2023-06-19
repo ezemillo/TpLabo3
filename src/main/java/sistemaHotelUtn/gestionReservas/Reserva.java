@@ -78,16 +78,14 @@ public class Reserva implements Serializable {
 
     @Override
     public String toString() {
-        return "Reserva{" +
-                "id=" + id +
-                ", diaCheckIn=" + diaCheckIn +
-                ", diaCheckOut=" + diaCheckOut +
-                ", cliente=" + cliente +
-                ", habitacion=" + habitacion +
-                ", saldo=" + montoPagar +
-                '}';
+        return "{\n" +
+                "\tId: " + id +
+                "\n\tCliente: " + cliente.getNombreApellido() +
+                "\n\tHabitacion: " + habitacion +
+                "\n\tSaldo: $" + montoPagar +
+                "\n\tCheck In: " + diaCheckIn +
+                "\n\tCheck Out: " + diaCheckOut +
+                "\n" + "}";
     }
-
-
 
 }

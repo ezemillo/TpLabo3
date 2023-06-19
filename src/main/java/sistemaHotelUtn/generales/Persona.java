@@ -114,21 +114,23 @@ public abstract class Persona implements Serializable {
         this.telefono = telefono;
     }
 
-
     // endregion
-
+    public String getNombreApellido()
+    {
+        return apellido + ", " + nombre;
+    }
 
     @Override
     public String toString() {
-        return "Persona{" +
-                "usuario='" + usuario + '\'' +
-                ", id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", dni='" + dni + '\'' +
-                ", domicilio='" + domicilio + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return "{\n" +
+                "\tId: " + id +
+                "\n\tNombre: " + nombre +
+                "\n\tApellido: " + apellido +
+                "\n\tDni: " + dni +
+                "\n\tDomicilio: " + domicilio +
+                "\n\tTelefono: " + telefono +
+                "\n\tUsuario: " + usuario + "\n}";
+
     }
 }
 

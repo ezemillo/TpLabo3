@@ -50,9 +50,10 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
-        return "Empleado{" +
-                "salario=" + salario +
-                ", antiguedad=" + antiguedad +
-                '}';
+        return super.toString().replace(
+                super.toString().charAt(super.toString().length() - 1),
+                ' '
+        ) + "\n\tPuesto: " + puesto + "\tSalario: " + salario + "\n\tAntiguedad: " + antiguedad +
+                "\n" + "}";
     }
 }

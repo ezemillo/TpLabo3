@@ -19,9 +19,57 @@ public class GestionEmpleados extends Gestion<Empleado>
 
     public Empleado crearNuevoEmpleado()
     {
+        /*Pide informacion por la consola y crea un nuevo empleado listo para agregar a la lista*/
+
+        Scanner scanner = new Scanner(System.in);
+        String entrada = "";
+
         Empleado nuevo = new Empleado();
 
+        System.out.println("**Crear Nuevo Empleado**");
+        System.out.print("Ingrese su nombre --> ");
+        entrada = scanner.nextLine();
+        nuevo.setNombre(entrada);
+
+        System.out.print("Ingrese su apellido --> ");
+        entrada = scanner.nextLine();
+        nuevo.setApellido(entrada);
+
+        System.out.print("Ingrese su dni --> ");
+        entrada = scanner.nextLine();
+        nuevo.setDni(entrada);
+
+        System.out.print("Ingrese su domicilio --> ");
+        entrada = scanner.nextLine();
+        nuevo.setDomicilio(entrada);
+
+        System.out.print("Ingrese su telefono --> ");
+        entrada = scanner.nextLine();
+        nuevo.setTelefono(entrada);
+
+        System.out.print("Ingrese un username --> ");
+        String username = scanner.nextLine();
+
+        System.out.print("Ingrese un password --> ");
+        String password = scanner.nextLine();
+        nuevo.generarUsuario(username, password);
+
         return nuevo;
+    }
+
+    public Empleado buscarEmpleadoPorUsername(String username)
+    {
+        for(Empleado empleado: this.getLista() )
+        {
+            if(empleado.getUsuario().getUsername().equals(username))
+            {
+                //si lo encuentra lo retorna
+                return empleado;
+            }
+        }
+
+        // si no lo encuentra retorna null
+        return null;
     }
 
 }
