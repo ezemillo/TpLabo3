@@ -39,40 +39,46 @@ public class GestionHotel
 
         String entrada = "";
         int opcion = 0;
+        boolean salir = false;
 
-        System.out.println("---------------------------- Sistema Gestion Hotel -------------------------------------");
-        System.out.println("\n\t[1] Login\n\t[2] Regitrarse\n\t[3] Salir");
-        System.out.println("\nUsuario actual: " +
-                ((usuarioActual == null) ? "No ha hecho login" : usuarioActual.getUsername()));
-        System.out.print("\nIngrese su opción (1, 2, 3) --> ");
-
-        entrada = scanner.nextLine();
-
-        opcion = Integer.parseInt(entrada);
-
-        switch(opcion)
+        while( salir != true )
         {
-            case 1: //login
-                //verificar si es cliente o empleado
-                //mostrar menu que corresponde
-                mostrarMenuLoginGeneral();
-                break;
+            System.out.println("---------------------------- Sistema Gestion Hotel -------------------------------------");
+            System.out.println("\n\t[1] Login\n\t[2] Regitrarse\n\t[3] Salir");
+            System.out.println("\nUsuario actual: " +
+                    ((usuarioActual == null) ? "No ha hecho login" : usuarioActual.getUsername()));
+            System.out.print("\nIngrese su opción (1, 2, 3) --> ");
 
-            case 2: //registrarse
-                //puede registrarse como cliente o empleado
-                mostrarMenuRegistroGeneral();
-                break;
+            entrada = scanner.nextLine();
 
-            case 3: //salir
-                break;
+            opcion = Integer.parseInt(entrada);
 
-            default:
-                System.out.println("Opción incorrecta.");
-                break;
+            switch(opcion)
+            {
+                case 1: //login
+                    //verificar si es cliente o empleado
+                    //mostrar menu que corresponde
+                    mostrarMenuLoginGeneral();
+                    break;
+
+                case 2: //registrarse
+                    //puede registrarse como cliente o empleado
+                    mostrarMenuRegistroGeneral();
+                    break;
+
+                case 3: //salir
+                    salir = true;
+                    break;
+
+                default:
+                    System.out.println("Opción incorrecta.");
+                    break;
+            }
         }
+
     }
 
-    /*Menus Registro*/
+    /*---------------------MENUS REGISTRO-----------------*/
 
     private void mostrarMenuRegistroGeneral()
     {
@@ -116,6 +122,7 @@ public class GestionHotel
         System.out.println("\nSe agregara el nuevo cliente:");
         System.out.println(nuevoCliente);
         gestionClientes.agregar(nuevoCliente);
+        gestionClientes.guardarClientesJson();
     }
 
     private void mostrarMenuRegistroEmpleado()
@@ -125,9 +132,10 @@ public class GestionHotel
         System.out.println("\nSe agregara el nuevo empleado:");
         System.out.println(nuevoEmpleado);
         gestionEmpleados.agregar(nuevoEmpleado);
+        gestionEmpleados.guardarEmpleadosJson();
     }
 
-    /*Menus login*/
+    /*--------------------- MENUS LOGIN -----------------*/
 
     private void mostrarMenuLoginGeneral()
     {
@@ -205,7 +213,8 @@ public class GestionHotel
         System.out.print("Ingrese su password --> ");
         password = scanner.nextLine();
 
-        Empleado empleado = gestionEmpleados.buscarEmpleadoPorUsername(username);
+        gestionEmpleados.cargarEmpleadosJson(); //CARGA LOS EMPLEADOS DESDE EL JSON
+        Empleado empleado = gestionEmpleados.buscarEmpleadoPorUsername(username); //BUSCA ESE EMPLEADO
 
         if( empleado != null )
         {
@@ -321,10 +330,17 @@ public class GestionHotel
                 gestionEventos.modificarEventoPorNombre(entradaEventos);
                 break;
 
-            case 4:
+            case 4: //eliminar un evento por nombre de evento
                 System.out.print("Ingrese el nombre del evento a eliminar --> ");
                 entradaEventos = scanner.nextLine();
+                gestionEventos.eliminarEventoPorNombre(entradaEventos);
+                break;
 
+            case 5: //salir
+                break;
+
+            default:
+                System.out.println("Opción inválida");
                 break;
         }
 

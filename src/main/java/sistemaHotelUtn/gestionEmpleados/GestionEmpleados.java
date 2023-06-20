@@ -2,6 +2,7 @@ package sistemaHotelUtn.gestionEmpleados;
 
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
+import sistemaHotelUtn.generales.TipoUsuario;
 import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionReservas.Reserva;
 
@@ -11,10 +12,6 @@ import java.util.Scanner;
 public class GestionEmpleados extends Gestion<Empleado>
 {
     public GestionEmpleados(){
-        ArrayList<Empleado> empleadosList = new ArrayList<>();
-        JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados",empleadosList, Empleado.class);
-        empleadosList=empleadosJson.cargar();
-        this.setLista(empleadosList);
     }
 
     public Empleado crearNuevoEmpleado()
@@ -52,13 +49,14 @@ public class GestionEmpleados extends Gestion<Empleado>
 
         System.out.print("Ingrese un password --> ");
         String password = scanner.nextLine();
-        nuevo.generarUsuario(username, password);
+        nuevo.generarUsuario(username, password, TipoUsuario.EMPLEADO);
 
         return nuevo;
     }
 
     public Empleado buscarEmpleadoPorUsername(String username)
     {
+
         for(Empleado empleado: this.getLista() )
         {
             if(empleado.getUsuario().getUsername().equals(username))
@@ -72,4 +70,18 @@ public class GestionEmpleados extends Gestion<Empleado>
         return null;
     }
 
+    public void guardarEmpleadosJson()
+    {
+        ArrayList<Empleado> empleadosList = this.getLista();
+        JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados",empleadosList, Empleado.class);
+        empleadosJson.guardar();
+    }
+
+    public void cargarEmpleadosJson()
+    {
+        ArrayList<Empleado> empleadosList = new ArrayList<>();
+        JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados",empleadosList, Empleado.class);
+        empleadosList=empleadosJson.cargar();
+        this.setLista(empleadosList);
+    }
 }

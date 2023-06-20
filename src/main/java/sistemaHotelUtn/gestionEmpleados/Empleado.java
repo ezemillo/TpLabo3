@@ -1,14 +1,15 @@
 package sistemaHotelUtn.gestionEmpleados;
 
 import sistemaHotelUtn.generales.Persona;
+import sistemaHotelUtn.generales.TipoUsuario;
 import sistemaHotelUtn.generales.Usuario;
 
 public class Empleado extends Persona {
 
     //region Atributos
-    private Double salario;
+    private double salario = 200000.00;
     private int antiguedad;
-    private String puesto;
+    private String puesto = "Empleado";
     //endregion
 
     public Empleado() {
@@ -17,15 +18,26 @@ public class Empleado extends Persona {
 
     public Empleado(String username, String password)
     {
-        this.generarUsuario(username, password);
+        this.generarUsuario(username, password, TipoUsuario.EMPLEADO);
     }
-    public Empleado(Usuario usuario, String contraseña, String nombre,
+
+    public Empleado(String username, String password, String nombre,
                     String apellido, String dni, String domicilio,
-                    String telefono, Double salario, int antiguedad)
+                    String telefono, double salario, int antiguedad, String puesto)
     {
-        super(usuario, nombre, apellido, dni, domicilio, telefono);
+        super(username, password, nombre, apellido, dni, domicilio, telefono);
         this.salario = salario;
         this.antiguedad = antiguedad;
+        this.puesto = puesto;
+    }
+
+    public Empleado(String nombre, String apellido, String dni, String domicilio,
+                    String telefono, double salario, int antiguedad, String puesto)
+    {
+        super(nombre, apellido, dni, domicilio, telefono);
+        this.salario = salario;
+        this.antiguedad = antiguedad;
+        this.puesto = puesto;
     }
 
 
@@ -53,7 +65,7 @@ public class Empleado extends Persona {
         return super.toString().replace(
                 super.toString().charAt(super.toString().length() - 1),
                 ' '
-        ) + "\n\tPuesto: " + puesto + "\tSalario: " + salario + "\n\tAntiguedad: " + antiguedad +
+        ) + "\tPuesto: " + puesto + "\n\tSalario: $" + salario + "\n\tAntiguedad: " + antiguedad +
                 "\n" + "}";
     }
 }

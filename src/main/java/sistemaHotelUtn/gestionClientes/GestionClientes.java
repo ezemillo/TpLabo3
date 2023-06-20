@@ -2,6 +2,7 @@ package sistemaHotelUtn.gestionClientes;
 
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
+import sistemaHotelUtn.generales.TipoUsuario;
 import sistemaHotelUtn.gestionReservas.Reserva;
 
 import java.util.ArrayList;
@@ -10,10 +11,7 @@ import java.util.Scanner;
 public class GestionClientes extends Gestion<Cliente>
 {
     public GestionClientes(){
-        ArrayList<Cliente> clientesList = new ArrayList<>();
-        JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes",clientesList, Cliente.class);
-        clientesList = clientesJson.cargar();
-        this.setLista(clientesList);
+
     }
 
     public Cliente crearNuevoCliente()
@@ -50,7 +48,7 @@ public class GestionClientes extends Gestion<Cliente>
 
         System.out.print("Ingrese un password --> ");
         String password = scanner.nextLine();
-        nuevo.generarUsuario(username, password);
+        nuevo.generarUsuario(username, password, TipoUsuario.CLIENTE);
 
         return nuevo;
     }
@@ -68,5 +66,20 @@ public class GestionClientes extends Gestion<Cliente>
 
         // si no lo encuentra retorna null
         return null;
+    }
+
+    public void guardarClientesJson()
+    {
+        ArrayList<Cliente> clientesList = this.getLista();
+        JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes",clientesList, Cliente.class);
+        clientesJson.guardar();
+    }
+
+    public void cargarClientesJson()
+    {
+        ArrayList<Cliente> clientesList = new ArrayList<>();
+        JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes",clientesList, Cliente.class);
+        clientesList = clientesJson.cargar();
+        this.setLista(clientesList);
     }
 }

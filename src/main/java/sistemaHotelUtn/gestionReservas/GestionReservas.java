@@ -9,14 +9,7 @@ import java.util.List;
 
 public class GestionReservas extends Gestion<Reserva>
 {
-    public GestionReservas(){
-
-        ArrayList<Reserva> reservaList = new ArrayList<>();
-        JsonRepo<Reserva> reservaJson = new JsonRepo<>("reservas",reservaList, Reserva.class);
-        reservaList =reservaJson.cargar();
-        this.setLista(reservaList);
-
-    }
+    public GestionReservas(){}
 
     public boolean isDisponiblePorFecha(int idHabitacion, LocalDate checkIn, LocalDate checkOut) {
         System.out.println("entro al disponible");
@@ -34,5 +27,13 @@ public class GestionReservas extends Gestion<Reserva>
             }
         }
         return true;
+    }
+
+    public void cargarReservasJson()
+    {
+        ArrayList<Reserva> reservaList = new ArrayList<>();
+        JsonRepo<Reserva> reservaJson = new JsonRepo<>("reservas",reservaList, Reserva.class);
+        reservaList =reservaJson.cargar();
+        this.setLista(reservaList);
     }
 }

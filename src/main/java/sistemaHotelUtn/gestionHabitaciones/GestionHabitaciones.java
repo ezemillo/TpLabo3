@@ -14,11 +14,6 @@ public class GestionHabitaciones extends Gestion<Habitacion>
 {
     public GestionHabitaciones()
     {
-        ArrayList<Habitacion> habitacionesList = new ArrayList<>();
-        JsonRepo<Habitacion> habitacionesJson = new JsonRepo<>("habitaciones",habitacionesList, Habitacion.class);
-        habitacionesList=habitacionesJson.cargar();
-        this.setLista(habitacionesList);
-
     }
     private Habitacion nuevaHabitacion()
     {
@@ -55,6 +50,14 @@ public class GestionHabitaciones extends Gestion<Habitacion>
             aux=null;
         }
         return aux;
+    }
+
+    public void cargarHabitacionesJson()
+    {
+        ArrayList<Habitacion> habitacionesList = new ArrayList<>();
+        JsonRepo<Habitacion> habitacionesJson = new JsonRepo<>("habitaciones",habitacionesList, Habitacion.class);
+        habitacionesList=habitacionesJson.cargar();
+        this.setLista(habitacionesList);
     }
 
 }

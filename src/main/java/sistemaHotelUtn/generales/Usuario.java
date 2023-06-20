@@ -21,10 +21,11 @@ public class Usuario implements Serializable
         this.password = password;
     }
 
-    public Usuario(String username, String password, String tipoUsuario)
+    public Usuario(String username, String password, TipoUsuario tipoUsuario)
     {
         this.username = username;
         this.password = password;
+        this.tipoUsuario = tipoUsuario;
     }
 
     //region Getters y Setters
@@ -56,7 +57,8 @@ public class Usuario implements Serializable
     {
         return "{\n" +
                 "\tUsername: " + username +
-                "\tTipo Usuario: " + tipoUsuario +
-                "\n}";
+                "\n\tPassword: " + password +
+                "\n\tTipo Usuario: " + tipoUsuario +
+                "\n" + "}";
     }
 }

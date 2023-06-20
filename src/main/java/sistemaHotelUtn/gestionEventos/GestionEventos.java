@@ -11,10 +11,7 @@ import java.util.Scanner;
 public class GestionEventos extends Gestion<Evento>
 {
     public GestionEventos(){
-        ArrayList<Evento> eventosList = new ArrayList<>();
-        JsonRepo<Evento> eventosJson = new JsonRepo<>("eventos",eventosList, Evento.class);
-        eventosList=eventosJson.cargar();
-        this.setLista(eventosList);
+
     }
 
     public Evento crearNuevoEvento()
@@ -103,6 +100,18 @@ public class GestionEventos extends Gestion<Evento>
         }
         else //LANZAR EXCEPCION
             System.out.println("No se encontro un evento con nombre: " + nombreEvento);
+    }
+
+    public void guardarEventosJson()
+    {
+        ///
+    }
+    public void cargarEventosJson()
+    {
+        ArrayList<Evento> eventosList = new ArrayList<>();
+        JsonRepo<Evento> eventosJson = new JsonRepo<>("eventos",eventosList, Evento.class);
+        eventosList=eventosJson.cargar();
+        this.setLista(eventosList);
     }
 
 }

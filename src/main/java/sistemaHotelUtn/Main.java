@@ -33,7 +33,7 @@ public class Main
         Evento e = new Evento("Mardel Valley", "UTN MDP", 200,t,t2);
         Evento e2 = new Evento("Hackathon", "Accenture", 70,t,t2);
 
-        System.out.println(e.getFechaHoraInicio());
+        System.out.println( e.getFechaHoraInicio() );
 
         System.out.println(e);
         System.out.println(e2);
@@ -99,9 +99,9 @@ public class Main
 
         if (gestionReservas.isDisponiblePorFecha(0,t,t2 )){
         System.out.println("habitacion disponible");
-    }else{
+        }else{
             System.out.println("no disponible");
-    }
+        }
 
     }
 
@@ -138,5 +138,6 @@ public class Main
         GestionHotel gestionHotel = new GestionHotel();
 
         gestionHotel.mostrarMenuPrincipal();
+
     }
 }

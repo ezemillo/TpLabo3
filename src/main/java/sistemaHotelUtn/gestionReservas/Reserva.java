@@ -80,7 +80,7 @@ public class Reserva implements Serializable {
     public String toString() {
         return "{\n" +
                 "\tId: " + id +
-                "\n\tCliente: " + cliente.getNombreApellido() +
+                "\n\tCliente: " + cliente.getNombre() + ", " + cliente.getApellido() +
                 "\n\tHabitacion: " + habitacion +
                 "\n\tSaldo: $" + montoPagar +
                 "\n\tCheck In: " + diaCheckIn +

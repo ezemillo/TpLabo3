@@ -1,6 +1,7 @@
 package sistemaHotelUtn.gestionClientes;
 
 import sistemaHotelUtn.generales.Persona;
+import sistemaHotelUtn.generales.TipoUsuario;
 
 import java.io.Serializable;
 
@@ -14,7 +15,7 @@ public class Cliente extends Persona  {
 
     public Cliente(String username, String password)
     {
-        this.generarUsuario(username, password);
+        this.generarUsuario(username, password, TipoUsuario.CLIENTE);
     }
 
     public Cliente(String usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono, Double saldo, boolean estaActivo) {

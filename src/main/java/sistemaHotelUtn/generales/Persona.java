@@ -7,7 +7,7 @@ public abstract class Persona implements Serializable {
     // region Atributos
     private int id;
     private static int ultimoId = 0;
-    private Usuario usuario = null;
+    private Usuario usuario = new Usuario();
     private String nombre;
     private String apellido;
     private String dni;
@@ -64,10 +64,9 @@ public abstract class Persona implements Serializable {
         return usuario;
     }
 
-    public void generarUsuario(String username, String password)
+    public void generarUsuario(String username, String password, TipoUsuario tipoUsuario)
     {
-        if( this.usuario != null )
-            this.usuario = new Usuario(username, password);
+        this.usuario = new Usuario(username, password, tipoUsuario);
     }
 
     public int getId() {
@@ -115,10 +114,6 @@ public abstract class Persona implements Serializable {
     }
 
     // endregion
-    public String getNombreApellido()
-    {
-        return apellido + ", " + nombre;
-    }
 
     @Override
     public String toString() {
@@ -129,8 +124,7 @@ public abstract class Persona implements Serializable {
                 "\n\tDni: " + dni +
                 "\n\tDomicilio: " + domicilio +
                 "\n\tTelefono: " + telefono +
-                "\n\tUsuario: " + usuario + "\n}";
-
+                "\n\tUsuario: " + usuario.getUsername() + "\n" + "}";
     }
 }
 
