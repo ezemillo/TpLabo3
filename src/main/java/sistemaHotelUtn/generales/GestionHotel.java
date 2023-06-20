@@ -11,7 +11,6 @@ import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
 
 import java.time.LocalDate;
-import java.util.IllformedLocaleException;
 import java.util.Scanner;
 
 public class GestionHotel {
@@ -21,7 +20,6 @@ public class GestionHotel {
     private GestionEventos gestionEventos;
     private GestionHabitaciones gestionHabitaciones;
     private Usuario usuarioActual = null;
-
     Scanner scanner = new Scanner(System.in);
 
     public GestionHotel() {
@@ -240,7 +238,7 @@ public class GestionHotel {
         String username = "";
         String password = "";
 
-        System.out.println("**** Login Cliente ****");
+        System.out.println("\n-------------------------------- Login Cliente -------------------------------------");
         //solicitar username y password
         System.out.print("Ingrese su username --> ");
         username = scanner.nextLine();
@@ -269,7 +267,7 @@ public class GestionHotel {
         String username = "";
         String password = "";
 
-        System.out.println("**** Login Empleado ****");
+        System.out.println("\n-------------------------------- Login Empleado -------------------------------------");
         System.out.print("Ingrese su username --> ");
         username = scanner.nextLine();
 
