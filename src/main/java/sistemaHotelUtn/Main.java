@@ -138,6 +138,5 @@ public class Main
         GestionHotel gestionHotel = new GestionHotel();
 
         gestionHotel.mostrarMenuPrincipal();
-
     }
 }

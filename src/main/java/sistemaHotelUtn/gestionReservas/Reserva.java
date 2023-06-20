@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
+import java.time.temporal.ChronoUnit;
+
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,6 +23,7 @@ public class Reserva implements Serializable {
     private Habitacion habitacion;
     private double saldo;
     private double montoPagar;
+    private boolean estaActiva;
     //endregion
 
     //private ServiciosGastronomia List<ServiciosGastronomia>; agregar servicioGastronomia
@@ -34,6 +37,7 @@ public class Reserva implements Serializable {
         this.diaCheckOut = diaCheckOut;
         this.cliente = cliente;
         this.habitacion = habitacion;
+        this.estaActiva = true;
     }
     //region Getters y Setters
     public int getId()
@@ -70,10 +74,17 @@ public class Reserva implements Serializable {
     public Double getMontoPagar() {
         return montoPagar;
     }
+    public boolean getEstaActiva() {
+        return estaActiva;
+    }
+    public void setEstaActiva(boolean estaActiva) {
+        this.estaActiva = estaActiva;
+    }
+
     //endregion
 
-    public void setMontoPagar(Double montoPagar) { /// revisar
-        this.montoPagar = (double) this.diaCheckIn.compareTo(this.diaCheckOut)*this.habitacion.getPrecioDiario();
+    public void setMontoPagar(Double montoPagar) {
+        this.montoPagar = (double) (ChronoUnit.DAYS.between(this.diaCheckIn, this.diaCheckOut)+1)*this.habitacion.getPrecioDiario();
     }
 
     @Override
@@ -87,5 +98,6 @@ public class Reserva implements Serializable {
                 "\n\tCheck Out: " + diaCheckOut +
                 "\n" + "}";
     }
+
 
 }

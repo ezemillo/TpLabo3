@@ -19,7 +19,7 @@ public class GestionReservas extends Gestion<Reserva>
             
             System.out.println("reserva = " + reserva);
 
-            if (idHabitacion == reserva.getHabitacion().getId()
+            if (idHabitacion == reserva.getHabitacion().getId() && reserva.getEstaActiva()
                     && (checkOut.isAfter(reserva.getDiaCheckIn()) || checkOut.isEqual(reserva.getDiaCheckOut()))
                     && (checkIn.isBefore(reserva.getDiaCheckOut()) || checkIn.isEqual(reserva.getDiaCheckIn()))) {
                 return false;
@@ -28,12 +28,14 @@ public class GestionReservas extends Gestion<Reserva>
         }
         return true;
     }
-
-    public void cargarReservasJson()
-    {
+    public void cargarReservasJson() {
         ArrayList<Reserva> reservaList = new ArrayList<>();
-        JsonRepo<Reserva> reservaJson = new JsonRepo<>("reservas",reservaList, Reserva.class);
-        reservaList =reservaJson.cargar();
+        JsonRepo<Reserva> reservaJson = new JsonRepo<>("reservas", reservaList, Reserva.class);
+        reservaList = reservaJson.cargar();
         this.setLista(reservaList);
+    }
+
+    public void anularReserva(Reserva reserva){
+        reserva.setEstaActiva(false);
     }
 }
