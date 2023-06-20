@@ -1,7 +1,6 @@
 package sistemaHotelUtn.gestionHabitaciones;
 
-public enum TipoHabitacion
-{
+public enum TipoHabitacion {
     MonoAmbiente,
     DosAmbientes,
     TresAmbientes

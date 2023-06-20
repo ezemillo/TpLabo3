@@ -8,14 +8,13 @@ import sistemaHotelUtn.gestionReservas.Reserva;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestionClientes extends Gestion<Cliente>
-{
-    public GestionClientes(){
+public class GestionClientes extends Gestion<Cliente> {
+    public GestionClientes() {
+        cargarClientesJson();
 
     }
 
-    public Cliente crearNuevoCliente()
-    {
+    public Cliente crearNuevoCliente() {
         Scanner scanner = new Scanner(System.in);
         String entrada = "";
         /*Pide informacion por la consola y crea un nuevo cliente listo para agregar a la lista*/
@@ -53,12 +52,10 @@ public class GestionClientes extends Gestion<Cliente>
         return nuevo;
     }
 
-    public Cliente buscarClientePorUsername(String username)
-    {
-        for(Cliente cliente: this.getLista() )
-        {
-            if(cliente.getUsuario().getUsername().equals(username))
-            {
+
+    public Cliente buscarClientePorUsername(String username) {
+        for (Cliente cliente : this.getLista()) {
+            if (cliente.getUsuario().getUsername().equals(username)) {
                 //si lo encuentra lo retorna
                 return cliente;
             }
@@ -68,18 +65,33 @@ public class GestionClientes extends Gestion<Cliente>
         return null;
     }
 
-    public void guardarClientesJson()
-    {
+    public void guardarClientesJson() {
         ArrayList<Cliente> clientesList = this.getLista();
-        JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes",clientesList, Cliente.class);
+        JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes", clientesList, Cliente.class);
         clientesJson.guardar();
     }
 
-    public void cargarClientesJson()
-    {
+    public void cargarClientesJson() {
         ArrayList<Cliente> clientesList = new ArrayList<>();
-        JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes",clientesList, Cliente.class);
+        JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes", clientesList, Cliente.class);
         clientesList = clientesJson.cargar();
         this.setLista(clientesList);
+    }
+
+    /*Daniiiii*/
+    public void mostrarClientes() {
+        int i = 1;
+        for (Cliente cliente : this.getLista()) {
+            System.out.println(cliente);
+        }
+    }
+
+    public Cliente buscarCliente(String dni) {
+        for (Cliente cliente : this.getLista()) {
+            if (cliente.getDni().equals(dni)) {
+                return cliente;
+            }
+        }
+        return null;
     }
 }

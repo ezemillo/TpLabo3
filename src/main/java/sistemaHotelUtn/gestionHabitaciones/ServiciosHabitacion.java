@@ -4,5 +4,5 @@ import java.io.Serializable;
 
 public enum ServiciosHabitacion implements Serializable {
 
-    WIFI,CABLE,BANIERA,JACUZZI
+    WIFI, CABLE, BANIERA, JACUZZI
 }

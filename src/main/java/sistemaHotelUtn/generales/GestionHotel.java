@@ -10,10 +10,10 @@ import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
-public class GestionHotel
-{
+public class GestionHotel {
     private GestionEmpleados gestionEmpleados;
     private GestionClientes gestionClientes;
     private GestionReservas gestionReservas;
@@ -23,8 +23,7 @@ public class GestionHotel
 
     Scanner scanner = new Scanner(System.in);
 
-    public GestionHotel()
-    {
+    public GestionHotel() {
         this.gestionClientes = new GestionClientes();
         this.gestionHabitaciones = new GestionHabitaciones();
         this.gestionEventos = new GestionEventos();
@@ -33,16 +32,14 @@ public class GestionHotel
     }
 
 
-    public void mostrarMenuPrincipal()
-    {
+    public void mostrarMenuPrincipal() {
         /*Muestra el menu principal, y llama a todos los demás menús*/
 
         String entrada = "";
         int opcion = 0;
         boolean salir = false;
 
-        while( salir != true )
-        {
+        while (salir != true) {
             System.out.println("---------------------------- Sistema Gestion Hotel -------------------------------------");
             System.out.println("\n\t[1] Login\n\t[2] Regitrarse\n\t[3] Salir");
             System.out.println("\nUsuario actual: " +
@@ -53,8 +50,7 @@ public class GestionHotel
 
             opcion = Integer.parseInt(entrada);
 
-            switch(opcion)
-            {
+            switch (opcion) {
                 case 1: //login
                     //verificar si es cliente o empleado
                     //mostrar menu que corresponde
@@ -80,9 +76,8 @@ public class GestionHotel
 
     /*---------------------MENUS REGISTRO-----------------*/
 
-    private void mostrarMenuRegistroGeneral()
-    {
-        String entradaRegistro  = "";
+    private void mostrarMenuRegistroGeneral() {
+        String entradaRegistro = "";
         int opcionRegistro = 0;
 
         System.out.println("\n-------------------------------- Registro -------------------------------------");
@@ -137,9 +132,8 @@ public class GestionHotel
 
     /*--------------------- MENUS LOGIN -----------------*/
 
-    private void mostrarMenuLoginGeneral()
-    {
-        String entradaLogin  = "";
+    private void mostrarMenuLoginGeneral() {
+        String entradaLogin = "";
         int opcionLogin = 0;
         String username = "";
         String password = "";
@@ -154,8 +148,7 @@ public class GestionHotel
         entradaLogin = scanner.nextLine();
         opcionLogin = Integer.parseInt(entradaLogin);
 
-        switch(opcionLogin)
-        {
+        switch (opcionLogin) {
             case 1: //login cliente
                 mostrarMenuLoginCliente();
                 break;
@@ -173,8 +166,7 @@ public class GestionHotel
         }
     }
 
-    private void mostrarMenuLoginCliente()
-    {
+    private void mostrarMenuLoginCliente() {
         String username = "";
         String password = "";
 
@@ -190,19 +182,19 @@ public class GestionHotel
         //busca que exista ese cliente por username
         Cliente cliente = gestionClientes.buscarClientePorUsername(username);
 
-        if( cliente != null )
-        {
+        if (cliente != null) {
             this.usuarioActual = cliente.getUsuario();
             System.out.println("Cliente hizo login: " + usuarioActual.getUsername() );
             mostrarMenuCliente( cliente );
         }
-        else //deberia lanzar excepcion
-            System.out.println("No se ha encontrado un cliente con username: " + username);
+        else {
+            System.out.println("Cliente hizo login: " + usuarioActual.getUsername());
+            mostrarMenuCliente(cliente); //SE LLAMA AL MENU CLIENTE CON CASTEO
+        }
 
     }
 
-    private void mostrarMenuLoginEmpleado()
-    {
+    private void mostrarMenuLoginEmpleado() {
         //solicitar username y password
         String username = "";
         String password = "";
@@ -217,36 +209,33 @@ public class GestionHotel
         gestionEmpleados.cargarEmpleadosJson(); //CARGA LOS EMPLEADOS DESDE EL JSON
         Empleado empleado = gestionEmpleados.buscarEmpleadoPorUsername(username); //BUSCA ESE EMPLEADO
 
-        if( empleado != null )
-        {
+        if (empleado != null) {
             this.usuarioActual = empleado.getUsuario();
-            System.out.println("Empleado hizo login: " + usuarioActual.getUsername() );
-            mostrarMenuEmpleado( empleado ); //SE LLAMA AL MENU CLIENTE CON CASTEO
-        }
-        else //deberia lanzar excepcion
+            System.out.println("Empleado hizo login: " + usuarioActual.getUsername());
+            mostrarMenuEmpleado(empleado); //SE LLAMA AL MENU CLIENTE CON CASTEO
+        } else //deberia lanzar excepcion
             System.out.println("No se ha encontrado un empleado con username: " + username);
 
     }
 
-    public void mostrarMenuCliente(Cliente cliente)
-    {
+    public void mostrarMenuCliente(Cliente cliente) {
         boolean retener = true;
-        int opcion=0;
-        Scanner scanner= new Scanner(System.in);
-        while (retener)
-        {
+        int opcion = 0;
+        Scanner scanner = new Scanner(System.in);
+        while (retener) {
             System.out.println("Elija una opcion:");
             System.out.println("1. Cuenta");
-            System.out.println("2. Habitaciones");
+            System.out.println("2. Reservar Habitaciones");
             System.out.println("3. Eventos");
             System.out.println("0. Salir");
-            opcion=scanner.nextInt();
-            switch (opcion)
-            {
+            opcion = scanner.nextInt();
+            switch (opcion) {
                 case 1:
 
                     break;
                 case 2:
+                    mostrarMenuReserva();
+
                     break;
 
                 case 3: //eventos
@@ -254,33 +243,33 @@ public class GestionHotel
                     gestionEventos.cargarEventosJson(); // CARGA TODOS LOS EVENTOS DEL JSON
                     System.out.println("Eventos Proximos: ");
                     System.out.println( gestionEventos.listar() ); // LOS MUESTRA
+                    System.out.println(gestionEventos.listar());
                     break;
 
                 case 0:
-                    retener=false;
+                    retener = false;
                     break;
             }
         }
     }
 
-    public void mostrarMenuEmpleado(Empleado empleado){
+    public void mostrarMenuEmpleado(Empleado empleado) {
         boolean retener = true;
-        int opcion=0;
-        Scanner scanner= new Scanner(System.in);
-        while (retener)
-        {
+        int opcion = 0;
+        Scanner scanner = new Scanner(System.in);
+        while (retener) {
             System.out.println("Elija una opcion:");
             System.out.println("1. Cuenta");
             System.out.println("2. Habitaciones");
             System.out.println("3. Eventos");
             System.out.println("0. Salir");
-            opcion=scanner.nextInt();
-            switch (opcion)
-            {
+            opcion = scanner.nextInt();
+            switch (opcion) {
                 case 1:
 
                     break;
                 case 2:
+                    mostrarMenuHabEmpleado();
                     break;
 
                 case 3: //eventos
@@ -289,14 +278,13 @@ public class GestionHotel
                     break;
 
                 case 0:
-                    retener=false;
+                    retener = false;
                     break;
             }
         }
     }
 
-    private void mostrarMenuEventosEmpleado()
-    {
+    private void mostrarMenuEventosEmpleado() {
         int opcionEventos = 0;
         String entradaEventos = "";
 
@@ -352,22 +340,19 @@ public class GestionHotel
 
     }
 
-    public void menuHabitaciones(Persona usuario, GestionReservas gestionReservas){
+    public void menuHabitaciones(Persona usuario, GestionReservas gestionReservas) {
 
-        if(usuario instanceof Empleado)
-        {
+        if (usuario instanceof Empleado) {
             mostrarMenuHabEmpleado();
-        }else
-        {
-            mostrarMenuHabCliente();
+        } else {
+            //mostrarMenuHabCliente();
         }
     }
 
-    private void mostrarMenuHabEmpleado()
-    {
-        int opcion,confirma;
-        Scanner scanner =new Scanner(System.in);
-        boolean retener=true;
+    private void mostrarMenuHabEmpleado() {
+        int opcion, confirma;
+        Scanner scanner = new Scanner(System.in);
+        boolean retener = true;
         Habitacion aux;
         while (retener) {
             System.out.println("1. Agregar Habitacion");
@@ -377,8 +362,7 @@ public class GestionHotel
             System.out.println("0. Salir");
             opcion = scanner.nextInt();
             scanner.nextLine();
-            switch (opcion)
-            {
+            switch (opcion) {
                 case 1 -> {
                     //pedir info para la nueva habitacion
                     aux = new Habitacion();
@@ -392,9 +376,8 @@ public class GestionHotel
                     opcion = scanner.nextInt();
                     aux = gestionHabitaciones.buscarHabitacion(opcion);
 
-                    if (aux != null)
-                    {
-                        System.out.println("¿Esta seguro que quiere eliminar esta habtacion? Ingrese 0 para confirmar");
+                    if (aux != null) {
+                        System.out.println("¿Esta seguro que quiere eliminar esta habitacion? Ingrese 0 para confirmar");
                         confirma = scanner.nextInt();
                         if (confirma == 0) {
                             gestionHabitaciones.eliminar(aux);
@@ -406,7 +389,7 @@ public class GestionHotel
 
                 case 3 -> {
                     System.out.println("Ingrese el ID de la habitacion que desea eliminar");
-                    System.out.println( gestionHabitaciones.listar() );
+                    System.out.println(gestionHabitaciones.listar());
                     opcion = scanner.nextInt();
                     scanner.nextLine();
                     aux = gestionHabitaciones.buscarHabitacion(opcion);
@@ -428,12 +411,56 @@ public class GestionHotel
         }
     }
 
-    private void mostrarMenuReserva()
-    {
+    private void mostrarMenuReserva() {
+        int opcionReserva = 0;
+        String entradaReserva = "";
 
-    }
-    private void mostrarMenuHabCliente()
-    {
+        System.out.println("------------------Reserva Habitaciones ----------------------");
+        System.out.println("[1] Ver todas las habitaciones ");
+        System.out.println("[2] Ver Habitaciones disponibles por fecha");
+        System.out.println("[3] Realizar una nueva reserva");
+        System.out.println("[4] Ver mis reservas activas");
+        System.out.println("[5] Cancelar mis reservas");
+        System.out.println("[6] Salir");
 
+        System.out.print("\nIngrese su opción (1, 2, 3, 4 ,5) --> ");
+        entradaReserva = scanner.nextLine();
+
+        opcionReserva = Integer.parseInt(entradaReserva);
+
+        switch (opcionReserva) {
+            case 1:
+                System.out.println("Habitaciones con las que cuenta el hotel: ");
+                System.out.println(gestionHabitaciones.listar());
+                break;
+
+            case 2:
+                System.out.println("Fecha de checkin:");
+                LocalDate checkin = gestionReservas.solicitarLocalDate();
+                System.out.println("Fecha de checkout:");
+                LocalDate checkOut = gestionReservas.solicitarLocalDate();
+                System.out.println("");
+                gestionReservas.verHabitacionesDisponiblesPorFechas(checkin, checkOut);
+                break;
+
+            case 3:
+
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                break;
+
+            case 6: //salir
+                break;
+
+            default:
+                System.out.println("Opción inválida");
+                break;
+
+        }
     }
+
 }

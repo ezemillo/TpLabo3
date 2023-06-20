@@ -1,7 +1,6 @@
 package sistemaHotelUtn.generales;
 
-public enum TipoUsuario
-{
+public enum TipoUsuario {
     CLIENTE,
     EMPLEADO
 }

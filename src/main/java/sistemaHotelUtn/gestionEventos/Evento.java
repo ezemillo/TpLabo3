@@ -1,15 +1,15 @@
 /*
-* Representa un evento que se realiza en un hotel, con un nombre ej :
-* "Charla del medioambiente en MDP", y con un organizador, ej: "Municipalidad de GP".
-* por Blanco, Santiago.
-* */
+ * Representa un evento que se realiza en un hotel, con un nombre ej :
+ * "Charla del medioambiente en MDP", y con un organizador, ej: "Municipalidad de GP".
+ * por Blanco, Santiago.
+ * */
 
 package sistemaHotelUtn.gestionEventos;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Evento
-{
+public class Evento {
     //region Atributos
     private static int contadorEventos = 0;
     private int id;
@@ -21,10 +21,10 @@ public class Evento
     //endregion
 
     //region Constructores
-    public Evento(){}
+    public Evento() {
+    }
 
-    public Evento(String nombreEvento, String organizador, int participantes)
-    {
+    public Evento(String nombreEvento, String organizador, int participantes) {
         this.id = ++contadorEventos;
         this.nombreEvento = nombreEvento;
         this.organizador = organizador;
@@ -32,18 +32,17 @@ public class Evento
     }
 
     public Evento(String nombreEvento, String organizador, int participantes,
-                  LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin)
-    {
+                  LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin) {
         this.id = ++contadorEventos;
         this.nombreEvento = nombreEvento;
         this.organizador = organizador;
 
-        if( argParticipantesEsCorrecto(participantes) )
+        if (argParticipantesEsCorrecto(participantes))
             this.participantes = participantes;
 
         this.fechaHoraInicio = fechaHoraInicio;
 
-        if( argFechaEsCorrecta(fechaHoraFin) )
+        if (argFechaEsCorrecta(fechaHoraFin))
             this.fechaHoraFin = fechaHoraFin;
     }
     //endregion
@@ -73,9 +72,8 @@ public class Evento
         return participantes;
     }
 
-    public void setParticipantes(int participantes)
-    {
-        if( argParticipantesEsCorrecto(participantes) )
+    public void setParticipantes(int participantes) {
+        if (argParticipantesEsCorrecto(participantes))
             this.participantes = participantes;
     }
 
@@ -96,18 +94,16 @@ public class Evento
     }
     //endregion
 
-    private boolean argParticipantesEsCorrecto(int part) throws IllegalArgumentException
-    {
-        if( part > 0 )
+    private boolean argParticipantesEsCorrecto(int part) throws IllegalArgumentException {
+        if (part > 0)
             return true;
         else
             throw new IllegalArgumentException("Los participantes deben ser mayor que cero.");
 
     }
 
-    private boolean argFechaEsCorrecta(LocalDateTime f) throws IllegalArgumentException
-    {
-        if( ! this.fechaHoraInicio.equals(f) )
+    private boolean argFechaEsCorrecta(LocalDateTime f) throws IllegalArgumentException {
+        if (!this.fechaHoraInicio.equals(f))
             return true;
         else
             throw new IllegalArgumentException("La fecha de fin no puede ser igual a la fecha de inicio.");
