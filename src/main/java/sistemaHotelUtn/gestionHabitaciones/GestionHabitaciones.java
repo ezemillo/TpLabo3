@@ -61,4 +61,19 @@ public class GestionHabitaciones extends Gestion<Habitacion>
         this.setLista(habitacionesList);
     }
 
+
+
+    public void mostrarHabitaciones (){
+        int i=1;
+        for (Habitacion habitacion:this.getLista()) {
+            if(habitacion.getEsReservable()){
+                System.out.println(i+ ")" +habitacion);
+                i++;
+            }
+        }
+    }
+    public Habitacion obtenerHabitacion(int choice){
+        return this.getLista().get(choice-1);
+    }
+
 }

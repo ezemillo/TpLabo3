@@ -87,6 +87,12 @@ public class Reserva implements Serializable {
         this.montoPagar = (double) (ChronoUnit.DAYS.between(this.diaCheckIn, this.diaCheckOut)+1)*this.habitacion.getPrecioDiario();
     }
 
+    public long cantidadDias (){
+        // Calcular la diferencia en días
+        long diferenciaDias = ChronoUnit.DAYS.between(this.diaCheckIn, this.diaCheckOut);
+        return diferenciaDias;
+    }
+
     @Override
     public String toString() {
         return "{\n" +

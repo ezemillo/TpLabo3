@@ -85,4 +85,20 @@ public class GestionClientes extends Gestion<Cliente>
         clientesList = clientesJson.cargar();
         this.setLista(clientesList);
     }
+
+    /*Daniiiii*/
+    public void mostrarClientes (){
+        int i=1;
+        for (Cliente cliente:this.getLista()) {
+            System.out.println(cliente);
+        }
+    }
+    public Cliente buscarCliente (String dni){
+        for (Cliente cliente : this.getLista()){
+            if(cliente.getDni().equals(dni)){
+                return cliente;
+            }
+        }
+        return null;
+    }
 }

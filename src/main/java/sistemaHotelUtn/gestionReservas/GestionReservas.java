@@ -74,5 +74,53 @@ public class GestionReservas extends Gestion<Reserva>
         return LocalDate.of(year,month,day);
 
     }
+
+
+    public void guardarReservasJson()
+    {
+        ArrayList<Reserva> reservasList = this.getLista();
+        JsonRepo<Reserva> reservasJson = new JsonRepo<>("reservas",reservasList, Reserva.class);
+        reservasJson.guardar();
+    }
+
+    public Reserva buscarReserva (String dni){
+
+        for (Reserva reserva:this.getLista()) {
+            if(reserva.getCliente().getDni().equals(dni)&& reserva.getEstaActiva()){
+                return reserva;
+            }
+        }
+        return null;
+    }
+    public void anularReserva(String dni) {
+        for (Reserva reserva:this.getLista()) {
+            if(reserva.getCliente().getDni().equals(dni)){
+                reserva=null;
+            }
+        }
+    }
+    public void buscarReservaPagar (String dni){
+
+        for (Reserva reserva:this.getLista()) {
+            if(reserva.getCliente().getDni().equals(dni)&& reserva.getEstaActiva()){
+                reserva.setDiaCheckIn(null);
+                reserva.setDiaCheckOut(null);
+                reserva.getCliente().setSaldo(0.00);
+                reserva.setEstaActiva(false);
+                //reserva.setMontoPagar(0.00); no lo seteo porque quiero que haya un metodo para que podamos consultar la ganancia de todas las reservas
+                //ahora, si esto lo dejo así, cuando el cliente quiera reservar de nuevo, el MontoPagar se va a sumar con lo viejo, lo que va a posibilitar de que el administrador
+                //pueda consultar cuanto fue la ganancia con ese cliente
+            }
+        }
+    }
+    public void buscarReservaModificar (Reserva elemento,String dni){
+        int i=0;
+        for (Reserva reserva:this.getLista()){
+            if(reserva.getCliente().getDni().equals(dni)&&reserva.getEstaActiva()){
+                this.getLista().set(i,elemento);
+            }
+            i++;
+        }
+    }
 }
 
