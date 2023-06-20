@@ -122,5 +122,12 @@ public class GestionReservas extends Gestion<Reserva> {
             i++;
         }
     }
+    public void verMisReservasActivas(String dni){
+        for(Reserva reserva:this.getLista()){
+            if(reserva.getCliente().getDni().equals(dni)&& reserva.getEstaActiva()){
+                System.out.println(reserva);
+            }
+        }
+    }
 }
 

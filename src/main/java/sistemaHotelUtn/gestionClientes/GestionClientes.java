@@ -3,9 +3,15 @@ package sistemaHotelUtn.gestionClientes;
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.generales.TipoUsuario;
+import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
+import sistemaHotelUtn.gestionHabitaciones.Habitacion;
+import sistemaHotelUtn.gestionReservas.GestionReservas;
 import sistemaHotelUtn.gestionReservas.Reserva;
+import sistemaHotelUtn.gestionServiciosGastronomicos.GestionServiciosGastronomicos;
+import sistemaHotelUtn.gestionServiciosGastronomicos.ServicioGastronomia;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class GestionClientes extends Gestion<Cliente> {
@@ -91,5 +97,181 @@ public class GestionClientes extends Gestion<Cliente> {
             }
         }
         return null;
+    }
+
+    public void buscarYmodificar (String dni,double saldo){
+        for (Cliente cliente:this.getLista()){
+            if(cliente.getDni().equals(dni)){
+                cliente.setSaldo(saldo);
+            }
+        }
+        guardarClientesJson();
+    }
+
+    public void generarReserva (){
+        GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
+        gestionHabitaciones.mostrarHabitaciones();
+
+        System.out.println("Ingrese el numero de habitacion que desea reservar");
+        int choice = new Scanner(System.in).nextInt();
+        Habitacion habitacionReserva = gestionHabitaciones.obtenerHabitacion(choice);
+
+        System.out.println("Ingrese su DNI");
+        String dni = new Scanner(System.in).next();
+
+        //GestionClientes gestionClientes = new GestionClientes();
+        Cliente cliente = buscarCliente(dni);
+
+        Reserva nuevaReserva = new Reserva();
+
+        if(cliente!=null){
+            if(cliente.isEstaActivo()){
+                System.out.println("Ingrese los dias a reservar");
+                //metodo buscar que la reserva pueda hacerse ese dia
+                //nuevaReserva.setDiaCheckIn();
+                //nuevaReserva.setDiaCheckOut();
+
+                System.out.println("Ingrese 'S' para confirmar");
+                char eleccion = new Scanner(System.in).next().charAt(0);
+                if(eleccion=='s'){
+                    GestionReservas gestionReservas=new GestionReservas();
+                    nuevaReserva.setCliente(cliente);
+                    nuevaReserva.setHabitacion(habitacionReserva);
+                    nuevaReserva.setMontoPagar(habitacionReserva.getPrecioDiario() * nuevaReserva.cantidadDias());
+                    gestionReservas.agregar(nuevaReserva);
+
+                }
+                System.out.println("Gracias por elegirnos");
+            }else {
+                System.out.println("Usted esta imposibilitado para realizar una reserva");
+                //return null;
+            }
+        }
+        else{
+            System.out.println("No está registrado, cree su usuario");
+
+            Cliente nuevoCliente2 = crearNuevoCliente();
+
+
+            System.out.println("Ingrese 'S' para confirmar");
+            char eleccion = new Scanner(System.in).next().charAt(0);
+            if(eleccion=='s') {
+                nuevaReserva.setCliente(nuevoCliente2);
+
+                nuevaReserva.setHabitacion(habitacionReserva);
+                nuevaReserva.setMontoPagar(habitacionReserva.getPrecioDiario() * nuevaReserva.cantidadDias());
+
+                nuevoCliente2.setSaldo(nuevaReserva.getMontoPagar());
+                nuevoCliente2.setEstaActivo(true);
+
+                GestionReservas gestionReservas = new GestionReservas();
+                gestionReservas.agregar(nuevaReserva);
+
+                agregar(nuevoCliente2);//preguntar si aca se guarda en el JSON
+
+                //MANDAR LA LISTA CON EL METODO GUARDAR!
+                guardarClientesJson();
+                gestionReservas.guardarReservasJson();
+            }
+        }
+        //return null;
+    }
+
+
+
+
+
+    public void modificarReserva() {//anular reserva y agregar servicio, la idea es ponerlo en dos metodos diferentes
+        System.out.println("Que desea hacer?");
+        System.out.println("1.- Anular reserva\n2.- Agregar Servicio\n3.- Pagar Reserva");
+        int choice = new Scanner(System.in).nextInt();
+        //mandar una excepcion
+        if(choice==1){//metodo anular reserva
+            anularReserva();
+        } else if (choice==2) {//metodo agregar servicio
+
+            System.out.println("Ingrese su dni");
+            String dni = new Scanner(System.in).next();
+
+            GestionReservas gestionReservas = new GestionReservas();//lo mismo que arriba
+            Reserva reserva=gestionReservas.buscarReserva(dni);
+
+            System.out.println("Ingrese 1.- Para Plato del Dia\n2.- Para Cafeteria\n3.- Para Bar");//esto se puede mejorar por ENUM
+
+            int eleccion = new Scanner(System.in).nextInt();
+
+            if(eleccion==1){
+                reserva=cargaServicio("Plato del Dia",reserva,eleccion);
+
+                buscarYmodificar(dni,reserva.getCliente().getSaldo());
+
+                gestionReservas.buscarReservaModificar(reserva,dni);
+                gestionReservas.guardarReservasJson();
+            }
+            else if (eleccion==2){
+                reserva=cargaServicio("Cafeteria",reserva,eleccion);
+
+                buscarYmodificar(dni,reserva.getCliente().getSaldo());
+
+                gestionReservas.buscarReservaModificar(reserva,dni);
+                gestionReservas.guardarReservasJson();
+            }
+            else if (eleccion==3){
+                reserva=cargaServicio("Bar",reserva,eleccion);
+
+                buscarYmodificar(dni,reserva.getCliente().getSaldo());
+
+                gestionReservas.buscarReservaModificar(reserva,dni);
+                gestionReservas.guardarReservasJson();
+            }
+        } else if (choice == 3) {
+            pagarReserva();
+        }
+    }
+
+    public Reserva cargaServicio(String tipoServicio, Reserva reserva, int eleccion){
+        List<ServicioGastronomia> listadoServiciosGastronomicos;
+        GestionServiciosGastronomicos gestionServiciosGastronomicos = new GestionServiciosGastronomicos();
+
+        listadoServiciosGastronomicos=gestionServiciosGastronomicos.CargarServicios(tipoServicio);//cargo una lista auxiliar para mostrar los servicios del tipo que pidio
+        gestionServiciosGastronomicos.mostrarServicio(listadoServiciosGastronomicos);
+
+        System.out.println("Ingrese opcion deseada");
+        eleccion= new Scanner(System.in).nextInt();
+
+        if(eleccion<=listadoServiciosGastronomicos.size()){
+            reserva.setMontoPagar(reserva.getMontoPagar()+listadoServiciosGastronomicos.get(eleccion-1).getPrecio());
+            reserva.getCliente().setSaldo(reserva.getCliente().getSaldo()+listadoServiciosGastronomicos.get(eleccion-1).getPrecio());
+        }
+
+        return reserva;
+    }
+
+    public void pagarReserva (){
+        GestionReservas gestionReservas = new GestionReservas();
+        System.out.println("Para confirmar pago, ingrese su DNI");
+        String dni = new Scanner(System.in).next();
+        gestionReservas.buscarReservaPagar(dni);
+        gestionReservas.guardarReservasJson();
+
+        System.out.println("Muchas gracias.");
+
+    }
+    public void anularReserva(){
+        System.out.println("Ingrese su dni");
+        String dni = new Scanner(System.in).next();
+
+        GestionReservas gestionReservas = new GestionReservas();//recibo el listado de las reservas
+        Reserva reserva=gestionReservas.buscarReserva(dni);//recibo la reserva de la persona
+        System.out.println(reserva);
+
+        System.out.println("Confirmar anulacion de reserva");
+        char eleccion = new Scanner(System.in).next().charAt(0);
+
+        if(eleccion=='s'){
+            gestionReservas.anularReserva(dni);//pongo el estaActuvo en false
+            gestionReservas.guardarReservasJson();
+            System.out.println("Su reserva fue anulada con exito");
+        }
     }
 }

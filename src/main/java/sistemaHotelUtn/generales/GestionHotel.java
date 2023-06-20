@@ -609,32 +609,10 @@ public class GestionHotel {
         System.out.println("[5] Cancelar mis reservas");
         System.out.println("[6] Salir");
 
-        while( opcionReserva == 0 )
-        {
-            try
-            {
-                System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6) --> ");
-                entradaReserva = scanner.nextLine();
+        System.out.print("\nIngrese su opción (1, 2, 3, 4 ,5) --> ");
+        entradaReserva = scanner.nextLine();
 
-                opcionReserva = Integer.parseInt(entradaReserva);
-
-                if( opcionReserva < 1 || opcionReserva > 6)
-                {
-                    opcionReserva = 0;
-                    throw new IllegalArgumentException();
-                }
-
-            }catch (NumberFormatException e)
-            {
-                opcionReserva = 0;
-                System.out.println("Error: ingrese una de las opciones indicadas.");
-            }
-            catch(IllegalArgumentException e)
-            {
-                opcionReserva = 0;
-                System.out.println("Error: ingrese un numero en el rango indicado.");
-            }
-        }
+        opcionReserva = Integer.parseInt(entradaReserva);
 
         switch (opcionReserva) {
             case 1:
@@ -646,19 +624,28 @@ public class GestionHotel {
                 System.out.println("Fecha de checkin:");
                 LocalDate checkin = gestionReservas.solicitarLocalDate();
                 System.out.println("Fecha de checkout:");
-                LocalDate checkOut = gestionReservas.solicitarLocalDate();
+                LocalDate checkOut =gestionReservas.solicitarLocalDate();
                 System.out.println("");
-                gestionReservas.verHabitacionesDisponiblesPorFechas(checkin, checkOut);
+                gestionReservas.verHabitacionesDisponiblesPorFechas(checkin,checkOut);
                 break;
 
             case 3:
+                GestionClientes gestionClientes1=new GestionClientes();
+                gestionClientes1.generarReserva();
 
                 break;
 
             case 4:
+                System.out.println("Ingrese su DNI");
+                String dni=new Scanner(System.in).next();
+                gestionReservas.verMisReservasActivas(dni);
+
                 break;
 
             case 5:
+                GestionClientes gestionClientes2=new GestionClientes();
+                gestionClientes2.anularReserva();
+
                 break;
 
             case 6: //salir
