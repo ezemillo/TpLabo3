@@ -212,6 +212,7 @@ public class Cliente extends Persona  {
         System.out.println("Muchas gracias.");
 
     }
+
     public void anularReserva(){
         System.out.println("Ingrese su dni");
         String dni = new Scanner(System.in).next();

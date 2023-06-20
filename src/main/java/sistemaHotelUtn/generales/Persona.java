@@ -21,6 +21,7 @@ public abstract class Persona implements Serializable {
 
 
     public Persona() {
+        ++ultimoId;
     }
 
     public Persona(Usuario usuario, String nombre, String apellido, String dni,
@@ -34,8 +35,7 @@ public abstract class Persona implements Serializable {
         this.telefono = telefono;
     }
 
-    public Persona(String nombre, String apellido, String dni, String domicilio, String telefono)
-    {
+    public Persona(String nombre, String apellido, String dni, String domicilio, String telefono) {
         this.id = ++Persona.ultimoId;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -45,8 +45,8 @@ public abstract class Persona implements Serializable {
     }
 
     public Persona(String username, String password, String nombre, String apellido,
-                   String dni, String domicilio, String telefono)
-    {
+                   String dni, String domicilio, String telefono) {
+        this.id = ++Persona.ultimoId;
         this.usuario = new Usuario(username, password);
         this.nombre = nombre;
         this.apellido = apellido;
@@ -64,8 +64,7 @@ public abstract class Persona implements Serializable {
         return usuario;
     }
 
-    public void generarUsuario(String username, String password, TipoUsuario tipoUsuario)
-    {
+    public void generarUsuario(String username, String password, TipoUsuario tipoUsuario) {
         this.usuario = new Usuario(username, password, tipoUsuario);
     }
 

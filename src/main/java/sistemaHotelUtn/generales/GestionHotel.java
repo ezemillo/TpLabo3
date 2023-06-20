@@ -260,6 +260,7 @@ public class GestionHotel {
 
                     break;
                 case 2:
+                    mostrarMenuHabEmpleado();
                     break;
 
                 case 3: //eventos
@@ -423,12 +424,13 @@ public class GestionHotel {
                 System.out.println("Fecha de checkin:");
                 LocalDate checkin = gestionReservas.solicitarLocalDate();
                 System.out.println("Fecha de checkout:");
-                LocalDate checkOut =gestionReservas.solicitarLocalDate();
+                LocalDate checkOut = gestionReservas.solicitarLocalDate();
                 System.out.println("");
-                gestionReservas.verHabitacionesDisponiblesPorFechas(checkin,checkOut);
+                gestionReservas.verHabitacionesDisponiblesPorFechas(checkin, checkOut);
                 break;
 
             case 3:
+
                 break;
 
             case 4:

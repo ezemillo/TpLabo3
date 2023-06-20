@@ -16,15 +16,13 @@ public class Empleado extends Persona {
 
     }
 
-    public Empleado(String username, String password)
-    {
+    public Empleado(String username, String password) {
         this.generarUsuario(username, password, TipoUsuario.EMPLEADO);
     }
 
     public Empleado(String username, String password, String nombre,
                     String apellido, String dni, String domicilio,
-                    String telefono, double salario, int antiguedad, String puesto)
-    {
+                    String telefono, double salario, int antiguedad, String puesto) {
         super(username, password, nombre, apellido, dni, domicilio, telefono);
         this.salario = salario;
         this.antiguedad = antiguedad;
@@ -32,8 +30,7 @@ public class Empleado extends Persona {
     }
 
     public Empleado(String nombre, String apellido, String dni, String domicilio,
-                    String telefono, double salario, int antiguedad, String puesto)
-    {
+                    String telefono, double salario, int antiguedad, String puesto) {
         super(nombre, apellido, dni, domicilio, telefono);
         this.salario = salario;
         this.antiguedad = antiguedad;

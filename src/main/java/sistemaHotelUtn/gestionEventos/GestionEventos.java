@@ -8,14 +8,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestionEventos extends Gestion<Evento>
-{
-    public GestionEventos(){
-    cargarEventosJson();
+public class GestionEventos extends Gestion<Evento> {
+    public GestionEventos() {
+        cargarEventosJson();
     }
 
-    public Evento crearNuevoEvento()
-    {
+    public Evento crearNuevoEvento() {
         Evento evento = new Evento();
         Scanner scanner = new Scanner(System.in);
         String entrada = "";
@@ -32,40 +30,37 @@ public class GestionEventos extends Gestion<Evento>
 
         System.out.print("Ingrese la cantidad de participantes --> ");
         entrada = scanner.nextLine();
-        evento.setParticipantes( Integer.parseInt(entrada) ); //INT
+        evento.setParticipantes(Integer.parseInt(entrada)); //INT
 
         //ingreso de fecha
         System.out.print("Ingrese al año --> ");
-        int yr = Integer.parseInt( scanner.nextLine() );
+        int yr = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Ingrese el mes --> ");
-        int mth = Integer.parseInt( scanner.nextLine() );
+        int mth = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Ingrese el dia --> ");
-        int day = Integer.parseInt( scanner.nextLine() );
+        int day = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Ingrese la hora --> ");
-        int hr = Integer.parseInt( scanner.nextLine() );
+        int hr = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Ingrese los minutos --> ");
-        int min = Integer.parseInt( scanner.nextLine() );
+        int min = Integer.parseInt(scanner.nextLine());
 
-        LocalDateTime inicioEvento = LocalDateTime.of(yr, mth, day, hr,min,00);
+        LocalDateTime inicioEvento = LocalDateTime.of(yr, mth, day, hr, min, 00);
         evento.setFechaHoraInicio(inicioEvento);
 
         System.out.print("Ingrese la duración del evento (en horas) --> ");
-        int duracion = Integer.parseInt( scanner.nextLine() );
-        evento.setFechaHoraFin( inicioEvento.plusHours(duracion) );
+        int duracion = Integer.parseInt(scanner.nextLine());
+        evento.setFechaHoraFin(inicioEvento.plusHours(duracion));
 
         return evento;
     }
 
-    public Evento buscarEventoPorNombre(String nombreEvento)
-    {
-        for(Evento e: this.getLista() )
-        {
-            if(e.getNombreEvento().equals(nombreEvento))
-            {
+    public Evento buscarEventoPorNombre(String nombreEvento) {
+        for (Evento e : this.getLista()) {
+            if (e.getNombreEvento().equals(nombreEvento)) {
                 return e;
             }
         }
@@ -73,44 +68,37 @@ public class GestionEventos extends Gestion<Evento>
         return null;
     }
 
-    public void modificarEventoPorNombre(String nombreEvento)
-    {
+    public void modificarEventoPorNombre(String nombreEvento) {
         Evento evento = buscarEventoPorNombre(nombreEvento);
 
-        if( evento != null )
-        {
+        if (evento != null) {
             //realizar modificaciones
             //pedir campo a modificar
             System.out.println("Modificar el evento: ");
             System.out.println(evento);
-        }
-        else //PODRIA LANZAR UNA EXCEPCION
+        } else //PODRIA LANZAR UNA EXCEPCION
             System.out.println("No se encontro un evento con nombre: " + nombreEvento);
     }
 
-    public void eliminarEventoPorNombre(String nombreEvento)
-    {
+    public void eliminarEventoPorNombre(String nombreEvento) {
         Evento evento = buscarEventoPorNombre(nombreEvento);
 
-        if( evento != null )
-        {
+        if (evento != null) {
             //eliminar evento
             System.out.println("Eliminar el evento:");
             System.out.println(evento);
-        }
-        else //LANZAR EXCEPCION
+        } else //LANZAR EXCEPCION
             System.out.println("No se encontro un evento con nombre: " + nombreEvento);
     }
 
-    public void guardarEventosJson()
-    {
+    public void guardarEventosJson() {
         ///
     }
-    public void cargarEventosJson()
-    {
+
+    public void cargarEventosJson() {
         ArrayList<Evento> eventosList = new ArrayList<>();
-        JsonRepo<Evento> eventosJson = new JsonRepo<>("eventos",eventosList, Evento.class);
-        eventosList=eventosJson.cargar();
+        JsonRepo<Evento> eventosJson = new JsonRepo<>("eventos", eventosList, Evento.class);
+        eventosList = eventosJson.cargar();
         this.setLista(eventosList);
     }
 

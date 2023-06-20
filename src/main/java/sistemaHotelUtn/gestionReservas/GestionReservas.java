@@ -10,17 +10,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class GestionReservas extends Gestion<Reserva>
-{
-    public GestionReservas(){
+public class GestionReservas extends Gestion<Reserva> {
+    public GestionReservas() {
         cargarReservasJson();
     }
 
     public boolean isDisponiblePorFecha(int idHabitacion, LocalDate checkIn, LocalDate checkOut) {
 
-        for (Reserva reserva: this.getLista()
-             ) {
-            
+        for (Reserva reserva : this.getLista()
+        ) {
+
             System.out.println("reserva = " + reserva);
 
             if (idHabitacion == reserva.getHabitacion().getId() && reserva.getEstaActiva()
@@ -32,6 +31,7 @@ public class GestionReservas extends Gestion<Reserva>
         }
         return true;
     }
+
     public void cargarReservasJson() {
         ArrayList<Reserva> reservaList = new ArrayList<>();
         JsonRepo<Reserva> reservaJson = new JsonRepo<>("reservas", reservaList, Reserva.class);
@@ -39,27 +39,27 @@ public class GestionReservas extends Gestion<Reserva>
         this.setLista(reservaList);
     }
 
-    public ArrayList<Habitacion> verHabitacionesDisponiblesPorFechas(LocalDate checkIn, LocalDate checkOut){
+    public ArrayList<Habitacion> verHabitacionesDisponiblesPorFechas(LocalDate checkIn, LocalDate checkOut) {
 
         ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
         gestionHabitaciones.cargarHabitacionesJson();
 
-        for (Habitacion habitacion: gestionHabitaciones.getLista()
-             ) {
-            if(isDisponiblePorFecha(habitacion.getId(), checkIn,checkOut)){
+        for (Habitacion habitacion : gestionHabitaciones.getLista()
+        ) {
+            if (isDisponiblePorFecha(habitacion.getId(), checkIn, checkOut)) {
                 habitacionesDisponibles.add(habitacion);
             }
         }
-    return habitacionesDisponibles;
+        return habitacionesDisponibles;
     }
 
-    public void anularReserva(Reserva reserva){
+    public void anularReserva(Reserva reserva) {
         reserva.setEstaActiva(false);
     }
 
 
-    public LocalDate solicitarLocalDate(){
+    public LocalDate solicitarLocalDate() {
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese el dia:");
@@ -70,39 +70,39 @@ public class GestionReservas extends Gestion<Reserva>
         int year = Integer.parseInt(scan.nextLine());
 
 
-
-        return LocalDate.of(year,month,day);
+        return LocalDate.of(year, month, day);
 
     }
 
 
-    public void guardarReservasJson()
-    {
+    public void guardarReservasJson() {
         ArrayList<Reserva> reservasList = this.getLista();
-        JsonRepo<Reserva> reservasJson = new JsonRepo<>("reservas",reservasList, Reserva.class);
+        JsonRepo<Reserva> reservasJson = new JsonRepo<>("reservas", reservasList, Reserva.class);
         reservasJson.guardar();
     }
 
-    public Reserva buscarReserva (String dni){
+    public Reserva buscarReserva(String dni) {
 
-        for (Reserva reserva:this.getLista()) {
-            if(reserva.getCliente().getDni().equals(dni)&& reserva.getEstaActiva()){
+        for (Reserva reserva : this.getLista()) {
+            if (reserva.getCliente().getDni().equals(dni) && reserva.getEstaActiva()) {
                 return reserva;
             }
         }
         return null;
     }
+
     public void anularReserva(String dni) {
-        for (Reserva reserva:this.getLista()) {
-            if(reserva.getCliente().getDni().equals(dni)){
-                reserva=null;
+        for (Reserva reserva : this.getLista()) {
+            if (reserva.getCliente().getDni().equals(dni)) {
+                reserva = null;
             }
         }
     }
-    public void buscarReservaPagar (String dni){
 
-        for (Reserva reserva:this.getLista()) {
-            if(reserva.getCliente().getDni().equals(dni)&& reserva.getEstaActiva()){
+    public void buscarReservaPagar(String dni) {
+
+        for (Reserva reserva : this.getLista()) {
+            if (reserva.getCliente().getDni().equals(dni) && reserva.getEstaActiva()) {
                 reserva.setDiaCheckIn(null);
                 reserva.setDiaCheckOut(null);
                 reserva.getCliente().setSaldo(0.00);
@@ -113,11 +113,12 @@ public class GestionReservas extends Gestion<Reserva>
             }
         }
     }
-    public void buscarReservaModificar (Reserva elemento,String dni){
-        int i=0;
-        for (Reserva reserva:this.getLista()){
-            if(reserva.getCliente().getDni().equals(dni)&&reserva.getEstaActiva()){
-                this.getLista().set(i,elemento);
+
+    public void buscarReservaModificar(Reserva elemento, String dni) {
+        int i = 0;
+        for (Reserva reserva : this.getLista()) {
+            if (reserva.getCliente().getDni().equals(dni) && reserva.getEstaActiva()) {
+                this.getLista().set(i, elemento);
             }
             i++;
         }

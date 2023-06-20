@@ -12,4 +12,18 @@
   "telefono" : "1234",
   "salario" : 200000.0,
   "antiguedad" : 0
+}, {
+  "id" : 0,
+  "usuario" : {
+    "username" : "eze",
+    "password" : "eze",
+    "tipoUsuario" : "EMPLEADO"
+  },
+  "nombre" : "eze",
+  "apellido" : "eze",
+  "dni" : "35",
+  "domicilio" : "ac",
+  "telefono" : "223",
+  "salario" : 200000.0,
+  "antiguedad" : 0
 } ]

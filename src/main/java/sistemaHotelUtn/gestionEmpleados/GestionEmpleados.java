@@ -9,14 +9,12 @@ import sistemaHotelUtn.gestionReservas.Reserva;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestionEmpleados extends Gestion<Empleado>
-{
-    public GestionEmpleados(){
+public class GestionEmpleados extends Gestion<Empleado> {
+    public GestionEmpleados() {
         cargarEmpleadosJson();
     }
 
-    public Empleado crearNuevoEmpleado()
-    {
+    public Empleado crearNuevoEmpleado() {
         /*Pide informacion por la consola y crea un nuevo empleado listo para agregar a la lista*/
 
         Scanner scanner = new Scanner(System.in);
@@ -55,13 +53,10 @@ public class GestionEmpleados extends Gestion<Empleado>
         return nuevo;
     }
 
-    public Empleado buscarEmpleadoPorUsername(String username)
-    {
+    public Empleado buscarEmpleadoPorUsername(String username) {
 
-        for(Empleado empleado: this.getLista() )
-        {
-            if(empleado.getUsuario().getUsername().equals(username))
-            {
+        for (Empleado empleado : this.getLista()) {
+            if (empleado.getUsuario().getUsername().equals(username)) {
                 //si lo encuentra lo retorna
                 return empleado;
             }
@@ -71,18 +66,16 @@ public class GestionEmpleados extends Gestion<Empleado>
         return null;
     }
 
-    public void guardarEmpleadosJson()
-    {
+    public void guardarEmpleadosJson() {
         ArrayList<Empleado> empleadosList = this.getLista();
-        JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados",empleadosList, Empleado.class);
+        JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados", empleadosList, Empleado.class);
         empleadosJson.guardar();
     }
 
-    public void cargarEmpleadosJson()
-    {
+    public void cargarEmpleadosJson() {
         ArrayList<Empleado> empleadosList = new ArrayList<>();
-        JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados",empleadosList, Empleado.class);
-        empleadosList=empleadosJson.cargar();
+        JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados", empleadosList, Empleado.class);
+        empleadosList = empleadosJson.cargar();
         this.setLista(empleadosList);
     }
 }

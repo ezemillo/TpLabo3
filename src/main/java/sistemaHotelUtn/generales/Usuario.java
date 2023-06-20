@@ -2,8 +2,7 @@ package sistemaHotelUtn.generales;
 
 import java.io.Serializable;
 
-public class Usuario implements Serializable
-{
+public class Usuario implements Serializable {
     // region Atributos
     private String username;
     private String password;
@@ -14,15 +13,14 @@ public class Usuario implements Serializable
     //region Constructores
     public Usuario() {
     }
+
     //endregion
-    public Usuario(String username, String password)
-    {
+    public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public Usuario(String username, String password, TipoUsuario tipoUsuario)
-    {
+    public Usuario(String username, String password, TipoUsuario tipoUsuario) {
         this.username = username;
         this.password = password;
         this.tipoUsuario = tipoUsuario;
@@ -52,9 +50,9 @@ public class Usuario implements Serializable
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
     }
+
     //endregion
-    public String toString()
-    {
+    public String toString() {
         return "{\n" +
                 "\tUsername: " + username +
                 "\n\tPassword: " + password +
