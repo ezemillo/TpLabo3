@@ -53,6 +53,8 @@ public class GestionClientes extends Gestion<Cliente>
         return nuevo;
     }
 
+
+
     public Cliente buscarClientePorUsername(String username)
     {
         for(Cliente cliente: this.getLista() )
