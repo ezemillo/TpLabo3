@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class GestionEventos extends Gestion<Evento> {
     public GestionEventos() {
-        cargarEventosJson();
     }
 
     public Evento crearNuevoEvento() {

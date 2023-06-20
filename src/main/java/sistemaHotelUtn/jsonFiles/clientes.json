@@ -1,85 +1,15 @@
 [ {
-  "id" : 0,
+  "id" : 1,
   "usuario" : {
-    "username" : "ez",
-    "password" : "ez",
+    "username" : "santi",
+    "password" : "123",
     "tipoUsuario" : "CLIENTE"
   },
-  "nombre" : "eze",
-  "apellido" : "eze",
-  "dni" : "35",
-  "domicilio" : "we",
-  "telefono" : "we",
-  "saldo" : null,
-  "estaActivo" : false
-}, {
-  "id" : 0,
-  "usuario" : {
-    "username" : "2",
-    "password" : "2",
-    "tipoUsuario" : "CLIENTE"
-  },
-  "nombre" : "prueba2",
-  "apellido" : "2",
-  "dni" : "2",
-  "domicilio" : "2",
-  "telefono" : "2",
-  "saldo" : null,
-  "estaActivo" : false
-}, {
-  "id" : 0,
-  "usuario" : {
-    "username" : "3",
-    "password" : "3",
-    "tipoUsuario" : "CLIENTE"
-  },
-  "nombre" : "3",
-  "apellido" : "3",
-  "dni" : "3",
-  "domicilio" : "3",
-  "telefono" : "3",
-  "saldo" : null,
-  "estaActivo" : false
-}, {
-  "id" : 0,
-  "usuario" : {
-    "username" : "4",
-    "password" : "4",
-    "tipoUsuario" : "CLIENTE"
-  },
-  "nombre" : "4",
-  "apellido" : "4",
-  "dni" : "4",
-  "domicilio" : "4",
-  "telefono" : "4",
-  "saldo" : null,
-  "estaActivo" : false
-}, {
-  "id" : 0,
-  "usuario" : {
-    "username" : "4",
-    "password" : "4",
-    "tipoUsuario" : "CLIENTE"
-  },
-  "nombre" : "4",
-  "apellido" : "4",
-  "dni" : "4",
-  "domicilio" : "4",
-  "telefono" : "4",
-  "saldo" : null,
-  "estaActivo" : false
-}, {
-  "id" : 0,
-  "usuario" : {
-    "username" : "5",
-    "password" : "5",
-    "tipoUsuario" : "CLIENTE"
-  },
-  "nombre" : "5",
-  "apellido" : "5",
-  "dni" : "5",
-  "domicilio" : "5",
-  "telefono" : "5",
+  "nombre" : "santi",
+  "apellido" : "blanco",
+  "dni" : "41",
+  "domicilio" : "saturn 12",
+  "telefono" : "1234",
   "saldo" : null,
   "estaActivo" : false
 } ]

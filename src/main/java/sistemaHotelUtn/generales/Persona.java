@@ -21,7 +21,7 @@ public abstract class Persona implements Serializable {
 
 
     public Persona() {
-        ++ultimoId;
+        this.id = ++Persona.ultimoId;
     }
 
     public Persona(Usuario usuario, String nombre, String apellido, String dni,

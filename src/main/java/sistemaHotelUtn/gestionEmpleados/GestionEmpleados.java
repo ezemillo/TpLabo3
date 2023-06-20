@@ -11,7 +11,6 @@ import java.util.Scanner;
 
 public class GestionEmpleados extends Gestion<Empleado> {
     public GestionEmpleados() {
-        cargarEmpleadosJson();
     }
 
     public Empleado crearNuevoEmpleado() {

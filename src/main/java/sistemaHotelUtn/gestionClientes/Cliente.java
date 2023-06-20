@@ -15,28 +15,33 @@ import java.util.Scanner;
 
 public class Cliente extends Persona  {
 
-    private Double saldo;
+    private double saldo = 0.0;
     private boolean estaActivo;
 
-    public Cliente() {
+    public Cliente()
+    {
+        super();
     }
 
     public Cliente(String username, String password)
     {
+        super();
         this.generarUsuario(username, password, TipoUsuario.CLIENTE);
     }
 
-    public Cliente(String usuario, String contraseña, String nombre, String apellido, String dni, String domicilio, String telefono, Double saldo, boolean estaActivo) {
+    public Cliente(String usuario, String contraseña, String nombre, String apellido,
+                   String dni, String domicilio, String telefono, double saldo, boolean estaActivo)
+    {
         super(usuario, contraseña, nombre, apellido, dni, domicilio, telefono);
         this.saldo = saldo;
         this.estaActivo = estaActivo;
     }
     //region Getters y Setters
-    public Double getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Double saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

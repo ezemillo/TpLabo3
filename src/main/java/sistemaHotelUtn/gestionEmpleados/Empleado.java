@@ -13,10 +13,11 @@ public class Empleado extends Persona {
     //endregion
 
     public Empleado() {
-
+        super();
     }
 
     public Empleado(String username, String password) {
+        super();
         this.generarUsuario(username, password, TipoUsuario.EMPLEADO);
     }
 

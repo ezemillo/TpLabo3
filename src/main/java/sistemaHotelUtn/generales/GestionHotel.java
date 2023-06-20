@@ -11,6 +11,7 @@ import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
 
 import java.time.LocalDate;
+import java.util.IllformedLocaleException;
 import java.util.Scanner;
 
 public class GestionHotel {
@@ -34,32 +35,56 @@ public class GestionHotel {
 
     public void mostrarMenuPrincipal() {
         /*Muestra el menu principal, y llama a todos los demás menús*/
-
         String entrada = "";
         int opcion = 0;
         boolean salir = false;
 
-        while (salir != true) {
+        while (salir != true)
+        {
             System.out.println("---------------------------- Sistema Gestion Hotel -------------------------------------");
             System.out.println("\n\t[1] Login\n\t[2] Regitrarse\n\t[3] Salir");
             System.out.println("\nUsuario actual: " +
                     ((usuarioActual == null) ? "No ha hecho login" : usuarioActual.getUsername()));
-            System.out.print("\nIngrese su opción (1, 2, 3) --> ");
 
-            entrada = scanner.nextLine();
+            while( opcion == 0)
+            {
+                try
+                {
+                    System.out.print("\nIngrese su opción (1, 2, 3) --> ");
+                    entrada = scanner.nextLine();
 
-            opcion = Integer.parseInt(entrada);
+                    opcion = Integer.parseInt(entrada);
+
+                    if( opcion < 1 || opcion > 3)
+                    {
+                        opcion = 0;
+                        throw new IllegalArgumentException();
+                    }
+
+                }catch (NumberFormatException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese una de las opciones indicadas.");
+                }
+                catch(IllegalArgumentException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese un numero en el rango indicado.");
+                }
+            }
 
             switch (opcion) {
                 case 1: //login
                     //verificar si es cliente o empleado
                     //mostrar menu que corresponde
                     mostrarMenuLoginGeneral();
+                    opcion = 0; //se resetea la opcion para que luego vuelva al menu principal
                     break;
 
                 case 2: //registrarse
                     //puede registrarse como cliente o empleado
                     mostrarMenuRegistroGeneral();
+                    opcion = 0; //se resetea la opcion para que luego vuelva al menu principal
                     break;
 
                 case 3: //salir
@@ -82,13 +107,35 @@ public class GestionHotel {
 
         System.out.println("\n-------------------------------- Registro -------------------------------------");
         System.out.println("\t[1] Registrar Cliente");
-        System.out.println("\t[2] Registrar Empleado (solo administrador).");
+        System.out.println("\t[2] Registrar Empleado.");
         System.out.println("\t[3] Volver");
 
-        System.out.print("\nIngrese su opción (1, 2, 3) --> ");
+        while( opcionRegistro == 0 )
+        {
+            try
+            {
+                System.out.print("\nIngrese su opción (1, 2, 3) --> ");
+                entradaRegistro = scanner.nextLine();
 
-        entradaRegistro = scanner.nextLine();
-        opcionRegistro = Integer.parseInt(entradaRegistro);
+                opcionRegistro = Integer.parseInt(entradaRegistro);
+
+                if( opcionRegistro < 1 || opcionRegistro > 3)
+                {
+                    opcionRegistro = 0;
+                    throw new IllegalArgumentException();
+                }
+
+            }catch (NumberFormatException e)
+            {
+                opcionRegistro = 0;
+                System.out.println("Error: ingrese una de las opciones indicadas.");
+            }
+            catch(IllegalArgumentException e)
+            {
+                opcionRegistro = 0;
+                System.out.println("Error: ingrese un numero en el rango indicado.");
+            }
+        }
 
         switch(opcionRegistro)
         {
@@ -114,7 +161,7 @@ public class GestionHotel {
     {
         System.out.println("**** Registrar Nuevo Cliente **** ");
         Cliente nuevoCliente = gestionClientes.crearNuevoCliente();
-        System.out.println("\nSe agregara el nuevo cliente:");
+        System.out.println("\nSe agrego el nuevo cliente:");
         System.out.println(nuevoCliente);
         gestionClientes.agregar(nuevoCliente);
         gestionClientes.guardarClientesJson();
@@ -124,7 +171,7 @@ public class GestionHotel {
     {
         System.out.println("**** Registrar Nuevo Empleado **** ");
         Empleado nuevoEmpleado = gestionEmpleados.crearNuevoEmpleado();
-        System.out.println("\nSe agregara el nuevo empleado:");
+        System.out.println("\nSe agrego el nuevo empleado:");
         System.out.println(nuevoEmpleado);
         gestionEmpleados.agregar(nuevoEmpleado);
         gestionEmpleados.guardarEmpleadosJson();
@@ -143,10 +190,33 @@ public class GestionHotel {
         System.out.println("\t[2] Login Empleado");
         System.out.println("\t[3] Volver");
 
-        System.out.print("\nIngrese su opción (1, 2, 3) --> ");
+        while( opcionLogin == 0 )
+        {
+            try
+            {
+                System.out.print("\nIngrese su opción (1, 2, 3) --> ");
+                entradaLogin = scanner.nextLine();
 
-        entradaLogin = scanner.nextLine();
-        opcionLogin = Integer.parseInt(entradaLogin);
+                opcionLogin = Integer.parseInt(entradaLogin);
+
+                if( opcionLogin < 1 || opcionLogin > 3)
+                {
+                    opcionLogin = 0;
+                    throw new IllegalArgumentException();
+                }
+
+            }catch (NumberFormatException e)
+            {
+                opcionLogin = 0;
+                System.out.println("Error: ingrese una de las opciones indicadas.");
+            }
+            catch(IllegalArgumentException e)
+            {
+                opcionLogin = 0;
+                System.out.println("Error: ingrese un numero en el rango indicado.");
+            }
+        }
+
 
         switch (opcionLogin) {
             case 1: //login cliente
@@ -221,21 +291,51 @@ public class GestionHotel {
     public void mostrarMenuCliente(Cliente cliente) {
         boolean retener = true;
         int opcion = 0;
-        Scanner scanner = new Scanner(System.in);
-        while (retener) {
-            System.out.println("Elija una opcion:");
-            System.out.println("1. Cuenta");
-            System.out.println("2. Reservar Habitaciones");
-            System.out.println("3. Eventos");
-            System.out.println("0. Salir");
-            opcion = scanner.nextInt();
+        String entrada = "";
+
+        while (retener)
+        {
+            System.out.println("\n ----------------------------- Menu Cliente -------------------------------------- ");
+            System.out.println("[1] Detalles de Cuenta Cliente");
+            System.out.println("[2] Reservar Habitaciones");
+            System.out.println("[3] Eventos");
+            System.out.println("[4] Salir");
+
+            while( opcion == 0 )
+            {
+                try
+                {
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4) --> ");
+                    entrada = scanner.nextLine();
+
+                    opcion = Integer.parseInt(entrada);
+
+                    if( opcion < 1 || opcion > 4)
+                    {
+                        opcion = 0;
+                        throw new IllegalArgumentException();
+                    }
+
+                }catch (NumberFormatException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese una de las opciones indicadas.");
+                }
+                catch(IllegalArgumentException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese un numero en el rango indicado.");
+                }
+            }
+
             switch (opcion) {
                 case 1:
-
+                    System.out.println("Detalles de su cuenta: ");
+                    cliente.toString();
                     break;
+
                 case 2:
                     mostrarMenuReserva();
-
                     break;
 
                 case 3: //eventos
@@ -256,18 +356,49 @@ public class GestionHotel {
     public void mostrarMenuEmpleado(Empleado empleado) {
         boolean retener = true;
         int opcion = 0;
-        Scanner scanner = new Scanner(System.in);
-        while (retener) {
-            System.out.println("Elija una opcion:");
-            System.out.println("1. Cuenta");
-            System.out.println("2. Habitaciones");
-            System.out.println("3. Eventos");
-            System.out.println("0. Salir");
-            opcion = scanner.nextInt();
-            switch (opcion) {
-                case 1:
+        String entrada = "";
 
+        while (retener) {
+            System.out.println("\n ----------------------------- Menu Empleado -------------------------------------- ");
+            System.out.println("[1] Detalles de Cuenta Empleado");
+            System.out.println("[2] Habitaciones");
+            System.out.println("[3] Eventos");
+            System.out.println("[4] Salir");
+
+            while( opcion == 0 )
+            {
+                try
+                {
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4) --> ");
+                    entrada = scanner.nextLine();
+
+                    opcion = Integer.parseInt(entrada);
+
+                    if( opcion < 1 || opcion > 4)
+                    {
+                        opcion = 0;
+                        throw new IllegalArgumentException();
+                    }
+
+                }catch (NumberFormatException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese una de las opciones indicadas.");
+                }
+                catch(IllegalArgumentException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese un numero en el rango indicado.");
+                }
+            }
+
+            switch (opcion)
+            {
+                case 1:
+                    System.out.println("Detalles de la cuenta empleado:");
+                    System.out.println( empleado.toString() );
                     break;
+
                 case 2:
                     mostrarMenuHabEmpleado();
                     break;
@@ -288,17 +419,39 @@ public class GestionHotel {
         int opcionEventos = 0;
         String entradaEventos = "";
 
-        System.out.println("------------------Eventos ----------------------");
+        System.out.println("------------------------------ Eventos ------------------------------------");
         System.out.println("[1] Ver eventos proximos");
         System.out.println("[2] Agregar un evento");
         System.out.println("[3] Modificar un evento");
         System.out.println("[4] Eliminar un evento");
         System.out.println("[5] Salir");
 
-        System.out.print("\nIngrese su opción (1, 2, 3) --> ");
-        entradaEventos = scanner.nextLine();
+        while( opcionEventos == 0 )
+        {
+            try
+            {
+                System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
+                entradaEventos = scanner.nextLine();
 
-        opcionEventos = Integer.parseInt(entradaEventos);
+                opcionEventos = Integer.parseInt(entradaEventos);
+
+                if( opcionEventos < 1 || opcionEventos > 5)
+                {
+                    opcionEventos = 0;
+                    throw new IllegalArgumentException();
+                }
+
+            }catch (NumberFormatException e)
+            {
+                opcionEventos = 0;
+                System.out.println("Error: ingrese una de las opciones indicadas.");
+            }
+            catch(IllegalArgumentException e)
+            {
+                opcionEventos = 0;
+                System.out.println("Error: ingrese un numero en el rango indicado.");
+            }
+        }
 
         switch (opcionEventos)
         {
@@ -340,7 +493,7 @@ public class GestionHotel {
 
     }
 
-    public void menuHabitaciones(Persona usuario, GestionReservas gestionReservas) {
+    public void menuHabitaciones(Persona usuario) {
 
         if (usuario instanceof Empleado) {
             mostrarMenuHabEmpleado();
@@ -350,27 +503,55 @@ public class GestionHotel {
     }
 
     private void mostrarMenuHabEmpleado() {
-        int opcion, confirma;
-        Scanner scanner = new Scanner(System.in);
+        int opcion = 0, confirma = 0;
+        String entrada = "";
         boolean retener = true;
         Habitacion aux;
-        while (retener) {
-            System.out.println("1. Agregar Habitacion");
-            System.out.println("2. Eliminar Habitacion");
-            System.out.println("3. Modificar Habitacion");
-            System.out.println("4. Menu reserva");
-            System.out.println("0. Salir");
-            opcion = scanner.nextInt();
-            scanner.nextLine();
-            switch (opcion) {
-                case 1 -> {
+        while (retener)
+        {
+            System.out.println("------------------------------ Habitaciones (empleado) ------------------------------------");
+            System.out.println("[1] Agregar Habitacion");
+            System.out.println("[2] Eliminar Habitacion");
+            System.out.println("[3] Modificar Habitacion");
+            System.out.println("[4] Menu reserva");
+            System.out.println("[5] Salir");
+
+            while( opcion == 0 )
+            {
+                try
+                {
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
+                    entrada = scanner.nextLine();
+
+                    opcion = Integer.parseInt(entrada);
+
+                    if( opcion < 1 || opcion > 5)
+                    {
+                        opcion = 0;
+                        throw new IllegalArgumentException();
+                    }
+
+                }catch (NumberFormatException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese una de las opciones indicadas.");
+                }
+                catch(IllegalArgumentException e)
+                {
+                    opcion = 0;
+                    System.out.println("Error: ingrese un numero en el rango indicado.");
+                }
+            }
+
+            switch (opcion)
+            {
+                case 1:
                     //pedir info para la nueva habitacion
                     aux = new Habitacion();
                     gestionHabitaciones.agregar(aux);
                     break;
-                }
 
-                case 2 -> {
+                case 2:
                     System.out.println("Ingrese el ID de la habitacion que desea eliminar");
                     System.out.println(gestionHabitaciones.listar());
                     opcion = scanner.nextInt();
@@ -385,9 +566,8 @@ public class GestionHotel {
                     }
 
                     break;
-                }
 
-                case 3 -> {
+                case 3:
                     System.out.println("Ingrese el ID de la habitacion que desea eliminar");
                     System.out.println(gestionHabitaciones.listar());
                     opcion = scanner.nextInt();
@@ -403,10 +583,18 @@ public class GestionHotel {
                     }
 
                     break;
-                }
-                case 4 -> mostrarMenuReserva();
-                case 0 -> retener = false;
-                default -> System.out.println("Opcion no valida");
+
+                case 4:
+                    mostrarMenuReserva();
+                    break;
+
+                case 5:
+                    retener = false;
+                    break;
+
+                default:
+                    System.out.println("Opcion no valida");
+                    break;
             }
         }
     }
@@ -423,10 +611,32 @@ public class GestionHotel {
         System.out.println("[5] Cancelar mis reservas");
         System.out.println("[6] Salir");
 
-        System.out.print("\nIngrese su opción (1, 2, 3, 4 ,5) --> ");
-        entradaReserva = scanner.nextLine();
+        while( opcionReserva == 0 )
+        {
+            try
+            {
+                System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6) --> ");
+                entradaReserva = scanner.nextLine();
 
-        opcionReserva = Integer.parseInt(entradaReserva);
+                opcionReserva = Integer.parseInt(entradaReserva);
+
+                if( opcionReserva < 1 || opcionReserva > 6)
+                {
+                    opcionReserva = 0;
+                    throw new IllegalArgumentException();
+                }
+
+            }catch (NumberFormatException e)
+            {
+                opcionReserva = 0;
+                System.out.println("Error: ingrese una de las opciones indicadas.");
+            }
+            catch(IllegalArgumentException e)
+            {
+                opcionReserva = 0;
+                System.out.println("Error: ingrese un numero en el rango indicado.");
+            }
+        }
 
         switch (opcionReserva) {
             case 1:

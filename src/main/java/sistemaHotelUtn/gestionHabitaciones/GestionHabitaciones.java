@@ -12,7 +12,6 @@ import java.util.Scanner;
 
 public class GestionHabitaciones extends Gestion<Habitacion> {
     public GestionHabitaciones() {
-        cargarHabitacionesJson();
     }
 
     private Habitacion nuevaHabitacion() {
