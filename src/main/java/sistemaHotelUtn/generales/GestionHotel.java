@@ -97,12 +97,12 @@ public class GestionHotel
 
         switch(opcionRegistro)
         {
-            case 1: //instanciar nuevo cliente
-                mostrarMenuRegistroCliente();
+            case 1: //instanciar un nuevo cliente con entrada por usuario
+                registrarNuevoCliente();
                 break;
 
-            case 2: //instanciar nuevo empleado
-                mostrarMenuRegistroEmpleado();
+            case 2: //instanciar un nuevo empleado con entrada por usuario
+                registrarNuevoEmpleado();
                 break;
 
             case 3: //salir
@@ -115,9 +115,9 @@ public class GestionHotel
 
     }
 
-    private void mostrarMenuRegistroCliente()
+    private void registrarNuevoCliente()
     {
-        System.out.println("nuevo cliente");
+        System.out.println("**** Registrar Nuevo Cliente **** ");
         Cliente nuevoCliente = gestionClientes.crearNuevoCliente();
         System.out.println("\nSe agregara el nuevo cliente:");
         System.out.println(nuevoCliente);
@@ -125,9 +125,9 @@ public class GestionHotel
         gestionClientes.guardarClientesJson();
     }
 
-    private void mostrarMenuRegistroEmpleado()
+    private void registrarNuevoEmpleado()
     {
-        System.out.println("nuevo empleado");
+        System.out.println("**** Registrar Nuevo Empleado **** ");
         Empleado nuevoEmpleado = gestionEmpleados.crearNuevoEmpleado();
         System.out.println("\nSe agregara el nuevo empleado:");
         System.out.println(nuevoEmpleado);
@@ -178,7 +178,7 @@ public class GestionHotel
         String username = "";
         String password = "";
 
-        System.out.println("login cliente");
+        System.out.println("**** Login Cliente ****");
         //solicitar username y password
         System.out.print("Ingrese su username --> ");
         username = scanner.nextLine();
@@ -186,6 +186,7 @@ public class GestionHotel
         System.out.print("Ingrese su password --> ");
         password = scanner.nextLine();
 
+        gestionClientes.cargarClientesJson(); //CARGA LOS CLIENTES DESDE EL JSON
         //busca que exista ese cliente por username
         Cliente cliente = gestionClientes.buscarClientePorUsername(username);
 
@@ -193,7 +194,7 @@ public class GestionHotel
         {
             this.usuarioActual = cliente.getUsuario();
             System.out.println("Cliente hizo login: " + usuarioActual.getUsername() );
-            mostrarMenuCliente( cliente ); //SE LLAMA AL MENU CLIENTE CON CASTEO
+            mostrarMenuCliente( cliente );
         }
         else //deberia lanzar excepcion
             System.out.println("No se ha encontrado un cliente con username: " + username);
@@ -206,7 +207,7 @@ public class GestionHotel
         String username = "";
         String password = "";
 
-        System.out.println("login empleado");
+        System.out.println("**** Login Empleado ****");
         System.out.print("Ingrese su username --> ");
         username = scanner.nextLine();
 
@@ -250,8 +251,9 @@ public class GestionHotel
 
                 case 3: //eventos
                     //el cliente solo puede ver los eventos
+                    gestionEventos.cargarEventosJson(); // CARGA TODOS LOS EVENTOS DEL JSON
                     System.out.println("Eventos Proximos: ");
-                    System.out.println( gestionEventos.listar() );
+                    System.out.println( gestionEventos.listar() ); // LOS MUESTRA
                     break;
 
                 case 0:
@@ -313,27 +315,31 @@ public class GestionHotel
         switch (opcionEventos)
         {
             case 1:
-                System.out.println("Eventos proximos: ");
-                System.out.println( gestionEventos.listar() );
+                gestionEventos.cargarEventosJson(); // CARGA TODOS LOS EVENTOS DEL JSON
+                System.out.println("Eventos Proximos: ");
+                System.out.println( gestionEventos.listar() ); // LOS MUESTRA
                 break;
 
             case 2: //crear un nuevo evento
                 Evento nuevo = gestionEventos.crearNuevoEvento();
-                System.out.println("**Se agregara el nuevo evento**");
+                System.out.println("** Se agregara el nuevo evento ** ");
                 System.out.println(nuevo);
                 gestionEventos.agregar(nuevo);
+                gestionEventos.guardarEventosJson(); //GUARDA EN EL JSON EL NUEVO EVENTO
                 break;
 
             case 3: //Modificar un evento por nombre de evento (SEGUIR)
                 System.out.print("Ingrese el nombre del evento a modificar --> ");
                 entradaEventos = scanner.nextLine();
                 gestionEventos.modificarEventoPorNombre(entradaEventos);
+                gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
                 break;
 
             case 4: //eliminar un evento por nombre de evento
                 System.out.print("Ingrese el nombre del evento a eliminar --> ");
                 entradaEventos = scanner.nextLine();
                 gestionEventos.eliminarEventoPorNombre(entradaEventos);
+                gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
                 break;
 
             case 5: //salir
