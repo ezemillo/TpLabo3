@@ -29,11 +29,6 @@
             <version>2.14.2</version>
         </dependency>
 
-        <!--	Java 8 Datatypes	-->
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
-        </dependency>
 
 
     </dependencies>

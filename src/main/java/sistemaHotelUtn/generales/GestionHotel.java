@@ -362,7 +362,7 @@ public class GestionHotel {
                     aux = gestionHabitaciones.buscarHabitacion(opcion);
 
                     if (aux != null) {
-                        System.out.println("¿Esta seguro que quiere eliminar esta habtacion? Ingrese 0 para confirmar");
+                        System.out.println("¿Esta seguro que quiere eliminar esta habitacion? Ingrese 0 para confirmar");
                         confirma = scanner.nextInt();
                         if (confirma == 0) {
                             gestionHabitaciones.eliminar(aux);
@@ -421,7 +421,11 @@ public class GestionHotel {
 
             case 2:
                 System.out.println("Fecha de checkin:");
-                gestionReservas.verHabitacionesDisponiblesPorFechas(gestionReservas.solicitarLocalDate(), gestionReservas.solicitarLocalDate());
+                LocalDate checkin = gestionReservas.solicitarLocalDate();
+                System.out.println("Fecha de checkout:");
+                LocalDate checkOut =gestionReservas.solicitarLocalDate();
+                System.out.println("");
+                gestionReservas.verHabitacionesDisponiblesPorFechas(checkin,checkOut);
                 break;
 
             case 3:

@@ -12,7 +12,9 @@ import java.util.Scanner;
 
 public class GestionReservas extends Gestion<Reserva>
 {
-    public GestionReservas(){}
+    public GestionReservas(){
+        cargarReservasJson();
+    }
 
     public boolean isDisponiblePorFecha(int idHabitacion, LocalDate checkIn, LocalDate checkOut) {
 
