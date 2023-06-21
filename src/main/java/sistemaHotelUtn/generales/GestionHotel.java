@@ -380,7 +380,8 @@ public class GestionHotel {
             System.out.println("[1] Detalles de Cuenta Empleado");
             System.out.println("[2] Habitaciones");
             System.out.println("[3] Eventos");
-            System.out.println("[4] Salir");
+            System.out.println("[4] Mostrar Balance");
+            System.out.println("[5] Salir");
 
             while( opcion == 0 )
             {
@@ -418,7 +419,8 @@ public class GestionHotel {
                 case 3 -> //eventos
                     //el empleado puede ver y ademas modificar eventos
                         mostrarMenuEventosEmpleado();
-                case 4 -> retener = false;
+                case 4 -> gestionEmpleados.gananciaTotal(empleado);
+                case 5 -> retener = false;
             }
             opcion=0;
         }
@@ -601,7 +603,12 @@ public class GestionHotel {
                         gestionHabitaciones.modificar(aux, scanner.nextLine());
                     }
                 }
-                case 4 -> System.out.println("hacer menu reserva para admin con listados de reservas, generar reserva para otro cliente, etc");
+                case 4 -> {
+                    System.out.println("hacer menu reserva para admin con listados de reservas, generar reserva para otro cliente, etc");
+                    String dni = new Scanner(System.in).next();
+                    Cliente cliente = gestionClientes.buscarCliente(dni);
+                    mostrarMenuReserva(cliente);
+                }
 
                 case 5 -> retener = false;
                 default -> System.out.println("Opcion no valida");
@@ -622,7 +629,8 @@ public class GestionHotel {
         System.out.println("[3] Realizar una nueva reserva");
         System.out.println("[4] Ver mis reservas activas");
         System.out.println("[5] Cancelar mis reservas");
-        System.out.println("[6] Salir");
+        System.out.println("[6] Ordenar servicio a la habitacion");
+        System.out.println("[7] Salir");
 
         System.out.print("\nIngrese su opción (1, 2, 3, 4 ,5) --> ");
         entradaReserva = scanner.nextLine();
@@ -650,7 +658,6 @@ public class GestionHotel {
                 break;
 
             case 4:
-
                 gestionReservas.verMisReservasActivas(cliente.getDni());
 
                 break;
@@ -658,10 +665,13 @@ public class GestionHotel {
             case 5:
 
                 gestionClientes.anularReserva(gestionReservas,cliente);
+                break;
+            case 6:
 
+                cliente.modificarReserva(gestionClientes,cliente);
                 break;
 
-            case 6: //salir
+            case 7: //salir
                 break;
 
             default:

@@ -56,7 +56,18 @@ public class Empleado extends Persona {
         this.antiguedad = antiguedad;
     }
 
-    //endregion
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+//endregion
 
     @Override
     public String toString() {
