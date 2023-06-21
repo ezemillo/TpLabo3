@@ -70,12 +70,12 @@ public class Habitacion implements Serializable {
 
     @Override
     public String toString() {
-        return "{\n" +
-                "\tId: " + id +
-                "\n\tPrecio diario: " + precioDiario +
-                "\n\tCapacidad: " + capacidadMax +
-                "\n\tReservable: " + esReservable +
-                "\n\tServicios: " + serviciosHabitacion +
-                "\n" + "}";
+        return "{" +
+                "\tIdHabitacion: " + id +
+                "||\tPrecio diario: " + precioDiario +
+                "||\tCapacidad: " + capacidadMax +
+                "||\tReservable: " + esReservable +
+                "||\tServicios: " + serviciosHabitacion +
+                "||" + "}";
     }
 }

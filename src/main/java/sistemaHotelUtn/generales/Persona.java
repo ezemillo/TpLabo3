@@ -116,14 +116,14 @@ public abstract class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "{\n" +
+        return "{" +
                 "\tId: " + id +
-                "\n\tNombre: " + nombre +
-                "\n\tApellido: " + apellido +
-                "\n\tDni: " + dni +
-                "\n\tDomicilio: " + domicilio +
-                "\n\tTelefono: " + telefono +
-                "\n\tUsuario: " + usuario.getUsername() + "\n" + "}";
+                "||\tNombre: " + nombre +
+                "||\tApellido: " + apellido +
+                "||\tDni: " + dni +
+                "||\tDomicilio: " + domicilio +
+                "||\tTelefono: " + telefono +
+                "||\tUsuario: " + usuario.getUsername() + "\n" + "}";
     }
 }
 

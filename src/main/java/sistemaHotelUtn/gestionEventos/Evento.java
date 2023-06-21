@@ -111,12 +111,13 @@ public class Evento {
 
     @Override
     public String toString() {
-        return "{\n\tid: " + id +
-                ",\n\tEvento: " + nombreEvento +
-                ",\n\tOrganizador: " + organizador +
-                ",\n\tParticipantes: " + participantes +
-                ",\n\tInicia: " + getFechaHoraInicio() +
-                ",\n\tFinaliza: " + getFechaHoraFin() +
-                "\n" + "}";
+        return "{\t" +
+                "id Evento: " + id +
+                ",|| \tEvento: " + nombreEvento +
+                ",||\tOrganizador: " + organizador +
+                ",||\tParticipantes: " + participantes +
+                ",||\tInicia: " + getFechaHoraInicio() +
+                ",||\tFinaliza: " + getFechaHoraFin() +
+                "" + "}";
     }
 }

@@ -30,7 +30,7 @@ public class Reserva implements Serializable {
     //private ServiciosGastronomia List<ServiciosGastronomia>; agregar servicioGastronomia
 
     public Reserva() {
-
+        Reserva.ultimoId++;
     }
 
     public Reserva(LocalDate diaCheckIn, LocalDate diaCheckOut, Cliente cliente, Habitacion habitacion) {
@@ -107,14 +107,14 @@ public class Reserva implements Serializable {
 
     @Override
     public String toString() {
-        return "{\n" +
-                "\tId: " + id +
-                "\n\tCliente: " + cliente.getNombre() + ", " + cliente.getApellido() +
+        return "{" +
+                "\tIdReserva: " + id +
+                "||\tCliente: " + cliente.getNombre() + ", " + cliente.getApellido() +
                 "\n\tHabitacion: " + habitacion +
                 "\n\tSaldo: $" + montoPagar +
-                "\n\tCheck In: " + diaCheckIn +
-                "\n\tCheck Out: " + diaCheckOut +
-                "\n" + "}";
+                "||\tCheck In: " + diaCheckIn +
+                "||\tCheck Out: " + diaCheckOut +
+                "||" + "}";
     }
 
 
