@@ -55,7 +55,7 @@ public class JsonRepo <T> {
             CollectionType collectionType = mapper.getTypeFactory().constructCollectionType(ArrayList.class, dato);
             lista = mapper.readValue(archivo, collectionType);
         } catch (IOException e) {
-            System.out.println("entra en la excepcion " + e.getMessage() );
+            System.out.println("No se cargaron registros desde " + this.nombreArchivo );
             lista = new ArrayList<T>();
         }
         return lista;

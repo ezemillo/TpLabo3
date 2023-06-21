@@ -26,10 +26,21 @@ public class GestionHotel {
 
     public GestionHotel() {
         this.gestionClientes = new GestionClientes();
+        this.gestionClientes.cargarClientesJson();
+
         this.gestionHabitaciones = new GestionHabitaciones();
+        this.gestionHabitaciones.cargarHabitacionesJson();
+
         this.gestionEventos = new GestionEventos();
-        this.gestionReservas = new GestionReservas();
+        this.gestionEventos.cargarEventosJson();
+
         this.gestionEmpleados = new GestionEmpleados();
+        this.gestionEmpleados.cargarEmpleadosJson();
+
+        this.gestionReservas = new GestionReservas();
+        this.gestionReservas.cargarReservasJson();
+
+
     }
 
 
@@ -248,7 +259,6 @@ public class GestionHotel {
         System.out.print("Ingrese su password --> ");
         password = scanner.nextLine();
 
-        gestionClientes.cargarClientesJson(); //CARGA LOS CLIENTES DESDE EL JSON
         //busca que exista ese cliente por username
         Cliente cliente = gestionClientes.buscarClientePorUsername(username);
 
@@ -276,7 +286,6 @@ public class GestionHotel {
         System.out.print("Ingrese su password --> ");
         password = scanner.nextLine();
 
-        gestionEmpleados.cargarEmpleadosJson(); //CARGA LOS EMPLEADOS DESDE EL JSON
         Empleado empleado = gestionEmpleados.buscarEmpleadoPorUsername(username); //BUSCA ESE EMPLEADO
 
         if (empleado != null) {
@@ -297,15 +306,16 @@ public class GestionHotel {
         {
             System.out.println("\n ----------------------------- Menu Cliente -------------------------------------- ");
             System.out.println("[1] Detalles de Cuenta Cliente");
-            System.out.println("[2] Reservar Habitaciones");
+            System.out.println("[2] Menu Reservas");
             System.out.println("[3] Eventos");
             System.out.println("[4] Salir");
+
 
             while( opcion == 0 )
             {
                 try
                 {
-                    System.out.print("\nIngrese su opción (1, 2, 3, 4) --> ");
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4 ) --> ");
                     entrada = scanner.nextLine();
 
                     opcion = Integer.parseInt(entrada);
@@ -340,10 +350,17 @@ public class GestionHotel {
 
                 case 3: //eventos
                     //el cliente solo puede ver los eventos
-                    gestionEventos.cargarEventosJson(); // CARGA TODOS LOS EVENTOS DEL JSON
                     System.out.println("Eventos Proximos: ");
                     System.out.println( gestionEventos.listar() ); // LOS MUESTRA
                     System.out.println(gestionEventos.listar());
+                    break;
+
+                case 4:
+                    retener = false;
+                    break;
+
+                case 5:
+
                     break;
 
                 case 0:
@@ -446,7 +463,6 @@ public class GestionHotel {
 
             switch (opcionEventos) {
                 case 1 -> {
-                    gestionEventos.cargarEventosJson(); // CARGA TODOS LOS EVENTOS DEL JSON
                     System.out.println("Eventos Proximos: ");
                     System.out.println(gestionEventos.listar()); // LOS MUESTRA
                 }
@@ -630,18 +646,18 @@ public class GestionHotel {
 
             case 3:
                 gestionReservas.generarReserva(cliente);
+                gestionReservas.cargarReservasJson();
                 break;
 
             case 4:
-                System.out.println("Ingrese su DNI");
-                String dni=new Scanner(System.in).next();
-                gestionReservas.verMisReservasActivas(dni);
+
+                gestionReservas.verMisReservasActivas(cliente.getDni());
 
                 break;
 
             case 5:
-                GestionClientes gestionClientes2=new GestionClientes();
-                gestionClientes2.anularReserva();
+
+                gestionClientes.anularReserva(gestionReservas,cliente);
 
                 break;
 

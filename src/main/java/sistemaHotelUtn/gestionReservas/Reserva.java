@@ -30,12 +30,12 @@ public class Reserva implements Serializable {
     //private ServiciosGastronomia List<ServiciosGastronomia>; agregar servicioGastronomia
 
     public Reserva() {
-        Reserva.ultimoId++;
+        ++Reserva.ultimoId;
     }
 
     public Reserva(LocalDate diaCheckIn, LocalDate diaCheckOut, Cliente cliente, Habitacion habitacion) {
         this.id = Reserva.ultimoId;
-        Reserva.ultimoId++;
+        ++Reserva.ultimoId;
         this.diaCheckIn = diaCheckIn;
         this.diaCheckOut = diaCheckOut;
         this.cliente = cliente;

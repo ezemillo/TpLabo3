@@ -119,7 +119,8 @@ public class GestionClientes extends Gestion<Cliente> {
         int choice = new Scanner(System.in).nextInt();
         //mandar una excepcion
         if(choice==1){//metodo anular reserva
-            anularReserva();
+         //   anularReserva();
+            System.out.println("ver anular reserva");
         } else if (choice==2) {//metodo agregar servicio
 
             System.out.println("Ingrese su dni");
@@ -189,21 +190,21 @@ public class GestionClientes extends Gestion<Cliente> {
         System.out.println("Muchas gracias.");
 
     }
-    public void anularReserva(){
+    public void anularReserva(GestionReservas gestionReservas, Cliente cliente){
         System.out.println("Ingrese su dni");
         String dni = new Scanner(System.in).next();
 
-        GestionReservas gestionReservas = new GestionReservas();//recibo el listado de las reservas
-        Reserva reserva=gestionReservas.buscarReserva(dni);//recibo la reserva de la persona
+        Reserva reserva=gestionReservas.buscarReserva(cliente.getDni());//recibo la reserva de la persona
         System.out.println(reserva);
 
         System.out.println("Confirmar anulacion de reserva");
         char eleccion = new Scanner(System.in).next().charAt(0);
 
         if(eleccion=='s'){
-            gestionReservas.anularReserva(dni);//pongo el estaActuvo en false
+            reserva.setEstaActiva(false);
             gestionReservas.guardarReservasJson();
             System.out.println("Su reserva fue anulada con exito");
+            System.out.println("reserva = " + reserva);
         }
     }
 }
