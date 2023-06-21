@@ -8,9 +8,11 @@ import sistemaHotelUtn.gestionEventos.Evento;
 import sistemaHotelUtn.gestionEventos.GestionEventos;
 import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
+import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GestionHotel {
@@ -390,26 +392,18 @@ public class GestionHotel {
                 }
             }
 
-            switch (opcion)
-            {
-                case 1:
+            switch (opcion) {
+                case 1 -> {
                     System.out.println("Detalles de la cuenta empleado:");
-                    System.out.println( empleado.toString() );
-                    break;
-
-                case 2:
-                    mostrarMenuHabEmpleado();
-                    break;
-
-                case 3: //eventos
+                    System.out.println(empleado.toString());
+                }
+                case 2 -> mostrarMenuHabEmpleado();
+                case 3 -> //eventos
                     //el empleado puede ver y ademas modificar eventos
-                    mostrarMenuEventosEmpleado();
-                    break;
-
-                case 0:
-                    retener = false;
-                    break;
+                        mostrarMenuEventosEmpleado();
+                case 4 -> retener = false;
             }
+            opcion=0;
         }
     }
 
@@ -491,14 +485,7 @@ public class GestionHotel {
 
     }
 
-    public void menuHabitaciones(Persona usuario) {
 
-        if (usuario instanceof Empleado) {
-            mostrarMenuHabEmpleado();
-        } else {
-            //mostrarMenuHabCliente();
-        }
-    }
 
     private void mostrarMenuHabEmpleado() {
         int opcion = 0, confirma = 0;
@@ -507,6 +494,7 @@ public class GestionHotel {
         Habitacion aux;
         while (retener)
         {
+            System.out.println("VOLVI A RETENER con "+retener);
             System.out.println("------------------------------ Habitaciones (empleado) ------------------------------------");
             System.out.println("[1] Agregar Habitacion");
             System.out.println("[2] Eliminar Habitacion");
@@ -541,20 +529,47 @@ public class GestionHotel {
                 }
             }
 
-            switch (opcion)
-            {
-                case 1:
+            switch (opcion) {
+                case 1 -> {
+                    System.out.println("Ingrese el valor diario de la habitacion: ");
+                    Double precioDiario = scanner.nextDouble();
+                    System.out.println("Ingrese la capacidad maxima de la habitacion: ");
+                    int capacidadMaxima = scanner.nextInt();
+                    ArrayList<ServiciosHabitacion> serviciosHabitaciones = new ArrayList<>();
+                    System.out.println("La habiacion dispone de wifi? 1.Si 2.No");
+                    int wifi = scanner.nextInt();
+                    if (wifi == 1) {
+                        serviciosHabitaciones.add(ServiciosHabitacion.WIFI);
+                    }
+                    System.out.println("La habiacion dispone de Cable? 1.Si 2.No");
+                    int cable = scanner.nextInt();
+                    if (cable == 1) {
+                        serviciosHabitaciones.add(ServiciosHabitacion.CABLE);
+                    }
+                    System.out.println("La habiacion dispone de Bañera? 1.Si 2.No");
+                    int baniera = scanner.nextInt();
+                    if (baniera == 1) {
+                        serviciosHabitaciones.add(ServiciosHabitacion.BANIERA);
+                    }
+                    System.out.println("La habiacion dispone de Jacuzzi? 1.Si 2.No");
+                    int jacuzzi = scanner.nextInt();
+                    if (jacuzzi == 1) {
+                        serviciosHabitaciones.add(ServiciosHabitacion.JACUZZI);
+                    }
+                    System.out.println("Desea habilitar la Habitacion? 1.Si 2.No");
+                    int habilitar = scanner.nextInt();
+                    boolean activa = false;
+                    if (habilitar == 1) activa = true;
                     //pedir info para la nueva habitacion
+                    gestionHabitaciones.agregar(new Habitacion(activa, precioDiario, capacidadMaxima, serviciosHabitaciones));
                     aux = new Habitacion();
                     gestionHabitaciones.agregar(aux);
-                    break;
-
-                case 2:
+                }
+                case 2 -> {
                     System.out.println("Ingrese el ID de la habitacion que desea eliminar");
                     System.out.println(gestionHabitaciones.listar());
                     opcion = scanner.nextInt();
                     aux = gestionHabitaciones.buscarHabitacion(opcion);
-
                     if (aux != null) {
                         System.out.println("¿Esta seguro que quiere eliminar esta habitacion? Ingrese 0 para confirmar");
                         confirma = scanner.nextInt();
@@ -562,10 +577,8 @@ public class GestionHotel {
                             gestionHabitaciones.eliminar(aux);
                         }
                     }
-
-                    break;
-
-                case 3:
+                }
+                case 3 -> {
                     System.out.println("Ingrese el ID de la habitacion que desea eliminar");
                     System.out.println(gestionHabitaciones.listar());
                     opcion = scanner.nextInt();
@@ -579,21 +592,12 @@ public class GestionHotel {
                         System.out.println("4. Servicio de habitacion");
                         gestionHabitaciones.modificar(aux, scanner.nextLine());
                     }
-
-                    break;
-
-                case 4:
-                    mostrarMenuReserva();
-                    break;
-
-                case 5:
-                    retener = false;
-                    break;
-
-                default:
-                    System.out.println("Opcion no valida");
-                    break;
+                }
+                case 4 -> mostrarMenuReserva();
+                case 5 -> retener = false;
+                default -> System.out.println("Opcion no valida");
             }
+            System.out.println("JUSTO DESPUES "+retener);
         }
     }
 
