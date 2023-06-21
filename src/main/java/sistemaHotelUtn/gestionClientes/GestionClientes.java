@@ -114,7 +114,7 @@ public class GestionClientes extends Gestion<Cliente> {
 
         System.out.println("Ingrese el numero de habitacion que desea reservar");
         int choice = new Scanner(System.in).nextInt();
-        Habitacion habitacionReserva = gestionHabitaciones.obtenerHabitacion(choice);
+        Habitacion habitacionReserva = gestionHabitaciones.obtenerHabitacion(choice - 1);
 
         System.out.println("Ingrese su DNI");
         String dni = new Scanner(System.in).next();

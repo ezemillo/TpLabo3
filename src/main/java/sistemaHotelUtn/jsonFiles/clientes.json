@@ -1,15 +1,15 @@
 [ {
   "id" : 1,
   "usuario" : {
-    "username" : "santi",
-    "password" : "123",
+    "username" : "qw",
+    "password" : "qw",
     "tipoUsuario" : "CLIENTE"
   },
-  "nombre" : "santi",
-  "apellido" : "blanco",
-  "dni" : "41",
-  "domicilio" : "saturn 12",
-  "telefono" : "1234",
-  "saldo" : null,
+  "nombre" : "qw",
+  "apellido" : "qw",
+  "dni" : "1",
+  "domicilio" : "qw",
+  "telefono" : "qw",
+  "saldo" : 0.0,
   "estaActivo" : false
 } ]

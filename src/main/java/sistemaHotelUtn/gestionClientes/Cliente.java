@@ -34,7 +34,7 @@ public class Cliente extends Persona  {
     {
         super(usuario, contraseña, nombre, apellido, dni, domicilio, telefono);
         this.saldo = saldo;
-        this.estaActivo = estaActivo;
+        this.estaActivo = true;
     }
     //region Getters y Setters
     public double getSaldo() {

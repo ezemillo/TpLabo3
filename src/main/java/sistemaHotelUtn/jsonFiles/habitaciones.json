@@ -1,0 +1,7 @@
+[ {
+  "id" : 0,
+  "esReservable" : true,
+  "precioDiario" : 3000.0,
+  "capacidadMax" : 4,
+  "serviciosHabitacion" : [ "WIFI", "BANIERA", "JACUZZI" ]
+} ]

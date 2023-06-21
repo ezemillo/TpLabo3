@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class GestionHabitaciones extends Gestion<Habitacion> {
     public GestionHabitaciones() {
+        cargarHabitacionesJson();
     }
 
     private Habitacion nuevaHabitacion() {
@@ -68,7 +69,14 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
     }
 
     public Habitacion obtenerHabitacion(int choice) {
-        return this.getLista().get(choice - 1);
+        return this.getLista().get(choice);
+    }
+
+    public void guardarHabitacionJson()
+    {
+        ArrayList<Habitacion> habitacionList = this.getLista();
+        JsonRepo<Habitacion> habitacionJson = new JsonRepo<>("habitaciones", habitacionList, Habitacion.class);
+        habitacionJson.guardar();
     }
 
 }

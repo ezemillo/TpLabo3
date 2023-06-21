@@ -500,6 +500,7 @@ public class GestionHotel {
                 {
                     System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
                     entrada = scanner.nextLine();
+                    entrada = scanner.nextLine();
 
                     opcion = Integer.parseInt(entrada);
 
@@ -588,7 +589,9 @@ public class GestionHotel {
                 case 5 -> retener = false;
                 default -> System.out.println("Opcion no valida");
             }
+            gestionHabitaciones.guardarHabitacionJson();
             System.out.println("JUSTO DESPUES "+retener);
+            opcion=0;
         }
     }
 
