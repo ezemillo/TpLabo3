@@ -410,79 +410,71 @@ public class GestionHotel {
     private void mostrarMenuEventosEmpleado() {
         int opcionEventos = 0;
         String entradaEventos = "";
+        boolean retener=true;
 
-        System.out.println("------------------------------ Eventos ------------------------------------");
-        System.out.println("[1] Ver eventos proximos");
-        System.out.println("[2] Agregar un evento");
-        System.out.println("[3] Modificar un evento");
-        System.out.println("[4] Eliminar un evento");
-        System.out.println("[5] Salir");
+        while (retener) {
+            System.out.println("------------------------------ Eventos ------------------------------------");
+            System.out.println("[1] Ver eventos proximos");
+            System.out.println("[2] Agregar un evento");
+            System.out.println("[3] Modificar un evento");
+            System.out.println("[4] Eliminar un evento");
+            System.out.println("[5] Salir");
 
-        while( opcionEventos == 0 )
-        {
-            try
-            {
-                System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
-                entradaEventos = scanner.nextLine();
 
-                opcionEventos = Integer.parseInt(entradaEventos);
+            while (opcionEventos == 0) {
 
-                if( opcionEventos < 1 || opcionEventos > 5)
-                {
+
+                try {
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
+                    entradaEventos = scanner.nextLine();
+
+                    opcionEventos = Integer.parseInt(entradaEventos);
+
+                    if (opcionEventos < 1 || opcionEventos > 5) {
+                        opcionEventos = 0;
+                        throw new IllegalArgumentException();
+                    }
+
+                } catch (NumberFormatException e) {
                     opcionEventos = 0;
-                    throw new IllegalArgumentException();
+                    System.out.println("Error: ingrese una de las opciones indicadas.");
+                } catch (IllegalArgumentException e) {
+                    opcionEventos = 0;
+                    System.out.println("Error: ingrese un numero en el rango indicado.");
                 }
-
-            }catch (NumberFormatException e)
-            {
-                opcionEventos = 0;
-                System.out.println("Error: ingrese una de las opciones indicadas.");
             }
-            catch(IllegalArgumentException e)
-            {
-                opcionEventos = 0;
-                System.out.println("Error: ingrese un numero en el rango indicado.");
+
+            switch (opcionEventos) {
+                case 1 -> {
+                    gestionEventos.cargarEventosJson(); // CARGA TODOS LOS EVENTOS DEL JSON
+                    System.out.println("Eventos Proximos: ");
+                    System.out.println(gestionEventos.listar()); // LOS MUESTRA
+                }
+                case 2 -> { //crear un nuevo evento
+                    Evento nuevo = gestionEventos.crearNuevoEvento();
+                    System.out.println("** Se agregara el nuevo evento ** ");
+                    System.out.println(nuevo);
+                    gestionEventos.agregar(nuevo);
+                    gestionEventos.guardarEventosJson(); //GUARDA EN EL JSON EL NUEVO EVENTO
+                }
+                case 3 -> { //Modificar un evento por nombre de evento (SEGUIR)
+                    System.out.print("Ingrese el nombre del evento a modificar --> ");
+                    entradaEventos = scanner.nextLine();
+                    gestionEventos.modificarEventoPorNombre(entradaEventos);
+                    gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
+                }
+                case 4 -> { //eliminar un evento por nombre de evento
+                    System.out.print("Ingrese el nombre del evento a eliminar --> ");
+                    entradaEventos = scanner.nextLine();
+                    gestionEventos.eliminarEventoPorNombre(entradaEventos);
+                    gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
+                }
+                case 5 -> //salir
+                        retener = false;
+                default -> System.out.println("Opción inválida");
             }
+            opcionEventos = 0;
         }
-
-        switch (opcionEventos)
-        {
-            case 1:
-                gestionEventos.cargarEventosJson(); // CARGA TODOS LOS EVENTOS DEL JSON
-                System.out.println("Eventos Proximos: ");
-                System.out.println( gestionEventos.listar() ); // LOS MUESTRA
-                break;
-
-            case 2: //crear un nuevo evento
-                Evento nuevo = gestionEventos.crearNuevoEvento();
-                System.out.println("** Se agregara el nuevo evento ** ");
-                System.out.println(nuevo);
-                gestionEventos.agregar(nuevo);
-                gestionEventos.guardarEventosJson(); //GUARDA EN EL JSON EL NUEVO EVENTO
-                break;
-
-            case 3: //Modificar un evento por nombre de evento (SEGUIR)
-                System.out.print("Ingrese el nombre del evento a modificar --> ");
-                entradaEventos = scanner.nextLine();
-                gestionEventos.modificarEventoPorNombre(entradaEventos);
-                gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
-                break;
-
-            case 4: //eliminar un evento por nombre de evento
-                System.out.print("Ingrese el nombre del evento a eliminar --> ");
-                entradaEventos = scanner.nextLine();
-                gestionEventos.eliminarEventoPorNombre(entradaEventos);
-                gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
-                break;
-
-            case 5: //salir
-                break;
-
-            default:
-                System.out.println("Opción inválida");
-                break;
-        }
-
     }
 
 
@@ -562,8 +554,7 @@ public class GestionHotel {
                     if (habilitar == 1) activa = true;
                     //pedir info para la nueva habitacion
                     gestionHabitaciones.agregar(new Habitacion(activa, precioDiario, capacidadMaxima, serviciosHabitaciones));
-                    aux = new Habitacion();
-                    gestionHabitaciones.agregar(aux);
+                    
                 }
                 case 2 -> {
                     System.out.println("Ingrese el ID de la habitacion que desea eliminar");
