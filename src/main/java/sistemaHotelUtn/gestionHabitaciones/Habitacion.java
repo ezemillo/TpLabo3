@@ -11,7 +11,7 @@ public class Habitacion implements Serializable {
     private boolean esReservable;
     private Double precioDiario;
     private int capacidadMax;
-    private ArrayList serviciosHabitacion;
+    private ArrayList<ServiciosHabitacion> serviciosHabitacion;
 
     //endregion
 
@@ -70,11 +70,11 @@ public class Habitacion implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
+        return "\n{" +
                 "\tIdHabitacion: " + id +
                 "||\tPrecio diario: " + precioDiario +
                 "||\tCapacidad: " + capacidadMax +
-                "||\tReservable: " + esReservable +
+                "||\tHabilitada: " + esReservable +
                 "||\tServicios: " + serviciosHabitacion +
                 "||" + "}";
     }

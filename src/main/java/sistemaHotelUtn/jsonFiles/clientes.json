@@ -1,0 +1,15 @@
+[ {
+  "id" : 1,
+  "usuario" : {
+    "username" : "eze",
+    "password" : "eze",
+    "tipoUsuario" : "CLIENTE"
+  },
+  "nombre" : "Ezequiel",
+  "apellido" : "Francioli",
+  "dni" : "35620025",
+  "domicilio" : "a",
+  "telefono" : "223",
+  "saldo" : 0.0,
+  "estaActivo" : true
+} ]

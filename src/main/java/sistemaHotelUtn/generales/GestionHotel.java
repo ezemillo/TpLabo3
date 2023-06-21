@@ -50,7 +50,7 @@ public class GestionHotel {
         int opcion = 0;
         boolean salir = false;
 
-        while (salir != true)
+        while (!salir)
         {
             System.out.println("---------------------------- Sistema Gestion Hotel -------------------------------------");
             System.out.println("\n\t[1] Login\n\t[2] Regitrarse\n\t[3] Salir");
@@ -261,7 +261,7 @@ public class GestionHotel {
 
         //busca que exista ese cliente por username
         Cliente cliente = gestionClientes.buscarClientePorUsername(username);
-
+        if(!cliente.getUsuario().getPassword().equals(password)) cliente=null;
         if (cliente != null) {
             this.usuarioActual = cliente.getUsuario();
             System.out.println("Cliente hizo login: " + usuarioActual.getUsername() );
@@ -288,6 +288,7 @@ public class GestionHotel {
 
         Empleado empleado = gestionEmpleados.buscarEmpleadoPorUsername(username); //BUSCA ESE EMPLEADO
 
+        if(!empleado.getUsuario().getPassword().equals(password)) empleado=null;
         if (empleado != null) {
             this.usuarioActual = empleado.getUsuario();
             System.out.println("Empleado hizo login: " + usuarioActual.getUsername());
@@ -649,7 +650,7 @@ public class GestionHotel {
                 System.out.println("Fecha de checkout:");
                 LocalDate checkOut =gestionReservas.solicitarLocalDate();
                 System.out.println("");
-                gestionReservas.verHabitacionesDisponiblesPorFechas(checkin,checkOut);
+                System.out.println(gestionReservas.verHabitacionesDisponiblesPorFechas(checkin,checkOut));
                 break;
 
             case 3:

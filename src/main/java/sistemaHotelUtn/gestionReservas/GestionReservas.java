@@ -41,13 +41,15 @@ public class GestionReservas extends Gestion<Reserva> {
 
     public ArrayList<Habitacion> verHabitacionesDisponiblesPorFechas(LocalDate checkIn, LocalDate checkOut) {
 
-        ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
+       ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
         gestionHabitaciones.cargarHabitacionesJson();
 
         for (Habitacion habitacion : gestionHabitaciones.getLista()
         ) {
-            if (isDisponiblePorFecha(habitacion.getId(), checkIn, checkOut)) {
+            System.out.println("habitacion en ver habitaciones disponibles por fechas = " + habitacion);
+            if (isDisponiblePorFecha(habitacion.getId(), checkIn, checkOut) && habitacion.getEsReservable()) {
+
                 habitacionesDisponibles.add(habitacion);
             }
         }
@@ -150,10 +152,10 @@ public class GestionReservas extends Gestion<Reserva> {
             nuevaReserva.setDiaCheckIn(solicitarLocalDate());
             System.out.println("Ingrese la fecha de checkOut dd-mm-aaaa");
             nuevaReserva.setDiaCheckOut(solicitarLocalDate());
-
+            nuevaReserva.setEstaActiva(true);
 
             if (isDisponiblePorFecha(nuevaReserva.getHabitacion().getId(), nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) {
-                nuevaReserva.setEstaActiva(true);
+
                 nuevaReserva.setMontoPagar(((double) cantidadDias(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) * nuevaReserva.getHabitacion().getPrecioDiario());
                 this.getLista().add(nuevaReserva);
                 guardarReservasJson();
@@ -161,7 +163,7 @@ public class GestionReservas extends Gestion<Reserva> {
             } else {
                 System.out.println("Lo sentimos, la habitacion no se encuentra disponible en las fechas solicitadas =(");
                 System.out.println("Las habitaciones disponibles en sus fechas son las siguientes: ");
-                verHabitacionesDisponiblesPorFechas(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut());
+                System.out.println(verHabitacionesDisponiblesPorFechas(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut()));
             }
 
         } else {
