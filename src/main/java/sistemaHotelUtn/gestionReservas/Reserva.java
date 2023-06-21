@@ -30,6 +30,7 @@ public class Reserva implements Serializable {
     //private ServiciosGastronomia List<ServiciosGastronomia>; agregar servicioGastronomia
 
     public Reserva() {
+
     }
 
     public Reserva(LocalDate diaCheckIn, LocalDate diaCheckOut, Cliente cliente, Habitacion habitacion) {
@@ -40,6 +41,7 @@ public class Reserva implements Serializable {
         this.cliente = cliente;
         this.habitacion = habitacion;
         this.estaActiva = true;
+
     }
 
     //region Getters y Setters
@@ -98,14 +100,10 @@ public class Reserva implements Serializable {
     //endregion
 
     public void setMontoPagar(Double montoPagar) {
-        this.montoPagar = (double) (ChronoUnit.DAYS.between(this.diaCheckIn, this.diaCheckOut) + 1) * this.habitacion.getPrecioDiario();
+        this.montoPagar = montoPagar;
     }
 
-    public long cantidadDias() {
-        // Calcular la diferencia en días
-        long diferenciaDias = ChronoUnit.DAYS.between(this.diaCheckIn, this.diaCheckOut);
-        return diferenciaDias;
-    }
+
 
     @Override
     public String toString() {

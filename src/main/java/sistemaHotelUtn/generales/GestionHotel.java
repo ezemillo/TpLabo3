@@ -335,7 +335,7 @@ public class GestionHotel {
                     break;
 
                 case 2:
-                    mostrarMenuReserva();
+                    mostrarMenuReserva(cliente);
                     break;
 
                 case 3: //eventos
@@ -585,7 +585,8 @@ public class GestionHotel {
                         gestionHabitaciones.modificar(aux, scanner.nextLine());
                     }
                 }
-                case 4 -> mostrarMenuReserva();
+                case 4 -> System.out.println("hacer menu reserva para admin con listados de reservas, generar reserva para otro cliente, etc");
+
                 case 5 -> retener = false;
                 default -> System.out.println("Opcion no valida");
             }
@@ -595,7 +596,7 @@ public class GestionHotel {
         }
     }
 
-    private void mostrarMenuReserva() {
+    private void mostrarMenuReserva(Cliente cliente) {
         int opcionReserva = 0;
         String entradaReserva = "";
 
@@ -628,9 +629,7 @@ public class GestionHotel {
                 break;
 
             case 3:
-                GestionClientes gestionClientes1=new GestionClientes();
-                gestionClientes1.generarReserva();
-
+                gestionReservas.generarReserva(cliente);
                 break;
 
             case 4:
@@ -654,6 +653,7 @@ public class GestionHotel {
                 break;
 
         }
+        this.gestionReservas.cargarReservasJson();
     }
 
 }

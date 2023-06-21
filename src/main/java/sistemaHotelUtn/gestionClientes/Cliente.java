@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Cliente extends Persona  {
 
     private double saldo = 0.0;
-    private boolean estaActivo;
+    private boolean estaActivo= true;
 
     public Cliente()
     {

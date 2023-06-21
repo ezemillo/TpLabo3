@@ -2,10 +2,12 @@ package sistemaHotelUtn.gestionReservas;
 
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
+import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,8 +21,6 @@ public class GestionReservas extends Gestion<Reserva> {
 
         for (Reserva reserva : this.getLista()
         ) {
-
-            System.out.println("reserva = " + reserva);
 
             if (idHabitacion == reserva.getHabitacion().getId() && reserva.getEstaActiva()
                     && (checkOut.isAfter(reserva.getDiaCheckIn()) || checkOut.isEqual(reserva.getDiaCheckOut()))
@@ -123,12 +123,56 @@ public class GestionReservas extends Gestion<Reserva> {
             i++;
         }
     }
-    public void verMisReservasActivas(String dni){
-        for(Reserva reserva:this.getLista()){
-            if(reserva.getCliente().getDni().equals(dni)&& reserva.getEstaActiva()){
+
+    public void verMisReservasActivas(String dni) {
+        for (Reserva reserva : this.getLista()) {
+            if (reserva.getCliente().getDni().equals(dni) && reserva.getEstaActiva()) {
                 System.out.println(reserva);
             }
         }
+    }
+
+    public void generarReserva(Cliente cliente) {
+        GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
+        gestionHabitaciones.cargarHabitacionesJson();
+        gestionHabitaciones.mostrarHabitaciones();
+        Reserva nuevaReserva = new Reserva();
+        System.out.println("Cliente activo:" + cliente.toString());
+
+        System.out.println("Ingrese el ID de habitacion que desea reservar");
+        int choice = new Scanner(System.in).nextInt();
+
+        nuevaReserva.setHabitacion(gestionHabitaciones.obtenerHabitacion(choice));
+        nuevaReserva.setCliente(cliente);
+
+        if (cliente.isEstaActivo()) {
+            System.out.println("Ingrese la fecha de checkIn dd-mm-aaaa");
+            nuevaReserva.setDiaCheckIn(solicitarLocalDate());
+            System.out.println("Ingrese la fecha de checkOut dd-mm-aaaa");
+            nuevaReserva.setDiaCheckOut(solicitarLocalDate());
+
+
+            if (isDisponiblePorFecha(nuevaReserva.getHabitacion().getId(), nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) {
+                nuevaReserva.setEstaActiva(true);
+                nuevaReserva.setMontoPagar(((double) cantidadDias(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) * nuevaReserva.getHabitacion().getPrecioDiario());
+                this.getLista().add(nuevaReserva);
+                guardarReservasJson();
+                System.out.println("Reserva realizada con exito. Muchas gracias!");
+            } else {
+                System.out.println("Lo sentimos, la habitacion no se encuentra disponible en las fechas solicitadas =(");
+                System.out.println("Las habitaciones disponibles en sus fechas son las siguientes: ");
+                verHabitacionesDisponiblesPorFechas(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut());
+            }
+
+        } else {
+            System.out.println("Usted esta imposibilitado para realizar una reserva, contacte al administrador");
+        }
+    }
+
+    public long cantidadDias(LocalDate diaCheckIn, LocalDate diaCheckOut) {
+        // Calcular la diferencia en días
+
+        return ChronoUnit.DAYS.between(diaCheckIn, diaCheckOut);
     }
 }
 

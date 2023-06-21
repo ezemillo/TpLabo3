@@ -1,5 +1,5 @@
 [ {
-  "id" : 1,
+  "id" : 4,
   "usuario" : {
     "username" : "qw",
     "password" : "qw",
@@ -11,5 +11,5 @@
   "domicilio" : "qw",
   "telefono" : "qw",
   "saldo" : 0.0,
-  "estaActivo" : false
+  "estaActivo" : true
 } ]
