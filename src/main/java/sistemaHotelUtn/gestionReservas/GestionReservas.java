@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class GestionReservas extends Gestion<Reserva> {
     public GestionReservas() {
         cargarReservasJson();
+        Reserva.setUltimoId(this.getLista().size());
     }
 
     public boolean isDisponiblePorFecha(int idHabitacion, LocalDate checkIn, LocalDate checkOut) {
@@ -47,7 +48,7 @@ public class GestionReservas extends Gestion<Reserva> {
 
         for (Habitacion habitacion : gestionHabitaciones.getLista()
         ) {
-            System.out.println("habitacion en ver habitaciones disponibles por fechas = " + habitacion);
+
             if (isDisponiblePorFecha(habitacion.getId(), checkIn, checkOut) && habitacion.getEsReservable()) {
 
                 habitacionesDisponibles.add(habitacion);
@@ -176,5 +177,7 @@ public class GestionReservas extends Gestion<Reserva> {
 
         return ChronoUnit.DAYS.between(diaCheckIn, diaCheckOut);
     }
+
+
 }
 

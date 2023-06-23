@@ -17,8 +17,7 @@ import java.util.Objects;
 public class Reserva implements Serializable {
     //region Atributos
     private int id;
-    private static int ultimoId = 0;
-    private boolean idEstaAsignado = false;
+    private static int ultimoId;
     private boolean estaPago;
     private LocalDate diaCheckIn;
     private LocalDate diaCheckOut;
@@ -40,6 +39,7 @@ public class Reserva implements Serializable {
         this.cliente = cliente;
         this.habitacion = habitacion;
         this.estaActiva = true;
+        this.id=ultimoId++;
 
     }
 
@@ -48,14 +48,8 @@ public class Reserva implements Serializable {
         return id;
     }
 
-    public void asignarIdAutoincremental()
-    {
-        if( ! idEstaAsignado )
-        {
-            this.id = ++Reserva.ultimoId;
-            this.idEstaAsignado = true;
-        }
-    }
+
+
 
     public void setId(int id) {
         this.id = id;
@@ -111,7 +105,9 @@ public class Reserva implements Serializable {
         this.montoPagar = montoPagar;
     }
 
-
+    public static void setUltimoId(int ultimoId) {
+        Reserva.ultimoId = ultimoId;
+    }
 
     @Override
     public String toString() {

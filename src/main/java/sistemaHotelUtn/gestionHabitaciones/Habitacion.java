@@ -38,15 +38,6 @@ public class Habitacion implements Serializable {
         return id;
     }
 
-    /*public void asignarIdAutoincremental()
-    {
-        if( ! idEstaAsignado )
-        {
-            this.id = ++Habitacion.ultimoId;
-            this.idEstaAsignado = true;
-        }
-    }*/
-
     public boolean getEsReservable() {
         return esReservable;
     }
