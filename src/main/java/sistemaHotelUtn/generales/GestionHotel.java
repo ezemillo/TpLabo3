@@ -419,7 +419,7 @@ public class GestionHotel
                 case 3 -> //eventos
                     //el empleado puede ver y ademas modificar eventos
                         mostrarMenuEventosEmpleado();
-                case 4 -> gestionEmpleados.gananciaTotal(empleado);
+                case 4 -> gestionEmpleados.gananciaTotal();
                 case 5 -> retener = false;
             }
             opcion=0;

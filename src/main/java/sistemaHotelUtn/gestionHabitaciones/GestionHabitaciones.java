@@ -73,7 +73,13 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
     }
 
     public Habitacion obtenerHabitacion(int choice) {
-        return this.getLista().get(choice);
+        try{
+            Habitacion habitacion = this.getLista().get(choice);
+            return habitacion;
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Entrada erronea");
+            return null;
+        }
     }
 
     public void guardarHabitacionJson()

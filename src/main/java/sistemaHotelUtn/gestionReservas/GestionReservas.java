@@ -3,6 +3,7 @@ package sistemaHotelUtn.gestionReservas;
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.gestionClientes.Cliente;
+import sistemaHotelUtn.gestionClientes.GestionClientes;
 import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 
@@ -135,40 +136,72 @@ public class GestionReservas extends Gestion<Reserva> {
         }
     }
 
-    public void generarReserva(Cliente cliente) {
+    public void generarReserva(Cliente cliente) {//puede venir un cliente o un null
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
         gestionHabitaciones.cargarHabitacionesJson();
         gestionHabitaciones.mostrarHabitaciones();
-        Reserva nuevaReserva = new Reserva();
         System.out.println("Cliente activo:" + cliente.toString());
 
         System.out.println("Ingrese el ID de habitacion que desea reservar");
         int choice = new Scanner(System.in).nextInt();
+        Habitacion nuevaHabitacion = gestionHabitaciones.obtenerHabitacion(choice);//obtengo habitacion o null
 
-        nuevaReserva.setHabitacion(gestionHabitaciones.obtenerHabitacion(choice));
-        nuevaReserva.setCliente(cliente);
+        if(nuevaHabitacion!=null){//si la habitacion no es null...
+            //Reserva nuevaReserva = new Reserva();
+            if (cliente != null) {//fijarse con un cliente null
 
-        if (cliente.isEstaActivo()) {
-            System.out.println("Ingrese la fecha de checkIn dd-mm-aaaa");
-            nuevaReserva.setDiaCheckIn(solicitarLocalDate());
-            System.out.println("Ingrese la fecha de checkOut dd-mm-aaaa");
-            nuevaReserva.setDiaCheckOut(solicitarLocalDate());
-            nuevaReserva.setEstaActiva(true);
+                if (cliente.isEstaActivo()) {
 
-            if (isDisponiblePorFecha(nuevaReserva.getHabitacion().getId(), nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) {
+                    comprobarYreservar(cliente,nuevaHabitacion);
 
-                nuevaReserva.setMontoPagar(((double) cantidadDias(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) * nuevaReserva.getHabitacion().getPrecioDiario());
-                this.getLista().add(nuevaReserva);
-                guardarReservasJson();
-                System.out.println("Reserva realizada con exito. Muchas gracias!");
-            } else {
-                System.out.println("Lo sentimos, la habitacion no se encuentra disponible en las fechas solicitadas =(");
-                System.out.println("Las habitaciones disponibles en sus fechas son las siguientes: ");
-                System.out.println(verHabitacionesDisponiblesPorFechas(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut()));
+                } else {
+                    System.out.println("Usted esta imposibilitado para realizar una reserva, contacte al administrador");
+                }
+
+            } else {//en este caso el cliente es null
+                GestionClientes gestionClientes = new GestionClientes();
+
+                cliente=gestionClientes.crearNuevoCliente();//tengo que guardar el cliente y la reserva
+                comprobarYreservar(cliente,nuevaHabitacion);
+
+                gestionClientes.agregar(cliente);
+                gestionClientes.guardarClientesJson();
+
+
             }
+        }
+        else {
+            System.out.println("Lo sentimos, no se pudo reservar");
+        }
+
+    }
+
+    private void comprobarYreservar (Cliente cliente,Habitacion habitacion){
+        System.out.println("Ingrese la fecha de checkIn dd-mm-aaaa");
+        LocalDate checkIn = solicitarLocalDate();
+        //nuevaReserva.setDiaCheckIn(solicitarLocalDate());
+        System.out.println("Ingrese la fecha de checkOut dd-mm-aaaa");
+        LocalDate checkOut = solicitarLocalDate();
+        //nuevaReserva.setDiaCheckOut(solicitarLocalDate());
+
+
+        if (isDisponiblePorFecha(habitacion.getId(), checkIn, checkOut)) {
+            Reserva nuevaReserva = new Reserva();
+
+            nuevaReserva.setHabitacion(habitacion);
+            nuevaReserva.setDiaCheckIn(checkIn);
+            nuevaReserva.setDiaCheckOut(checkOut);
+            nuevaReserva.setEstaActiva(true);
+            nuevaReserva.setCliente(cliente);
+            nuevaReserva.setMontoPagar(((double) cantidadDias(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) * nuevaReserva.getHabitacion().getPrecioDiario());
+            this.getLista().add(nuevaReserva);
+            guardarReservasJson();
+            System.out.println("Reserva realizada con exito. Muchas gracias!");
 
         } else {
-            System.out.println("Usted esta imposibilitado para realizar una reserva, contacte al administrador");
+            System.out.println("Lo sentimos, la habitacion no se encuentra disponible en las fechas solicitadas =(");
+            System.out.println("Las habitaciones disponibles en sus fechas son las siguientes: ");
+            System.out.println(verHabitacionesDisponiblesPorFechas(checkIn, checkOut));
         }
     }
 

@@ -4,6 +4,7 @@ import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.generales.TipoUsuario;
 import sistemaHotelUtn.gestionClientes.Cliente;
+import sistemaHotelUtn.gestionClientes.GestionClientes;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
 import sistemaHotelUtn.gestionReservas.Reserva;
 
@@ -80,20 +81,22 @@ public class GestionEmpleados extends Gestion<Empleado> {
         this.setLista(empleadosList);
     }
 
-    public void gananciaTotal(Empleado empleado){
+    public void gananciaTotal() {
 
-        if(empleado.getPuesto().equals("Administrador")){
-            double ganancia = 0.00;
-            GestionReservas gestionReservas = new GestionReservas();
-            for (Reserva reserva:gestionReservas.getLista()){
-                ganancia=ganancia+reserva.getMontoPagar();
-            }
-            System.out.println("La ganancia de todas las reservas asciende a $ "+ganancia);
+        double ganancia = 0.00;
+        GestionReservas gestionReservas = new GestionReservas();
+        for (Reserva reserva : gestionReservas.getLista()) {
+            ganancia = ganancia + reserva.getMontoPagar();
         }
-        else {
-            System.out.println("No esta habilitado para esta opcion, contacte con Administracion");
+        System.out.println("La ganancia de todas las reservas asciende a $ " + ganancia);
+    }
+    public void darBajaCliente (GestionClientes gestionClientes,String dni){
+        for(Cliente cliente:gestionClientes.getLista()){
+            if(cliente.getDni().equals(dni)){
+                cliente.setEstaActivo(false);
+                gestionClientes.guardarClientesJson();
+            }
         }
     }
-
 
 }
