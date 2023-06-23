@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 public class GestionClientes extends Gestion<Cliente> {
     public GestionClientes() {
+        this.cargarClientesJson();
     }
 
     public Cliente crearNuevoCliente() {

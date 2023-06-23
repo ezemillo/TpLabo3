@@ -10,15 +10,19 @@ import sistemaHotelUtn.gestionReservas.GestionReservas;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static sistemaHotelUtn.gestionHabitaciones.Habitacion.setUltimoId;
+
 public class GestionHabitaciones extends Gestion<Habitacion> {
     public GestionHabitaciones() {
         cargarHabitacionesJson();
+        setUltimoId(this.getLista().size());
     }
 
     private Habitacion nuevaHabitacion() {
         int aceptar = 0;
         Scanner scanner = new Scanner(System.in);
         Habitacion nueva = new Habitacion(true, 0.0, 0, new ArrayList<ServiciosHabitacion>());
+
         while (aceptar == 0) {
             System.out.println("Ingrese precio diario de alquiler: ");
             nueva.setPrecioDiario(scanner.nextDouble());
@@ -78,5 +82,7 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
         JsonRepo<Habitacion> habitacionJson = new JsonRepo<>("habitaciones", habitacionList, Habitacion.class);
         habitacionJson.guardar();
     }
+
+
 
 }

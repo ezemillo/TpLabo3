@@ -1,6 +1,7 @@
 package sistemaHotelUtn.gestionHabitaciones;
 
 import sistemaHotelUtn.generales.Persona;
+import sistemaHotelUtn.gestionReservas.Reserva;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,8 +10,7 @@ public class Habitacion implements Serializable {
 
     //region Atributos
     private int id;
-    private static int ultimoId = 0;
-    private boolean idEstaAsignado = false;
+    private static int ultimoId;
     private boolean esReservable;
     private Double precioDiario;
     private int capacidadMax;
@@ -24,7 +24,9 @@ public class Habitacion implements Serializable {
 
     public Habitacion(boolean esReservable, Double precioDiario, int capacidadMax,
                       ArrayList<ServiciosHabitacion> serviciosHabitacion) {
+
         this.esReservable = esReservable;
+        this.id=ultimoId++;
         this.precioDiario = precioDiario;
         this.capacidadMax = capacidadMax;
         this.serviciosHabitacion = serviciosHabitacion;
@@ -36,14 +38,14 @@ public class Habitacion implements Serializable {
         return id;
     }
 
-    public void asignarIdAutoincremental()
+    /*public void asignarIdAutoincremental()
     {
         if( ! idEstaAsignado )
         {
             this.id = ++Habitacion.ultimoId;
             this.idEstaAsignado = true;
         }
-    }
+    }*/
 
     public boolean getEsReservable() {
         return esReservable;
@@ -63,6 +65,10 @@ public class Habitacion implements Serializable {
 
     public int getCapacidadMax() {
         return capacidadMax;
+    }
+
+    public static void setUltimoId(int ultimoId) {
+        Habitacion.ultimoId = ultimoId;
     }
 
     public void setCapacidadMax(int capacidadMax) {

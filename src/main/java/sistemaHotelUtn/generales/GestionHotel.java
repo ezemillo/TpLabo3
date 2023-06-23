@@ -30,17 +30,18 @@ public class GestionHotel
     {
         this.gestionClientes = new GestionClientes();
 
+
         this.gestionHabitaciones = new GestionHabitaciones();
-        //this.gestionHabitaciones.cargarHabitacionesJson();
+
 
         this.gestionEventos = new GestionEventos();
-        //this.gestionEventos.cargarEventosJson();
+
 
         this.gestionEmpleados = new GestionEmpleados();
-        //this.gestionEmpleados.cargarEmpleadosJson();
+
 
         this.gestionReservas = new GestionReservas();
-        //this.gestionReservas.cargarReservasJson();
+
 
     }
 
@@ -578,8 +579,9 @@ public class GestionHotel
                     boolean activa = false;
                     if (habilitar == 1) activa = true;
                     //pedir info para la nueva habitacion
+
                     gestionHabitaciones.agregar(new Habitacion(activa, precioDiario, capacidadMaxima, serviciosHabitaciones));
-                    
+                    System.out.println("Habitacion agregada con exito");
                 }
                 case 2 -> {
                     System.out.println("Ingrese el ID de la habitacion que desea eliminar");
