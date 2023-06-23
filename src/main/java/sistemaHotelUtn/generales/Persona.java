@@ -5,9 +5,10 @@ import java.io.Serializable;
 public abstract class Persona implements Serializable {
 
     // region Atributos
-    private int id;
+    private int id = 0;
     private static int ultimoId = 0;
     private Usuario usuario = new Usuario();
+    private boolean idEstaAsignado = false;
     private String nombre;
     private String apellido;
     private String dni;
@@ -21,12 +22,10 @@ public abstract class Persona implements Serializable {
 
 
     public Persona() {
-        this.id = ++Persona.ultimoId;
     }
 
     public Persona(Usuario usuario, String nombre, String apellido, String dni,
                    String domicilio, String telefono) {
-        this.id = ++Persona.ultimoId;
         this.usuario = usuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,7 +35,6 @@ public abstract class Persona implements Serializable {
     }
 
     public Persona(String nombre, String apellido, String dni, String domicilio, String telefono) {
-        this.id = ++Persona.ultimoId;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -46,7 +44,6 @@ public abstract class Persona implements Serializable {
 
     public Persona(String username, String password, String nombre, String apellido,
                    String dni, String domicilio, String telefono) {
-        this.id = ++Persona.ultimoId;
         this.usuario = new Usuario(username, password);
         this.nombre = nombre;
         this.apellido = apellido;
@@ -70,6 +67,15 @@ public abstract class Persona implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public void asignarIdAutoincremental()
+    {
+        if( ! idEstaAsignado )
+        {
+            this.id = ++Persona.ultimoId;
+            this.idEstaAsignado = true;
+        }
     }
 
     public String getNombre() {

@@ -1,15 +1,29 @@
 [ {
   "id" : 1,
   "usuario" : {
-    "username" : "eze",
-    "password" : "eze",
+    "username" : "santi",
+    "password" : "123",
     "tipoUsuario" : "CLIENTE"
   },
-  "nombre" : "Ezequiel",
-  "apellido" : "Francioli",
-  "dni" : "35620025",
-  "domicilio" : "a",
-  "telefono" : "223",
+  "nombre" : "santi",
+  "apellido" : "blanco",
+  "dni" : "123",
+  "domicilio" : "saturno 12",
+  "telefono" : "123",
+  "saldo" : 0.0,
+  "estaActivo" : true
+}, {
+  "id" : 2,
+  "usuario" : {
+    "username" : "mhawke",
+    "password" : "123",
+    "tipoUsuario" : "CLIENTE"
+  },
+  "nombre" : "marian",
+  "apellido" : "hawke",
+  "dni" : "123",
+  "domicilio" : "urano 12",
+  "telefono" : "123",
   "saldo" : 0.0,
   "estaActivo" : true
 } ]

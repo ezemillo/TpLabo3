@@ -15,31 +15,32 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestionHotel {
+public class GestionHotel
+{
     private GestionEmpleados gestionEmpleados;
     private GestionClientes gestionClientes;
     private GestionReservas gestionReservas;
     private GestionEventos gestionEventos;
     private GestionHabitaciones gestionHabitaciones;
     private Usuario usuarioActual = null;
+
     Scanner scanner = new Scanner(System.in);
 
-    public GestionHotel() {
+    public GestionHotel()
+    {
         this.gestionClientes = new GestionClientes();
-        this.gestionClientes.cargarClientesJson();
 
         this.gestionHabitaciones = new GestionHabitaciones();
-        this.gestionHabitaciones.cargarHabitacionesJson();
+        //this.gestionHabitaciones.cargarHabitacionesJson();
 
         this.gestionEventos = new GestionEventos();
-        this.gestionEventos.cargarEventosJson();
+        //this.gestionEventos.cargarEventosJson();
 
         this.gestionEmpleados = new GestionEmpleados();
-        this.gestionEmpleados.cargarEmpleadosJson();
+        //this.gestionEmpleados.cargarEmpleadosJson();
 
         this.gestionReservas = new GestionReservas();
-        this.gestionReservas.cargarReservasJson();
-
+        //this.gestionReservas.cargarReservasJson();
 
     }
 
@@ -172,6 +173,7 @@ public class GestionHotel {
     {
         System.out.println("**** Registrar Nuevo Cliente **** ");
         Cliente nuevoCliente = gestionClientes.crearNuevoCliente();
+        nuevoCliente.asignarIdAutoincremental();
         System.out.println("\nSe agrego el nuevo cliente:");
         System.out.println(nuevoCliente);
         gestionClientes.agregar(nuevoCliente);
@@ -182,6 +184,7 @@ public class GestionHotel {
     {
         System.out.println("**** Registrar Nuevo Empleado **** ");
         Empleado nuevoEmpleado = gestionEmpleados.crearNuevoEmpleado();
+        nuevoEmpleado.asignarIdAutoincremental();
         System.out.println("\nSe agrego el nuevo empleado:");
         System.out.println(nuevoEmpleado);
         gestionEmpleados.agregar(nuevoEmpleado);
@@ -260,6 +263,7 @@ public class GestionHotel {
         password = scanner.nextLine();
 
         //busca que exista ese cliente por username
+        this.gestionClientes.cargarClientesJson();
         Cliente cliente = gestionClientes.buscarClientePorUsername(username);
         if(!cliente.getUsuario().getPassword().equals(password)) cliente=null;
         if (cliente != null) {
@@ -353,7 +357,7 @@ public class GestionHotel {
                     //el cliente solo puede ver los eventos
                     System.out.println("Eventos Proximos: ");
                     System.out.println( gestionEventos.listar() ); // LOS MUESTRA
-                    System.out.println(gestionEventos.listar());
+                    System.out.println( gestionEventos.listar() );
                     break;
 
                 case 4:
@@ -393,7 +397,7 @@ public class GestionHotel {
 
                     opcion = Integer.parseInt(entrada);
 
-                    if( opcion < 1 || opcion > 4)
+                    if( opcion < 1 || opcion > 5)
                     {
                         opcion = 0;
                         throw new IllegalArgumentException();
@@ -471,6 +475,7 @@ public class GestionHotel {
                 }
                 case 2 -> { //crear un nuevo evento
                     Evento nuevo = gestionEventos.crearNuevoEvento();
+                    nuevo.asignarIdAutoincremental();
                     System.out.println("** Se agregara el nuevo evento ** ");
                     System.out.println(nuevo);
                     gestionEventos.agregar(nuevo);

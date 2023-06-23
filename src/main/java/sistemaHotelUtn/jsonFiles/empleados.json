@@ -1,29 +1,31 @@
 [ {
+  "id" : 1,
+  "usuario" : {
+    "username" : "jperez",
+    "password" : "123",
+    "tipoUsuario" : "EMPLEADO"
+  },
+  "nombre" : "juan",
+  "apellido" : "perez",
+  "dni" : "123",
+  "domicilio" : "marte",
+  "telefono" : "123",
+  "salario" : 200000.0,
+  "antiguedad" : 0,
+  "puesto" : "Empleado"
+}, {
   "id" : 2,
   "usuario" : {
-    "username" : "admin",
-    "password" : "admin",
+    "username" : "empleado2",
+    "password" : "123",
     "tipoUsuario" : "EMPLEADO"
   },
-  "nombre" : "admin",
-  "apellido" : "admin",
-  "dni" : "1",
-  "domicilio" : "a",
-  "telefono" : "223",
+  "nombre" : "e1",
+  "apellido" : "e",
+  "dni" : "123",
+  "domicilio" : "mercurio",
+  "telefono" : "123",
   "salario" : 200000.0,
-  "antiguedad" : 0
-}, {
-  "id" : 3,
-  "usuario" : {
-    "username" : "admin2",
-    "password" : "admin2",
-    "tipoUsuario" : "EMPLEADO"
-  },
-  "nombre" : "admin2",
-  "apellido" : "admin2",
-  "dni" : "2",
-  "domicilio" : "2",
-  "telefono" : "2",
-  "salario" : 200000.0,
-  "antiguedad" : 0
+  "antiguedad" : 0,
+  "puesto" : "Empleado"
 } ]

@@ -6,13 +6,16 @@
 
 package sistemaHotelUtn.gestionEventos;
 
+import sistemaHotelUtn.generales.Persona;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Evento {
     //region Atributos
     private static int contadorEventos = 0;
-    private int id;
+    private int id = 0;
+    private boolean idEstaAsignado = false;
     private String nombreEvento = "";
     private String organizador = "";
     private int participantes = 0;
@@ -25,7 +28,6 @@ public class Evento {
     }
 
     public Evento(String nombreEvento, String organizador, int participantes) {
-        this.id = ++contadorEventos;
         this.nombreEvento = nombreEvento;
         this.organizador = organizador;
         this.participantes = participantes;
@@ -33,7 +35,6 @@ public class Evento {
 
     public Evento(String nombreEvento, String organizador, int participantes,
                   LocalDateTime fechaHoraInicio, LocalDateTime fechaHoraFin) {
-        this.id = ++contadorEventos;
         this.nombreEvento = nombreEvento;
         this.organizador = organizador;
 
@@ -50,6 +51,15 @@ public class Evento {
     //region Getters y Setters
     public int getId() {
         return id;
+    }
+
+    public void asignarIdAutoincremental()
+    {
+        if( ! idEstaAsignado )
+        {
+            this.id = ++Evento.contadorEventos;
+            this.idEstaAsignado = true;
+        }
     }
 
     public String getNombreEvento() {

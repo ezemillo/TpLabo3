@@ -1,6 +1,7 @@
 package sistemaHotelUtn.gestionReservas;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import sistemaHotelUtn.generales.Persona;
 import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
@@ -16,7 +17,8 @@ import java.util.Objects;
 public class Reserva implements Serializable {
     //region Atributos
     private int id;
-    private static int ultimoId;
+    private static int ultimoId = 0;
+    private boolean idEstaAsignado = false;
     private boolean estaPago;
     private LocalDate diaCheckIn;
     private LocalDate diaCheckOut;
@@ -30,12 +32,9 @@ public class Reserva implements Serializable {
     //private ServiciosGastronomia List<ServiciosGastronomia>; agregar servicioGastronomia
 
     public Reserva() {
-        ++Reserva.ultimoId;
     }
 
     public Reserva(LocalDate diaCheckIn, LocalDate diaCheckOut, Cliente cliente, Habitacion habitacion) {
-        this.id = Reserva.ultimoId;
-        ++Reserva.ultimoId;
         this.diaCheckIn = diaCheckIn;
         this.diaCheckOut = diaCheckOut;
         this.cliente = cliente;
@@ -47,6 +46,15 @@ public class Reserva implements Serializable {
     //region Getters y Setters
     public int getId() {
         return id;
+    }
+
+    public void asignarIdAutoincremental()
+    {
+        if( ! idEstaAsignado )
+        {
+            this.id = ++Reserva.ultimoId;
+            this.idEstaAsignado = true;
+        }
     }
 
     public void setId(int id) {

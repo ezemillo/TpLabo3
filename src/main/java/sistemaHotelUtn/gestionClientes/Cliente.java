@@ -21,7 +21,7 @@ public class Cliente extends Persona  {
 
     public Cliente()
     {
-        super();
+        //super();
     }
 
     public Cliente(String username, String password)
