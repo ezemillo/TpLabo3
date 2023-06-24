@@ -5,6 +5,9 @@ import sistemaHotelUtn.gestionReservas.Reserva;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Habitacion implements Serializable {
 
@@ -14,7 +17,7 @@ public class Habitacion implements Serializable {
     private boolean esReservable;
     private Double precioDiario;
     private int capacidadMax;
-    private ArrayList<ServiciosHabitacion> serviciosHabitacion;
+    private HashSet<ServiciosHabitacion> serviciosHabitacion;
 
     //endregion
 
@@ -23,7 +26,7 @@ public class Habitacion implements Serializable {
     }
 
     public Habitacion(boolean esReservable, Double precioDiario, int capacidadMax,
-                      ArrayList<ServiciosHabitacion> serviciosHabitacion) {
+                      HashSet<ServiciosHabitacion> serviciosHabitacion) {
 
         this.esReservable = esReservable;
         this.id=ultimoId++;
@@ -66,11 +69,11 @@ public class Habitacion implements Serializable {
         this.capacidadMax = capacidadMax;
     }
 
-    public ArrayList getServiciosHabitacion() {
+    public HashSet<ServiciosHabitacion> getServiciosHabitacion() {
         return serviciosHabitacion;
     }
 
-    public void setServiciosHabitacion(ArrayList<ServiciosHabitacion> serviciosHabitacion) {
+    public void setServiciosHabitacion(HashSet<ServiciosHabitacion> serviciosHabitacion) {
         this.serviciosHabitacion = serviciosHabitacion;
     }
     //endregion
@@ -84,5 +87,13 @@ public class Habitacion implements Serializable {
                 "||\tHabilitada: " + esReservable +
                 "||\tServicios: " + serviciosHabitacion +
                 "||" + "}";
+    }
+
+
+    public void listarServicios(){
+        System.out.println("Los servicios de la habitacion "+id+" son: ");
+        for (ServiciosHabitacion habitacion : serviciosHabitacion) {
+            System.out.println(habitacion);
+        }
     }
 }

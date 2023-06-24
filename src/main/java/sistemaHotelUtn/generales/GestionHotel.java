@@ -13,6 +13,7 @@ import sistemaHotelUtn.gestionReservas.GestionReservas;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class GestionHotel
@@ -527,7 +528,6 @@ public class GestionHotel
         Habitacion aux;
         while (retener)
         {
-            System.out.println("VOLVI A RETENER con "+retener);
             System.out.println("------------------------------ Habitaciones (empleado) ------------------------------------");
             System.out.println("[1] Agregar Habitacion");
             System.out.println("[2] Eliminar Habitacion");
@@ -569,7 +569,7 @@ public class GestionHotel
                     Double precioDiario = scanner.nextDouble();
                     System.out.println("Ingrese la capacidad maxima de la habitacion: ");
                     int capacidadMaxima = scanner.nextInt();
-                    ArrayList<ServiciosHabitacion> serviciosHabitaciones = new ArrayList<>();
+                    HashSet<ServiciosHabitacion> serviciosHabitaciones = new HashSet<ServiciosHabitacion>();
                     System.out.println("La habiacion dispone de wifi? 1.Si 2.No");
                     int wifi = scanner.nextInt();
                     if (wifi == 1) {
@@ -613,18 +613,13 @@ public class GestionHotel
                     }
                 }
                 case 3 -> {
-                    System.out.println("Ingrese el ID de la habitacion que desea eliminar");
+                    System.out.println("Ingrese el ID de la habitacion que desea modificar");
                     System.out.println(gestionHabitaciones.listar());
                     opcion = scanner.nextInt();
                     scanner.nextLine();
                     aux = gestionHabitaciones.buscarHabitacion(opcion);
                     if (aux != null) {
-                        System.out.println("Ingrese el campo que quiere modificar");
-                        System.out.println("1. Condicion de reserva");
-                        System.out.println("2. Precio por dia");
-                        System.out.println("3. Capacidad maxima");
-                        System.out.println("4. Servicio de habitacion");
-                        gestionHabitaciones.modificar(aux, scanner.nextLine());
+                        gestionHabitaciones.modificar(aux, scanner);
                     }
                 }
                 case 4 -> {
@@ -639,7 +634,6 @@ public class GestionHotel
                 default -> System.out.println("Opcion no valida");
             }
             gestionHabitaciones.guardarHabitacionJson();
-            System.out.println("JUSTO DESPUES "+retener);
             opcion=0;
         }
     }

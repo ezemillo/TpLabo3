@@ -1,6 +1,7 @@
 package sistemaHotelUtn.generales;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 abstract public class Gestion<T> {
     private ArrayList<T> lista = new ArrayList<>();
@@ -28,7 +29,7 @@ abstract public class Gestion<T> {
         }
     }
 
-    public void modificar(T target, String campo) {
+    public void modificar(T target, Scanner scanner) {
         for (T elem : lista) {
             if (elem == target) {
                 System.out.println("Ingrese el campo a modificar --> ");
