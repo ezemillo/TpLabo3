@@ -292,17 +292,24 @@ public class GestionHotel
         System.out.print("Ingrese su password --> ");
         password = scanner.nextLine();
 
-        Empleado empleado = gestionEmpleados.buscarEmpleadoPorUsername(username); //BUSCA ESE EMPLEADO
+        try{
+            Empleado empleado = gestionEmpleados.buscarEmpleadoPorUsername(username); //BUSCA ESE EMPLEADO
 
-        if(!empleado.getUsuario().getPassword().equals(password)) empleado=null;
-        if (empleado != null) {
-            this.usuarioActual = empleado.getUsuario();
-            System.out.println("Empleado hizo login: " + usuarioActual.getUsername());
-            mostrarMenuEmpleado(empleado); //SE LLAMA AL MENU CLIENTE CON CASTEO
-        } else //deberia lanzar excepcion
-            System.out.println("No se ha encontrado un empleado con username: " + username);
+            if(!empleado.getUsuario().getPassword().equals(password)) empleado=null;
+            if (empleado != null) {
+                this.usuarioActual = empleado.getUsuario();
+                System.out.println("Empleado hizo login: " + usuarioActual.getUsername());
+                mostrarMenuEmpleado(empleado);
+
+        }else System.out.println("La contraseña no es correcta");
+        }
+            catch(NullPointerException e){
+                System.out.println("No se ha encontrado un empleado con username: " + username);
+        }
+
 
     }
+
 
     public void mostrarMenuCliente(Cliente cliente) {
         boolean retener = true;
@@ -540,13 +547,14 @@ public class GestionHotel
                 try
                 {
                     System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
-
+                    scanner.reset();
                     entrada = scanner.nextLine();
 
                     opcion = Integer.parseInt(entrada);
 
                     if( opcion < 1 || opcion > 5)
                     {
+
                         opcion = 0;
                         throw new IllegalArgumentException();
                     }
@@ -610,6 +618,8 @@ public class GestionHotel
                         if (confirma == 0) {
                             gestionHabitaciones.eliminar(aux);
                         }
+                    }else{
+                        System.out.println("Opcion incorrecta. Elegir nuevamente la habitacion ");
                     }
                 }
                 case 3 -> {

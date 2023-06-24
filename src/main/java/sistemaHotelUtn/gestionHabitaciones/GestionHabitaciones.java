@@ -22,23 +22,13 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
 
 
 
-
-
     public Habitacion buscarHabitacion(int ID) {
-        Habitacion aux = null;
-        boolean encontrado = false;
-        for (int i = 0; i < getLista().size() || encontrado; i++) {
-            aux = getLista().get(i);
-            if (aux.getId() == ID) {
-                encontrado = true;
+        for (Habitacion habitacion:this.getLista()) {
+            if(habitacion.getId()==ID){
+                return habitacion;
             }
         }
-
-        if (!encontrado) {
-            System.out.println("No se encontro una habitacion con ese ID");
-            aux = null;
-        }
-        return aux;
+        return null;
     }
 
     public void cargarHabitacionesJson() {
