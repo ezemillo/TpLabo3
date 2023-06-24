@@ -59,15 +59,16 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
         JsonRepo<Habitacion> habitacionesJson = new JsonRepo<>("habitaciones", habitacionesList, Habitacion.class);
         habitacionesList = habitacionesJson.cargar();
         this.setLista(habitacionesList);
+
     }
 
 
     public void mostrarHabitaciones() {
-        int i = 1;
+
         for (Habitacion habitacion : this.getLista()) {
             if (habitacion.getEsReservable()) {
-                System.out.println(i + ")" + habitacion);
-                i++;
+                System.out.println(habitacion);
+
             }
         }
     }
@@ -82,13 +83,11 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
         }
     }
 
-    public void guardarHabitacionJson()
-    {
+    public void guardarHabitacionJson() {
         ArrayList<Habitacion> habitacionList = this.getLista();
         JsonRepo<Habitacion> habitacionJson = new JsonRepo<>("habitaciones", habitacionList, Habitacion.class);
         habitacionJson.guardar();
     }
-
 
 
 }

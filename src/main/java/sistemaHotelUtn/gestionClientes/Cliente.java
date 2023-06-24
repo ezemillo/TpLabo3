@@ -61,7 +61,7 @@ public class Cliente extends Persona  {
         return super.toString().replace(
                 super.toString().charAt(super.toString().length() - 1),
                 ' '
-        ) + "\t|| Saldo: " + saldo + "||\tActivo: " + estaActivo+ "" + "}";
+        ) + "\t|| Saldo: " + saldo + "||\tActivo: " + estaActivo+ "}\n";
     }
 
 

@@ -43,7 +43,7 @@ public class GestionReservas extends Gestion<Reserva> {
 
     public ArrayList<Habitacion> verHabitacionesDisponiblesPorFechas(LocalDate checkIn, LocalDate checkOut) {
 
-       ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
+        ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
         gestionHabitaciones.cargarHabitacionesJson();
 
@@ -136,6 +136,7 @@ public class GestionReservas extends Gestion<Reserva> {
         }
     }
 
+
     public void generarReserva(Cliente cliente) {//puede venir un cliente o un null
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
         gestionHabitaciones.cargarHabitacionesJson();
@@ -146,13 +147,13 @@ public class GestionReservas extends Gestion<Reserva> {
         int choice = new Scanner(System.in).nextInt();
         Habitacion nuevaHabitacion = gestionHabitaciones.obtenerHabitacion(choice);//obtengo habitacion o null
 
-        if(nuevaHabitacion!=null){//si la habitacion no es null...
+        if (nuevaHabitacion != null) {//si la habitacion no es null...
             //Reserva nuevaReserva = new Reserva();
             if (cliente != null) {//fijarse con un cliente null
 
                 if (cliente.isEstaActivo()) {
 
-                    comprobarYreservar(cliente,nuevaHabitacion);
+                    comprobarYreservar(cliente, nuevaHabitacion);
 
                 } else {
                     System.out.println("Usted esta imposibilitado para realizar una reserva, contacte al administrador");
@@ -161,22 +162,21 @@ public class GestionReservas extends Gestion<Reserva> {
             } else {//en este caso el cliente es null
                 GestionClientes gestionClientes = new GestionClientes();
 
-                cliente=gestionClientes.crearNuevoCliente();//tengo que guardar el cliente y la reserva
-                comprobarYreservar(cliente,nuevaHabitacion);
+                cliente = gestionClientes.crearNuevoCliente();//tengo que guardar el cliente y la reserva
+                comprobarYreservar(cliente, nuevaHabitacion);
 
                 gestionClientes.agregar(cliente);
                 gestionClientes.guardarClientesJson();
 
 
             }
-        }
-        else {
+        } else {
             System.out.println("Lo sentimos, no se pudo reservar");
         }
 
     }
 
-    private void comprobarYreservar (Cliente cliente,Habitacion habitacion){
+    private void comprobarYreservar(Cliente cliente, Habitacion habitacion) {
         System.out.println("Ingrese la fecha de checkIn dd-mm-aaaa");
         LocalDate checkIn = solicitarLocalDate();
         //nuevaReserva.setDiaCheckIn(solicitarLocalDate());
@@ -187,7 +187,7 @@ public class GestionReservas extends Gestion<Reserva> {
 
         if (isDisponiblePorFecha(habitacion.getId(), checkIn, checkOut)) {
             Reserva nuevaReserva = new Reserva();
-
+            nuevaReserva.setId(Reserva.ultimoId++);
             nuevaReserva.setHabitacion(habitacion);
             nuevaReserva.setDiaCheckIn(checkIn);
             nuevaReserva.setDiaCheckOut(checkOut);

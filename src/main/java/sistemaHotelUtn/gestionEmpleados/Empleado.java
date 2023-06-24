@@ -75,6 +75,6 @@ public class Empleado extends Persona {
                 super.toString().charAt(super.toString().length() - 1),
                 ' '
         ) + "\tPuesto: " + puesto + "||\tSalario: $" + salario + "||\tAntiguedad: " + antiguedad +
-                "" + "}";
+                "" + "}\n";
     }
 }

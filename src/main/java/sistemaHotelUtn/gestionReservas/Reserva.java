@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Reserva implements Serializable {
     //region Atributos
     private int id;
-    private static int ultimoId;
+    public static int ultimoId;
     private boolean estaPago;
     private LocalDate diaCheckIn;
     private LocalDate diaCheckOut;
@@ -118,7 +118,7 @@ public class Reserva implements Serializable {
                 "\n\tSaldo: $" + montoPagar +
                 "||\tCheck In: " + diaCheckIn +
                 "||\tCheck Out: " + diaCheckOut +
-                "||" + "}";
+                "||" + "}\n";
     }
 
 

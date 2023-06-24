@@ -308,8 +308,7 @@ public class GestionHotel
         int opcion = 0;
         String entrada = "";
 
-        while (retener)
-        {
+        while (retener) {
             System.out.println("\n ----------------------------- Menu Cliente -------------------------------------- ");
             System.out.println("[1] Detalles de Cuenta Cliente");
             System.out.println("[2] Menu Reservas");
@@ -317,28 +316,22 @@ public class GestionHotel
             System.out.println("[4] Salir");
 
 
-            while( opcion == 0 )
-            {
-                try
-                {
+            while (opcion == 0) {
+                try {
                     System.out.print("\nIngrese su opción (1, 2, 3, 4 ) --> ");
                     entrada = scanner.nextLine();
-
+                    scanner.reset();
                     opcion = Integer.parseInt(entrada);
 
-                    if( opcion < 1 || opcion > 4)
-                    {
+                    if (opcion < 1 || opcion > 4) {
                         opcion = 0;
                         throw new IllegalArgumentException();
                     }
 
-                }catch (NumberFormatException e)
-                {
+                } catch (NumberFormatException e) {
                     opcion = 0;
                     System.out.println("Error: ingrese una de las opciones indicadas.");
-                }
-                catch(IllegalArgumentException e)
-                {
+                } catch (IllegalArgumentException e) {
                     opcion = 0;
                     System.out.println("Error: ingrese un numero en el rango indicado.");
                 }
@@ -347,25 +340,34 @@ public class GestionHotel
             switch (opcion) {
                 case 1:
                     System.out.println("Detalles de su cuenta: ");
-                    cliente.toString();
+                    System.out.println(cliente.toString());
+                    opcion =0;
                     break;
 
                 case 2:
                     mostrarMenuReserva(cliente);
+                    opcion=0;
                     break;
 
                 case 3: //eventos
                     //el cliente solo puede ver los eventos
                     System.out.println("Eventos Proximos: ");
-                    System.out.println( gestionEventos.listar() ); // LOS MUESTRA
-                    System.out.println( gestionEventos.listar() );
+                    System.out.println(gestionEventos.listar()); // LOS MUESTRA
+                    System.out.println(gestionEventos.listar());
+                    opcion=0;
                     break;
 
                 case 4:
                     retener = false;
                     break;
 
+                case 5:
+                    opcion=0;
+                    break;
 
+                case 0:
+                    retener = false;
+                    break;
             }
         }
     }
@@ -381,18 +383,22 @@ public class GestionHotel
             System.out.println("[2] Habitaciones");
             System.out.println("[3] Eventos");
             System.out.println("[4] Mostrar Balance");
-            System.out.println("[5] Salir");
+            System.out.println("[5] Ver todos los clientes");
+            System.out.println("[6] Modificar clientes");
+            System.out.println("[7] Ver todos los empleados");
+            System.out.println("[8] Ver todas las reservas");
+            System.out.println("[9] Salir");
 
             while( opcion == 0 )
             {
                 try
                 {
-                    System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6, 7, 8, 9 ) --> ");
                     entrada = scanner.nextLine();
 
                     opcion = Integer.parseInt(entrada);
 
-                    if( opcion < 1 || opcion > 5)
+                    if( opcion < 1 || opcion > 9)
                     {
                         opcion = 0;
                         throw new IllegalArgumentException();
@@ -419,8 +425,24 @@ public class GestionHotel
                 case 3 -> //eventos
                     //el empleado puede ver y ademas modificar eventos
                         mostrarMenuEventosEmpleado();
+
                 case 4 -> gestionEmpleados.gananciaTotal();
-                case 5 -> retener = false;
+
+                case 5 -> System.out.println(gestionClientes.getLista());
+
+                case 6 -> {
+                    System.out.println("Ingrese el Id del cliente a modificar");
+
+
+                    // continuar funcion
+                }
+                case 7 -> System.out.println(gestionEmpleados.getLista());
+
+                case 8 -> System.out.println(gestionReservas.getLista());
+
+                case 9 -> retener = false;
+
+
             }
             opcion=0;
         }
@@ -510,7 +532,7 @@ public class GestionHotel
             System.out.println("[1] Agregar Habitacion");
             System.out.println("[2] Eliminar Habitacion");
             System.out.println("[3] Modificar Habitacion");
-            System.out.println("[4] Menu reserva");
+            System.out.println("[4] Reservar habitacion a un cliente");
             System.out.println("[5] Salir");
 
             while( opcion == 0 )
@@ -606,8 +628,9 @@ public class GestionHotel
                     }
                 }
                 case 4 -> {
-                    System.out.println("hacer menu reserva para admin con listados de reservas, generar reserva para otro cliente, etc");
-                    String dni = new Scanner(System.in).next();
+                    System.out.println(gestionClientes.getLista());
+                    System.out.println("Ingrese el dni del cliente que quiere realizar una reserva:");
+                    String dni = scanner.nextLine();
                     Cliente cliente = gestionClientes.buscarCliente(dni);
                     mostrarMenuReserva(cliente);
                 }
