@@ -138,10 +138,17 @@ public class GestionReservas extends Gestion<Reserva> {
 
 
     public void generarReserva(Cliente cliente) {//puede venir un cliente o un null
+        System.out.println("1"+cliente);
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
         gestionHabitaciones.cargarHabitacionesJson();
         gestionHabitaciones.mostrarHabitaciones();
-        System.out.println("Cliente activo:" + cliente.toString());
+        try{
+            System.out.println("Cliente activo:" + cliente.toString());
+            System.out.println("2"+cliente);
+        }catch (Exception e){
+            System.out.println("El cliente no existe, se creara unoS");
+        }
+
 
         System.out.println("Ingrese el ID de habitacion que desea reservar");
         int choice = new Scanner(System.in).nextInt();

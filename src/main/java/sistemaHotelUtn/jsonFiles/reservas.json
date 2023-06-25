@@ -22,7 +22,7 @@
     "esReservable" : true,
     "precioDiario" : 3000.0,
     "capacidadMax" : 9000,
-    "serviciosHabitacion" : [ "CABLE", "WIFI", "BANIERA", "JACUZZI" ]
+    "serviciosHabitacion" : [ "CABLE", "WIFI", "JACUZZI", "BANIERA" ]
   },
   "montoPagar" : 9000.0,
   "estaActiva" : false
@@ -50,7 +50,7 @@
     "esReservable" : true,
     "precioDiario" : 6000.0,
     "capacidadMax" : 6,
-    "serviciosHabitacion" : [ "CABLE", "WIFI", "BANIERA", "JACUZZI" ]
+    "serviciosHabitacion" : [ "CABLE", "WIFI", "JACUZZI", "BANIERA" ]
   },
   "montoPagar" : 36500.0,
   "estaActiva" : false
@@ -78,8 +78,64 @@
     "esReservable" : true,
     "precioDiario" : 6000.0,
     "capacidadMax" : 6,
-    "serviciosHabitacion" : [ "WIFI", "CABLE", "BANIERA", "JACUZZI" ]
+    "serviciosHabitacion" : [ "CABLE", "WIFI", "JACUZZI", "BANIERA" ]
   },
   "montoPagar" : 6000.0,
+  "estaActiva" : true
+}, {
+  "id" : 3,
+  "diaCheckIn" : [ 2023, 7, 11 ],
+  "diaCheckOut" : [ 2023, 7, 18 ],
+  "cliente" : {
+    "id" : 2,
+    "usuario" : {
+      "username" : "mhawke",
+      "password" : "123",
+      "tipoUsuario" : "CLIENTE"
+    },
+    "nombre" : "marian",
+    "apellido" : "hawke",
+    "dni" : "124",
+    "domicilio" : "urano 12",
+    "telefono" : "123",
+    "saldo" : 500.0,
+    "estaActivo" : true
+  },
+  "habitacion" : {
+    "id" : 0,
+    "esReservable" : true,
+    "precioDiario" : 5000.0,
+    "capacidadMax" : 5,
+    "serviciosHabitacion" : [ "CABLE", "WIFI", "JACUZZI", "BANIERA" ]
+  },
+  "montoPagar" : 35000.0,
+  "estaActiva" : true
+}, {
+  "id" : 4,
+  "diaCheckIn" : [ 2023, 3, 22 ],
+  "diaCheckOut" : [ 2023, 3, 25 ],
+  "cliente" : {
+    "id" : 0,
+    "usuario" : {
+      "username" : "jespinoza",
+      "password" : "125",
+      "tipoUsuario" : "CLIENTE"
+    },
+    "nombre" : "Jorge",
+    "apellido" : "Espinoza",
+    "dni" : "11111",
+    "domicilio" : "Falsa123",
+    "telefono" : "223",
+    "saldo" : 0.0,
+    "estaActivo" : true
+  },
+  "habitacion" : {
+    "id" : 0,
+    "esReservable" : true,
+    "precioDiario" : 5000.0,
+    "capacidadMax" : 5,
+    "serviciosHabitacion" : [ "CABLE", "WIFI", "JACUZZI", "BANIERA" ]
+  },
+  "montoPagar" : 15000.0,
   "estaActiva" : true
 } ]

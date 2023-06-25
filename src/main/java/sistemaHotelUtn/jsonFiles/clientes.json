@@ -21,9 +21,23 @@
   },
   "nombre" : "marian",
   "apellido" : "hawke",
-  "dni" : "123",
+  "dni" : "124",
   "domicilio" : "urano 12",
   "telefono" : "123",
   "saldo" : 500.0,
+  "estaActivo" : true
+}, {
+  "id" : 0,
+  "usuario" : {
+    "username" : "jespinoza",
+    "password" : "125",
+    "tipoUsuario" : "CLIENTE"
+  },
+  "nombre" : "Jorge",
+  "apellido" : "Espinoza",
+  "dni" : "11111",
+  "domicilio" : "Falsa123",
+  "telefono" : "223",
+  "saldo" : 0.0,
   "estaActivo" : true
 } ]

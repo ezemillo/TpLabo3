@@ -7,10 +7,10 @@
     <list default="true" id="5eb36ebb-0ffb-4ebd-89c7-fbf0c0881c69" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/GestionServiciosGastronomicos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/GestionServiciosGastronomicos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/ServicioGastronomia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/ServicioGastronomia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionReservas/GestionReservas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionReservas/GestionReservas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/clientes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/clientes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/habitaciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/habitaciones.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/reservas.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/reservas.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +55,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sistemaHotelUtn.Main" />
+      <module name="TpLabo3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sistemaHotelUtn.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -66,6 +79,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

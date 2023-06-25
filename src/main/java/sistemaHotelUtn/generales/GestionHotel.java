@@ -407,6 +407,7 @@ public class GestionHotel
                 try
                 {
                     System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6, 7, 8, 9 ) --> ");
+                    scanner.reset();
                     entrada = scanner.nextLine();
 
                     opcion = Integer.parseInt(entrada);
@@ -535,7 +536,7 @@ public class GestionHotel
 
     private void mostrarMenuHabEmpleado() {
         int opcion = 0, confirma = 0;
-        String entrada = "";
+        int entrada; //= "" cambiado de String a in
         boolean retener = true;
         Habitacion aux;
         while (retener)
@@ -553,17 +554,15 @@ public class GestionHotel
                 {
                     System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
                     scanner.reset();
-                    entrada = scanner.nextLine();
-
-                    opcion = Integer.parseInt(entrada);
-
-                    if( opcion < 1 || opcion > 5)
+                    entrada = scanner.nextInt();//cambiado de String a int
+                    opcion=entrada;
+                    //opcion = Integer.parseInt(entrada);
+                    //FIJARSE DANDO UNA ENTRADA ERRONEA
+                    if( entrada < 1 || entrada > 5)//aca podria manejar una exception propia
                     {
-
                         opcion = 0;
                         throw new IllegalArgumentException();
                     }
-
                 }catch (NumberFormatException e)
                 {
                     opcion = 0;
@@ -574,6 +573,7 @@ public class GestionHotel
                     opcion = 0;
                     System.out.println("Error: ingrese un numero en el rango indicado.");
                 }
+
             }
 
             switch (opcion) {
@@ -640,7 +640,7 @@ public class GestionHotel
                 case 4 -> {
                     System.out.println(gestionClientes.getLista());
                     System.out.println("Ingrese el dni del cliente que quiere realizar una reserva:");
-                    String dni = scanner.nextLine();
+                    String dni = scanner.next();
                     Cliente cliente = gestionClientes.buscarCliente(dni);
                     mostrarMenuReserva(cliente);
                 }
@@ -654,8 +654,7 @@ public class GestionHotel
     }
 
     private void mostrarMenuReserva(Cliente cliente) {
-        int opcionReserva = 0;
-        String entradaReserva = "";
+
 
         System.out.println("------------------Reserva Habitaciones ----------------------");
         System.out.println("[1] Ver todas las habitaciones ");
@@ -667,9 +666,9 @@ public class GestionHotel
         System.out.println("[7] Salir");
 
         System.out.print("\nIngrese su opción (1, 2, 3, 4 ,5) --> ");
-        entradaReserva = scanner.nextLine();
+        scanner.reset();
+        int opcionReserva = scanner.nextInt();
 
-        opcionReserva = Integer.parseInt(entradaReserva);
 
         switch (opcionReserva) {
             case 1:
