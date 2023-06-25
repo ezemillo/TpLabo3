@@ -198,8 +198,7 @@ public class GestionHotel
     private void mostrarMenuLoginGeneral() {
         String entradaLogin = "";
         int opcionLogin = 0;
-        String username = "";
-        String password = "";
+
 
         System.out.println("\n-------------------------------- Login -------------------------------------");
         System.out.println("\t[1] Login Cliente");
@@ -242,13 +241,10 @@ public class GestionHotel
             case 2: //login empleado
                 mostrarMenuLoginEmpleado();
                 break;
-
-            case 3:
-                break;
+                
 
             default:
                 System.out.println("Opción incorrecta");
-                break;
         }
     }
 
@@ -324,19 +320,20 @@ public class GestionHotel
         while (retener) {
             System.out.println("\n ----------------------------- Menu Cliente -------------------------------------- ");
             System.out.println("[1] Detalles de Cuenta Cliente");
-            System.out.println("[2] Menu Reservas");
-            System.out.println("[3] Eventos");
-            System.out.println("[4] Salir");
+            System.out.println("[2] Modificar cuenta");
+            System.out.println("[3] Menu Reservas");
+            System.out.println("[4] Eventos");
+            System.out.println("[5] Salir");
 
 
-            while (opcion == 0) {
+
                 try {
-                    System.out.print("\nIngrese su opción (1, 2, 3, 4 ) --> ");
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
                     entrada = scanner.nextLine();
                     scanner.reset();
                     opcion = Integer.parseInt(entrada);
 
-                    if (opcion < 1 || opcion > 4) {
+                    if (opcion < 1 || opcion > 5) {
 
                         throw new IllegalArgumentException();
                     }
@@ -348,29 +345,32 @@ public class GestionHotel
                     opcion = 0;
                     System.out.println("Error: ingrese un numero en el rango indicado.");
                 }
-            }
+
 
             switch (opcion) {
                 case 1:
                     System.out.println("Detalles de su cuenta: ");
                     System.out.println(cliente.toString());
-                    opcion =0;
-                    break;
 
+                    break;
                 case 2:
-                    mostrarMenuReserva(cliente);
-                    opcion=0;
+                    gestionClientes.modificar(cliente,scanner);
                     break;
 
-                case 3: //eventos
+                case 3:
+                    mostrarMenuReserva(cliente);
+
+                    break;
+
+                case 4: //eventos
                     //el cliente solo puede ver los eventos
                     System.out.println("Eventos Proximos: ");
                     System.out.println(gestionEventos.listar()); // LOS MUESTRA
                     System.out.println(gestionEventos.listar());
-                    opcion=0;
+
                     break;
 
-                case 4:
+                case 5:
                     retener = false;
                     break;
 
@@ -446,13 +446,17 @@ public class GestionHotel
                     {
                         if(aux.isEstaActivo()){
                             System.out.println("¿Esat seguro que desea dar de baja a este cliente?");
-                            entrada=scanner.nextLine();
-                            System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
-                            if(entrada.equals("s")){
-                                aux.setEstaActivo(false);
-                            }
+
                         }else {
                             System.out.println("Este cliente ya esta dado de baja");
+                            System.out.println("¿Desea darlo de alta?");
+                        }
+                        System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                        entrada=scanner.nextLine();
+
+                        if(entrada.equals("s")){
+                            aux.setEstaActivo(!aux.isEstaActivo());
+                            gestionClientes.guardarClientesJson();
                         }
                     }else
                     {
@@ -545,7 +549,7 @@ public class GestionHotel
 
     private void mostrarMenuHabEmpleado() {
         int opcion = 0, confirma = 0;
-        int entrada; //= "" cambiado de String a in
+        String entrada; //= "" cambiado de String a in
         boolean retener = true;
         Habitacion aux;
         while (retener)
@@ -563,11 +567,12 @@ public class GestionHotel
                 {
                     System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
                     scanner.reset();
-                    entrada = scanner.nextInt();//cambiado de String a int
-                    opcion=entrada;
+                    entrada = scanner.nextLine();
+                    //cambiado de String a int
+                    opcion=Integer.parseInt(entrada);
                     //opcion = Integer.parseInt(entrada);
                     //FIJARSE DANDO UNA ENTRADA ERRONEA
-                    if( entrada < 1 || entrada > 5)//aca podria manejar una exception propia
+                    if( opcion < 1 || opcion > 5)//aca podria manejar una exception propia
                     {
 
                         throw new IllegalArgumentException();

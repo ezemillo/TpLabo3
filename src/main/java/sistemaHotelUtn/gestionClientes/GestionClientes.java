@@ -83,7 +83,7 @@ public class GestionClientes extends Gestion<Cliente> {
         this.setLista(clientesList);
     }
 
-    /*Daniiiii*/
+
     public void mostrarClientes() {
         int i = 1;
         for (Cliente cliente : this.getLista()) {
@@ -124,11 +124,11 @@ public class GestionClientes extends Gestion<Cliente> {
         }
     }
 
-   /* @Override
+    @Override
     public void modificar(Cliente target, Scanner scanner) {
         boolean retener=true;
         int opcionI;
-        String entrada;
+        String entrada, opcionS;
         while (retener) {
             System.out.println("Ingrese el campo que quiere modificar");
             System.out.println("1. Nombre");
@@ -142,7 +142,7 @@ public class GestionClientes extends Gestion<Cliente> {
 
             try
             {
-                System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6, 7) --> ");
+                System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6, 7, 8) --> ");
 
                 entrada = scanner.nextLine();
 
@@ -169,27 +169,69 @@ public class GestionClientes extends Gestion<Cliente> {
                 case 1:
                     System.out.println("Nombre actual: " + target.getNombre());
                     System.out.println("Ingrese el nuevo nombre: ");
+                    opcionS=scanner.nextLine();
+                    System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                    entrada=scanner.nextLine();
+
+                    if(entrada.equals("s")){
+                        target.setNombre(opcionS);
+                    }
 
                     break;
                 case 2:
                     System.out.println("Apellido actual: " + target.getApellido());
                     System.out.println("Ingrese el nuevo apellido: ");
+                    opcionS=scanner.nextLine();
+                    System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                    entrada=scanner.nextLine();
+
+                    if(entrada.equals("s")){
+                        target.setApellido(opcionS);
+                    }
                     break;
                 case 3:
                     System.out.println("Domicilio actual: " + target.getDomicilio());
                     System.out.println("Ingrese el nuevo domicio: ");
+                    opcionS=scanner.nextLine();
+                    System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                    entrada=scanner.nextLine();
+
+                    if(entrada.equals("s")){
+                        target.setDomicilio(opcionS);
+                    }
                     break;
                 case 4:
                     System.out.println("Telefono actual: " + target.getTelefono());
                     System.out.println("ingrese el nuevo telofono: ");
+                    opcionS=scanner.nextLine();
+                    System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                    entrada=scanner.nextLine();
+
+                    if(entrada.equals("s")){
+                        target.setTelefono(opcionS);
+                    }
                     break;
                 case 5:
                     System.out.println("Usuario actual: " + target.getUsuario().getUsername());
                     System.out.println("Ingrese el nuevo usuario: ");
+                    opcionS=scanner.nextLine();
+                    System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                    entrada=scanner.nextLine();
+
+                    if(entrada.equals("s")){
+                        target.getUsuario().setUsername(opcionS);
+                    }
                     break;
                 case 6:
                     System.out.println("Contraseña actual: "+target.getUsuario().getPassword());
                     System.out.println("Ingrese la nueva cotraseña: ");
+                    opcionS=scanner.nextLine();
+                    System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                    entrada=scanner.nextLine();
+
+                    if(entrada.equals("s")){
+                        target.getUsuario().setPassword(opcionS);
+                    }
                     break;
                 case 7:
                     if(target.isEstaActivo()) {
@@ -207,6 +249,7 @@ public class GestionClientes extends Gestion<Cliente> {
                     retener=false;
                     break;
             }
+            guardarClientesJson();
         }
-    }*/
+    }
 }
