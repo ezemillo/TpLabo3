@@ -39,5 +39,5 @@
   "domicilio" : "Falsa123",
   "telefono" : "223",
   "saldo" : 0.0,
-  "estaActivo" : true
+  "estaActivo" : false
 } ]

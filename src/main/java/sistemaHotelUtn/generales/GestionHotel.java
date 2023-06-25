@@ -71,7 +71,7 @@ public class GestionHotel
 
                     if( opcion < 1 || opcion > 3)
                     {
-                        opcion = 0;
+
                         throw new IllegalArgumentException();
                     }
 
@@ -135,7 +135,7 @@ public class GestionHotel
 
                 if( opcionRegistro < 1 || opcionRegistro > 3)
                 {
-                    opcionRegistro = 0;
+
                     throw new IllegalArgumentException();
                 }
 
@@ -217,7 +217,7 @@ public class GestionHotel
 
                 if( opcionLogin < 1 || opcionLogin > 3)
                 {
-                    opcionLogin = 0;
+
                     throw new IllegalArgumentException();
                 }
 
@@ -337,7 +337,7 @@ public class GestionHotel
                     opcion = Integer.parseInt(entrada);
 
                     if (opcion < 1 || opcion > 4) {
-                        opcion = 0;
+
                         throw new IllegalArgumentException();
                     }
 
@@ -374,13 +374,7 @@ public class GestionHotel
                     retener = false;
                     break;
 
-                case 5:
-                    opcion=0;
-                    break;
 
-                case 0:
-                    retener = false;
-                    break;
             }
         }
     }
@@ -397,7 +391,7 @@ public class GestionHotel
             System.out.println("[3] Eventos");
             System.out.println("[4] Mostrar Balance");
             System.out.println("[5] Ver todos los clientes");
-            System.out.println("[6] Modificar clientes");
+            System.out.println("[6] Dar de baja a un cliente");
             System.out.println("[7] Ver todos los empleados");
             System.out.println("[8] Ver todas las reservas");
             System.out.println("[9] Salir");
@@ -414,7 +408,7 @@ public class GestionHotel
 
                     if( opcion < 1 || opcion > 9)
                     {
-                        opcion = 0;
+
                         throw new IllegalArgumentException();
                     }
 
@@ -445,10 +439,25 @@ public class GestionHotel
                 case 5 -> System.out.println(gestionClientes.getLista());
 
                 case 6 -> {
-                    System.out.println("Ingrese el Id del cliente a modificar");
-
-
-                    // continuar funcion
+                    System.out.println("Ingrese el Id del cliente al que desea dar de baja");
+                    entrada=scanner.nextLine();
+                    Cliente aux=gestionClientes.buscarCliente(entrada);
+                    if (aux!=null)
+                    {
+                        if(aux.isEstaActivo()){
+                            System.out.println("¿Esat seguro que desea dar de baja a este cliente?");
+                            entrada=scanner.nextLine();
+                            System.out.println("Ingres 's' para confirmar, ingrese cualquier otro simbolo para denegar");
+                            if(entrada.equals("s")){
+                                aux.setEstaActivo(false);
+                            }
+                        }else {
+                            System.out.println("Este cliente ya esta dado de baja");
+                        }
+                    }else
+                    {
+                        System.out.println("ID no valido");
+                    }
                 }
                 case 7 -> System.out.println(gestionEmpleados.getLista());
 
@@ -486,7 +495,7 @@ public class GestionHotel
                     opcionEventos = Integer.parseInt(entradaEventos);
 
                     if (opcionEventos < 1 || opcionEventos > 5) {
-                        opcionEventos = 0;
+
                         throw new IllegalArgumentException();
                     }
 
@@ -560,7 +569,7 @@ public class GestionHotel
                     //FIJARSE DANDO UNA ENTRADA ERRONEA
                     if( entrada < 1 || entrada > 5)//aca podria manejar una exception propia
                     {
-                        opcion = 0;
+
                         throw new IllegalArgumentException();
                     }
                 }catch (NumberFormatException e)

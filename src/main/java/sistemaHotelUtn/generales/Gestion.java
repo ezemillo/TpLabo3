@@ -29,15 +29,7 @@ abstract public class Gestion<T> {
         }
     }
 
-    public void modificar(T target, Scanner scanner) {
-        for (T elem : lista) {
-            if (elem == target) {
-                System.out.println("Ingrese el campo a modificar --> ");
-                //se cambia el atributo.
-                break;
-            }
-        }
-    }
+    public void modificar(T target, Scanner scanner) {}
 
     public void setLista(ArrayList<T> lista) {
         this.lista = lista;
