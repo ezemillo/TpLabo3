@@ -1,0 +1,8 @@
+[ {
+  "id" : 1,
+  "nombreEvento" : "Recital",
+  "organizador" : "Muse",
+  "participantes" : 5000,
+  "fechaHoraInicio" : [ 2023, 6, 23, 15, 30 ],
+  "fechaHoraFin" : [ 2023, 6, 23, 17, 30 ]
+} ]

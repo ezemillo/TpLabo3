@@ -265,7 +265,7 @@ public class GestionHotel
         password = scanner.nextLine();
 
         //busca que exista ese cliente por username
-        this.gestionClientes.cargarClientesJson();
+        try{
         Cliente cliente = gestionClientes.buscarClientePorUsername(username);
         if(!cliente.getUsuario().getPassword().equals(password)) cliente=null;
         if (cliente != null) {
@@ -273,12 +273,17 @@ public class GestionHotel
             System.out.println("Cliente hizo login: " + usuarioActual.getUsername() );
             mostrarMenuCliente( cliente );
         }
-        else {
-            System.out.println("Cliente hizo login: " + usuarioActual.getUsername());
-            mostrarMenuCliente(cliente); //SE LLAMA AL MENU CLIENTE CON CASTEO
+        else System.out.println("La contraseña no es correcta");
+
+        }catch(NullPointerException e){
+            System.out.println("No se ha encontrado un empleado con username: " + username);
         }
 
     }
+
+
+
+
 
     private void mostrarMenuLoginEmpleado() {
         //solicitar username y password

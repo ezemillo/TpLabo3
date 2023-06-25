@@ -1,0 +1,25 @@
+[ {
+  "id" : 0,
+  "esReservable" : true,
+  "precioDiario" : 5000.0,
+  "capacidadMax" : 5,
+  "serviciosHabitacion" : [ "WIFI", "CABLE", "BANIERA", "JACUZZI" ]
+}, {
+  "id" : 1,
+  "esReservable" : true,
+  "precioDiario" : 3000.0,
+  "capacidadMax" : 3,
+  "serviciosHabitacion" : [ "WIFI", "CABLE", "BANIERA", "JACUZZI" ]
+}, {
+  "id" : 2,
+  "esReservable" : true,
+  "precioDiario" : 6000.0,
+  "capacidadMax" : 6,
+  "serviciosHabitacion" : [ "WIFI", "CABLE", "BANIERA", "JACUZZI" ]
+}, {
+  "id" : 3,
+  "esReservable" : true,
+  "precioDiario" : 3000.0,
+  "capacidadMax" : 9000,
+  "serviciosHabitacion" : [ "WIFI", "CABLE", "BANIERA", "JACUZZI" ]
+} ]

@@ -113,7 +113,7 @@ public class GestionClientes extends Gestion<Cliente> {
         Reserva reserva=gestionReservas.buscarReserva(cliente.getDni());//recibo la reserva de la persona
         System.out.println(reserva);
 
-        System.out.println("Confirmar anulacion de reserva");
+        System.out.println("Ingrese s para confirmar la anulacion");
         char eleccion = new Scanner(System.in).next().charAt(0);
 
         if(eleccion=='s'){

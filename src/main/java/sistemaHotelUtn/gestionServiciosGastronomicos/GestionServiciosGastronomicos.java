@@ -10,6 +10,7 @@ import java.util.List;
 
 public class GestionServiciosGastronomicos extends Gestion<ServicioGastronomia> {
     public GestionServiciosGastronomicos() {
+
         ArrayList<ServicioGastronomia> gastronomiasList = new ArrayList<>();
         JsonRepo<ServicioGastronomia> gastronomiaJson = new JsonRepo<>("serviciosGastronomicos", gastronomiasList, ServicioGastronomia.class);
         gastronomiasList = gastronomiaJson.cargar();
@@ -26,11 +27,13 @@ public class GestionServiciosGastronomicos extends Gestion<ServicioGastronomia> 
         return listaGastronomia;
     }
 
+
     public void mostrarServicio(List<ServicioGastronomia> listado) {
-        int i = 0;
+        int i = 1;
         for (ServicioGastronomia servicioGastronomia : listado) {
             System.out.println(i + ") " + servicioGastronomia);
             i++;
         }
     }
+
 }

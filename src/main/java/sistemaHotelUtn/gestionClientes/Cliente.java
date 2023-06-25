@@ -1,6 +1,7 @@
 package sistemaHotelUtn.gestionClientes;
 
 import sistemaHotelUtn.generales.Gestion;
+import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.generales.Persona;
 import sistemaHotelUtn.generales.TipoUsuario;
 import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
@@ -11,6 +12,7 @@ import sistemaHotelUtn.gestionServiciosGastronomicos.GestionServiciosGastronomic
 import sistemaHotelUtn.gestionServiciosGastronomicos.ServicioGastronomia;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -68,13 +70,10 @@ public class Cliente extends Persona  {
 
     public void modificarReserva(GestionClientes gestionClientes, Cliente cliente) {//anular reserva y agregar servicio, la idea es ponerlo en dos metodos diferentes
         System.out.println("Que desea hacer?");
-        System.out.println("1.- Anular reserva\n2.- Agregar Servicio\n3.- Pagar Reserva");
+        System.out.println("\n1.- Agregar Servicio\n2.- Pagar Reserva");
         int choice = new Scanner(System.in).nextInt();
         //mandar una excepcion
-        if(choice==1){//metodo anular reserva
-            //   anularReserva();
-            System.out.println("ver anular reserva");
-        } else if (choice==2) {//metodo agregar servicio
+        if (choice==1) {//metodo agregar servicio
 
             GestionReservas gestionReservas = new GestionReservas();//lo mismo que arriba
             Reserva reserva=gestionReservas.buscarReserva(cliente.getDni());
@@ -107,7 +106,7 @@ public class Cliente extends Persona  {
                 gestionReservas.buscarReservaModificar(reserva,cliente.getDni());
                 gestionReservas.guardarReservasJson();
             }
-        } else if (choice == 3) {
+        } else if (choice == 2) {
             pagarReserva(cliente);
         }
     }
@@ -115,6 +114,7 @@ public class Cliente extends Persona  {
     public Reserva cargaServicio(String tipoServicio, Reserva reserva, int eleccion){
         List<ServicioGastronomia> listadoServiciosGastronomicos;
         GestionServiciosGastronomicos gestionServiciosGastronomicos = new GestionServiciosGastronomicos();
+
 
         listadoServiciosGastronomicos=gestionServiciosGastronomicos.CargarServicios(tipoServicio);//cargo una lista auxiliar para mostrar los servicios del tipo que pidio
         gestionServiciosGastronomicos.mostrarServicio(listadoServiciosGastronomicos);
@@ -125,6 +125,8 @@ public class Cliente extends Persona  {
         if(eleccion<=listadoServiciosGastronomicos.size()){
             reserva.setMontoPagar(reserva.getMontoPagar()+listadoServiciosGastronomicos.get(eleccion-1).getPrecio());
             reserva.getCliente().setSaldo(reserva.getCliente().getSaldo()+listadoServiciosGastronomicos.get(eleccion-1).getPrecio());
+            System.out.println("Reserva modificada");
+            System.out.println("Reserva:"+ reserva);
         }
 
         return reserva;

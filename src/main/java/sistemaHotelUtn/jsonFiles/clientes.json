@@ -1,0 +1,29 @@
+[ {
+  "id" : 1,
+  "usuario" : {
+    "username" : "santi",
+    "password" : "123",
+    "tipoUsuario" : "CLIENTE"
+  },
+  "nombre" : "santi",
+  "apellido" : "blanco",
+  "dni" : "123",
+  "domicilio" : "saturno 12",
+  "telefono" : "123",
+  "saldo" : 500.0,
+  "estaActivo" : true
+}, {
+  "id" : 2,
+  "usuario" : {
+    "username" : "mhawke",
+    "password" : "123",
+    "tipoUsuario" : "CLIENTE"
+  },
+  "nombre" : "marian",
+  "apellido" : "hawke",
+  "dni" : "123",
+  "domicilio" : "urano 12",
+  "telefono" : "123",
+  "saldo" : 500.0,
+  "estaActivo" : true
+} ]

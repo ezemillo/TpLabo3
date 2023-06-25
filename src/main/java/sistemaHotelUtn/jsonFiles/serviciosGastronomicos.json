@@ -1,0 +1,13 @@
+[ {
+  "tipo" : "Cafeteria",
+  "nombre" : "cafe",
+  "precio" : 200.0
+}, {
+  "tipo" : "Plato del Dia",
+  "nombre" : "Pizza",
+  "precio" : 500.0
+}, {
+  "tipo" : "Bar",
+  "nombre" : "Trago",
+  "precio" : 600.0
+} ]

@@ -5,6 +5,9 @@ public class ServicioGastronomia {
     private String nombre;
     private double precio;
 
+    public ServicioGastronomia() {
+    }
+
     public ServicioGastronomia(String tipo, String nombre, double precio) {
         this.tipo = tipo;
         this.nombre = nombre;

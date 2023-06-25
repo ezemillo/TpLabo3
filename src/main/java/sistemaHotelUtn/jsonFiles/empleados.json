@@ -1,0 +1,31 @@
+[ {
+  "id" : 1,
+  "usuario" : {
+    "username" : "jperez",
+    "password" : "123",
+    "tipoUsuario" : "EMPLEADO"
+  },
+  "nombre" : "juan",
+  "apellido" : "perez",
+  "dni" : "123",
+  "domicilio" : "marte",
+  "telefono" : "123",
+  "salario" : 200000.0,
+  "antiguedad" : 0,
+  "puesto" : "Empleado"
+}, {
+  "id" : 2,
+  "usuario" : {
+    "username" : "empleado2",
+    "password" : "123",
+    "tipoUsuario" : "EMPLEADO"
+  },
+  "nombre" : "e1",
+  "apellido" : "e",
+  "dni" : "123",
+  "domicilio" : "mercurio",
+  "telefono" : "123",
+  "salario" : 200000.0,
+  "antiguedad" : 0,
+  "puesto" : "Empleado"
+} ]

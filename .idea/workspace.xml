@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5eb36ebb-0ffb-4ebd-89c7-fbf0c0881c69" name="Changes" comment="" />
+    <list default="true" id="5eb36ebb-0ffb-4ebd-89c7-fbf0c0881c69" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/GestionServiciosGastronomicos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/GestionServiciosGastronomicos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/ServicioGastronomia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/ServicioGastronomia.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,6 +41,10 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -42,6 +53,19 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Nacho\Documents\GitHub\TpLabo3\src\main\java\sistemaHotelUtn\jsonFiles" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -52,6 +76,8 @@
       <option name="presentableId" value="Default" />
       <updated>1684501741900</updated>
       <workItem from="1687565690719" duration="69000" />
+      <workItem from="1687647521882" duration="2623000" />
+      <workItem from="1687653202163" duration="4307000" />
     </task>
     <servers />
   </component>
