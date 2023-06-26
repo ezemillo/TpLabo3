@@ -1,5 +1,6 @@
 package sistemaHotelUtn.gestionClientes;
 
+import sistemaHotelUtn.generales.CrearElementos;
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.generales.TipoUsuario;
@@ -14,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class GestionClientes extends Gestion<Cliente> {
+public class GestionClientes extends Gestion<Cliente> implements CrearElementos<Cliente> {
     public GestionClientes() {
-        this.cargarClientesJson();
+        this.cargarJson();
     }
 
-    public Cliente crearNuevoCliente() {
+    public Cliente crearElemento() {
         Scanner scanner = new Scanner(System.in);
         String entrada = "";
         /*Pide informacion por la consola y crea un nuevo cliente listo para agregar a la lista*/
@@ -70,13 +71,13 @@ public class GestionClientes extends Gestion<Cliente> {
         return null;
     }
 
-    public void guardarClientesJson() {
+    public void guardarJson() {
         ArrayList<Cliente> clientesList = this.getLista();
         JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes", clientesList, Cliente.class);
         clientesJson.guardar();
     }
 
-    public void cargarClientesJson() {
+    public void cargarJson() {
         ArrayList<Cliente> clientesList = new ArrayList<>();
         JsonRepo<Cliente> clientesJson = new JsonRepo<>("clientes", clientesList, Cliente.class);
         clientesList = clientesJson.cargar();
@@ -87,6 +88,7 @@ public class GestionClientes extends Gestion<Cliente> {
     public void mostrarClientes() {
         int i = 1;
         for (Cliente cliente : this.getLista()) {
+            if(cliente.isEstaActivo())
             System.out.println(cliente);
         }
     }
@@ -118,7 +120,7 @@ public class GestionClientes extends Gestion<Cliente> {
 
         if(eleccion=='s'){
             reserva.setEstaActiva(false);
-            gestionReservas.guardarReservasJson();
+            gestionReservas.guardarJson();
             System.out.println("Su reserva fue anulada con exito");
             System.out.println("reserva = " + reserva);
         }
@@ -249,7 +251,7 @@ public class GestionClientes extends Gestion<Cliente> {
                     retener=false;
                     break;
             }
-            guardarClientesJson();
+            guardarJson();
         }
     }
 }

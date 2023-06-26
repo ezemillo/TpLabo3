@@ -1,5 +1,6 @@
 package sistemaHotelUtn.gestionEmpleados;
 
+import sistemaHotelUtn.generales.CrearElementos;
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.generales.TipoUsuario;
@@ -11,12 +12,12 @@ import sistemaHotelUtn.gestionReservas.Reserva;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestionEmpleados extends Gestion<Empleado> {
+public class GestionEmpleados extends Gestion<Empleado> implements CrearElementos <Empleado> {
     public GestionEmpleados() {
-        cargarEmpleadosJson();
+        cargarJson();
     }
 
-    public Empleado crearNuevoEmpleado() {
+    public Empleado crearElemento() {
         /*Pide informacion por la consola y crea un nuevo empleado listo para agregar a la lista*/
 
         Scanner scanner = new Scanner(System.in);
@@ -68,13 +69,13 @@ public class GestionEmpleados extends Gestion<Empleado> {
         return null;
     }
 
-    public void guardarEmpleadosJson() {
+    public void guardarJson() {
         ArrayList<Empleado> empleadosList = this.getLista();
         JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados", empleadosList, Empleado.class);
         empleadosJson.guardar();
     }
 
-    public void cargarEmpleadosJson() {
+    public void cargarJson() {
         ArrayList<Empleado> empleadosList = new ArrayList<>();
         JsonRepo<Empleado> empleadosJson = new JsonRepo<>("empleados", empleadosList, Empleado.class);
         empleadosList = empleadosJson.cargar();
@@ -89,14 +90,6 @@ public class GestionEmpleados extends Gestion<Empleado> {
             ganancia = ganancia + reserva.getMontoPagar();
         }
         System.out.println("La ganancia de todas las reservas asciende a $ " + ganancia);
-    }
-    public void darBajaCliente (GestionClientes gestionClientes,String dni){
-        for(Cliente cliente:gestionClientes.getLista()){
-            if(cliente.getDni().equals(dni)){
-                cliente.setEstaActivo(false);
-                gestionClientes.guardarClientesJson();
-            }
-        }
     }
 
 }

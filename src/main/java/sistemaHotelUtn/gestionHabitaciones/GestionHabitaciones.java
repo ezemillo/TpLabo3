@@ -16,7 +16,7 @@ import static sistemaHotelUtn.gestionHabitaciones.Habitacion.setUltimoId;
 
 public class GestionHabitaciones extends Gestion<Habitacion> {
     public GestionHabitaciones() {
-        cargarHabitacionesJson();
+        cargarJson();
         setUltimoId(this.getLista().size());
     }
 
@@ -31,7 +31,7 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
         return null;
     }
 
-    public void cargarHabitacionesJson() {
+    public void cargarJson() {
         ArrayList<Habitacion> habitacionesList = new ArrayList<>();
         JsonRepo<Habitacion> habitacionesJson = new JsonRepo<>("habitaciones", habitacionesList, Habitacion.class);
         habitacionesList = habitacionesJson.cargar();
@@ -60,7 +60,7 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
         }
     }
 
-    public void guardarHabitacionJson() {
+    public void guardarJson() {
         ArrayList<Habitacion> habitacionList = this.getLista();
         JsonRepo<Habitacion> habitacionJson = new JsonRepo<>("habitaciones", habitacionList, Habitacion.class);
         habitacionJson.guardar();

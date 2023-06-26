@@ -1,5 +1,6 @@
 package sistemaHotelUtn.gestionEventos;
 
+import sistemaHotelUtn.generales.CrearElementos;
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.gestionClientes.Cliente;
@@ -9,12 +10,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class GestionEventos extends Gestion<Evento> {
+public class GestionEventos extends Gestion<Evento> implements CrearElementos<Evento> {
     public GestionEventos() {
-        cargarEventosJson();
+        cargarJson();
     }
 
-    public Evento crearNuevoEvento() {
+    public Evento crearElemento() {
         Evento evento = new Evento();
         Scanner scanner = new Scanner(System.in);
         String entrada = "";
@@ -94,14 +95,14 @@ public class GestionEventos extends Gestion<Evento> {
             System.out.println("No se encontro un evento con nombre: " + nombreEvento);
     }
 
-    public void guardarEventosJson()
+    public void guardarJson()
     {
         ArrayList<Evento> eventosList = this.getLista();
         JsonRepo<Evento> eventosJson = new JsonRepo<>("eventos", eventosList, Evento.class);
         eventosJson.guardar();
     }
 
-    public void cargarEventosJson() {
+    public void cargarJson() {
         ArrayList<Evento> eventosList = new ArrayList<>();
         JsonRepo<Evento> eventosJson = new JsonRepo<>("eventos", eventosList, Evento.class);
         eventosList = eventosJson.cargar();

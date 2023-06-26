@@ -15,7 +15,7 @@ import java.util.Scanner;
 
 public class GestionReservas extends Gestion<Reserva> {
     public GestionReservas() {
-        cargarReservasJson();
+        cargarJson();
         Reserva.setUltimoId(this.getLista().size());
     }
 
@@ -34,7 +34,14 @@ public class GestionReservas extends Gestion<Reserva> {
         return true;
     }
 
-    public void cargarReservasJson() {
+
+    public void guardarJson(){
+        ArrayList<Reserva> reservasList = this.getLista();
+        JsonRepo<Reserva> reservasJson = new JsonRepo<>("reservas",reservasList, Reserva.class);
+        reservasJson.guardar();
+    }
+
+    public void cargarJson() {
         ArrayList<Reserva> reservaList = new ArrayList<>();
         JsonRepo<Reserva> reservaJson = new JsonRepo<>("reservas", reservaList, Reserva.class);
         reservaList = reservaJson.cargar();
@@ -45,7 +52,7 @@ public class GestionReservas extends Gestion<Reserva> {
 
         ArrayList<Habitacion> habitacionesDisponibles = new ArrayList<>();
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
-        gestionHabitaciones.cargarHabitacionesJson();
+        gestionHabitaciones.cargarJson();
 
         for (Habitacion habitacion : gestionHabitaciones.getLista()
         ) {
@@ -79,11 +86,7 @@ public class GestionReservas extends Gestion<Reserva> {
     }
 
 
-    public void guardarReservasJson() {
-        ArrayList<Reserva> reservasList = this.getLista();
-        JsonRepo<Reserva> reservasJson = new JsonRepo<>("reservas", reservasList, Reserva.class);
-        reservasJson.guardar();
-    }
+
 
     public Reserva buscarReserva(String dni) {
 
@@ -140,7 +143,7 @@ public class GestionReservas extends Gestion<Reserva> {
     public void generarReserva(Cliente cliente) {//puede venir un cliente o un null
         System.out.println("1"+cliente);
         GestionHabitaciones gestionHabitaciones = new GestionHabitaciones();
-        gestionHabitaciones.cargarHabitacionesJson();
+        gestionHabitaciones.cargarJson();
         gestionHabitaciones.mostrarHabitaciones();
         try{
             System.out.println("Cliente activo:" + cliente.toString());
@@ -169,11 +172,11 @@ public class GestionReservas extends Gestion<Reserva> {
             } else {//en este caso el cliente es null
                 GestionClientes gestionClientes = new GestionClientes();
 
-                cliente = gestionClientes.crearNuevoCliente();//tengo que guardar el cliente y la reserva
+                cliente = gestionClientes.crearElemento();//tengo que guardar el cliente y la reserva
                 comprobarYreservar(cliente, nuevaHabitacion);
 
                 gestionClientes.agregar(cliente);
-                gestionClientes.guardarClientesJson();
+                gestionClientes.guardarJson();
 
 
             }
@@ -202,7 +205,7 @@ public class GestionReservas extends Gestion<Reserva> {
             nuevaReserva.setCliente(cliente);
             nuevaReserva.setMontoPagar(((double) cantidadDias(nuevaReserva.getDiaCheckIn(), nuevaReserva.getDiaCheckOut())) * nuevaReserva.getHabitacion().getPrecioDiario());
             this.getLista().add(nuevaReserva);
-            guardarReservasJson();
+            guardarJson();
             System.out.println("Reserva realizada con exito. Muchas gracias!");
 
         } else {

@@ -11,10 +11,7 @@ import java.util.List;
 public class GestionServiciosGastronomicos extends Gestion<ServicioGastronomia> {
     public GestionServiciosGastronomicos() {
 
-        ArrayList<ServicioGastronomia> gastronomiasList = new ArrayList<>();
-        JsonRepo<ServicioGastronomia> gastronomiaJson = new JsonRepo<>("serviciosGastronomicos", gastronomiasList, ServicioGastronomia.class);
-        gastronomiasList = gastronomiaJson.cargar();
-        this.setLista(gastronomiasList);
+        cargarJson();
     }
 
     public List<ServicioGastronomia> CargarServicios(String tipo) {
@@ -26,7 +23,18 @@ public class GestionServiciosGastronomicos extends Gestion<ServicioGastronomia> 
         }
         return listaGastronomia;
     }
+    public void guardarJson(){
+        ArrayList<ServicioGastronomia> gastronomiasList = this.getLista();
+        JsonRepo<ServicioGastronomia> gastronomiaJson = new JsonRepo<>("serviciosGastronomicos",gastronomiasList,ServicioGastronomia.class);
+        gastronomiaJson.guardar();
+    }
 
+    public void cargarJson(){
+        ArrayList<ServicioGastronomia> gastronomiasList = new ArrayList<>();
+        JsonRepo<ServicioGastronomia> gastronomiaJson = new JsonRepo<>("serviciosGastronomicos", gastronomiasList, ServicioGastronomia.class);
+        gastronomiasList = gastronomiaJson.cargar();
+        this.setLista(gastronomiasList);
+    }
 
     public void mostrarServicio(List<ServicioGastronomia> listado) {
         int i = 1;

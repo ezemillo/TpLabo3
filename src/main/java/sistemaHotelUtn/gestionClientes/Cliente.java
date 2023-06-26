@@ -88,7 +88,7 @@ public class Cliente extends Persona  {
                 buscarYmodificar(gestionClientes,cliente.getDni(),reserva.getCliente().getSaldo());
 
                 gestionReservas.buscarReservaModificar(reserva,cliente.getDni());
-                gestionReservas.guardarReservasJson();
+                gestionReservas.guardarJson();
             }
             else if (eleccion==2){
                 reserva=cargaServicio("Cafeteria",reserva,eleccion);
@@ -96,7 +96,7 @@ public class Cliente extends Persona  {
                 buscarYmodificar(gestionClientes,cliente.getDni(),reserva.getCliente().getSaldo());
 
                 gestionReservas.buscarReservaModificar(reserva,cliente.getDni());
-                gestionReservas.guardarReservasJson();
+                gestionReservas.guardarJson();
             }
             else if (eleccion==3){
                 reserva=cargaServicio("Bar",reserva,eleccion);
@@ -104,7 +104,7 @@ public class Cliente extends Persona  {
                 buscarYmodificar(gestionClientes,cliente.getDni(),reserva.getCliente().getSaldo());
 
                 gestionReservas.buscarReservaModificar(reserva,cliente.getDni());
-                gestionReservas.guardarReservasJson();
+                gestionReservas.guardarJson();
             }
         } else if (choice == 2) {
             pagarReserva(cliente);
@@ -136,7 +136,7 @@ public class Cliente extends Persona  {
         GestionReservas gestionReservas = new GestionReservas();
 
         gestionReservas.buscarReservaPagar(cliente.getDni());
-        gestionReservas.guardarReservasJson();
+        gestionReservas.guardarJson();
 
         System.out.println("Muchas gracias.");
 
@@ -148,6 +148,6 @@ public class Cliente extends Persona  {
                 cliente.setSaldo(saldo);
             }
         }
-        gestionClientes.guardarClientesJson();
+        gestionClientes.guardarJson();
     }
 }

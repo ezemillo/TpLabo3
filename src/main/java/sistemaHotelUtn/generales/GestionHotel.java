@@ -174,23 +174,23 @@ public class GestionHotel
     private void registrarNuevoCliente()
     {
         System.out.println("**** Registrar Nuevo Cliente **** ");
-        Cliente nuevoCliente = gestionClientes.crearNuevoCliente();
+        Cliente nuevoCliente = gestionClientes.crearElemento();
         nuevoCliente.asignarIdAutoincremental();
         System.out.println("\nSe agrego el nuevo cliente:");
         System.out.println(nuevoCliente);
         gestionClientes.agregar(nuevoCliente);
-        gestionClientes.guardarClientesJson();
+        gestionClientes.guardarJson();
     }
 
     private void registrarNuevoEmpleado()
     {
         System.out.println("**** Registrar Nuevo Empleado **** ");
-        Empleado nuevoEmpleado = gestionEmpleados.crearNuevoEmpleado();
+        Empleado nuevoEmpleado = gestionEmpleados.crearElemento();
         nuevoEmpleado.asignarIdAutoincremental();
         System.out.println("\nSe agrego el nuevo empleado:");
         System.out.println(nuevoEmpleado);
         gestionEmpleados.agregar(nuevoEmpleado);
-        gestionEmpleados.guardarEmpleadosJson();
+        gestionEmpleados.guardarJson();
     }
 
     /*--------------------- MENUS LOGIN -----------------*/
@@ -436,7 +436,7 @@ public class GestionHotel
 
                 case 4 -> gestionEmpleados.gananciaTotal();
 
-                case 5 -> System.out.println(gestionClientes.getLista());
+                case 5 -> gestionClientes.mostrarClientes();
 
                 case 6 -> {
                     System.out.println("Ingrese el Id del cliente al que desea dar de baja");
@@ -456,7 +456,7 @@ public class GestionHotel
 
                         if(entrada.equals("s")){
                             aux.setEstaActivo(!aux.isEstaActivo());
-                            gestionClientes.guardarClientesJson();
+                            gestionClientes.guardarJson();
                         }
                     }else
                     {
@@ -518,24 +518,24 @@ public class GestionHotel
                     System.out.println(gestionEventos.listar()); // LOS MUESTRA
                 }
                 case 2 -> { //crear un nuevo evento
-                    Evento nuevo = gestionEventos.crearNuevoEvento();
+                    Evento nuevo = gestionEventos.crearElemento();
                     nuevo.asignarIdAutoincremental();
                     System.out.println("** Se agregara el nuevo evento ** ");
                     System.out.println(nuevo);
                     gestionEventos.agregar(nuevo);
-                    gestionEventos.guardarEventosJson(); //GUARDA EN EL JSON EL NUEVO EVENTO
+                    gestionEventos.guardarJson(); //GUARDA EN EL JSON EL NUEVO EVENTO
                 }
                 case 3 -> { //Modificar un evento por nombre de evento (SEGUIR)
                     System.out.print("Ingrese el nombre del evento a modificar --> ");
                     entradaEventos = scanner.nextLine();
                     gestionEventos.modificarEventoPorNombre(entradaEventos);
-                    gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
+                    gestionEventos.guardarJson(); //GUARDA LAS MODIFICACIONES
                 }
                 case 4 -> { //eliminar un evento por nombre de evento
                     System.out.print("Ingrese el nombre del evento a eliminar --> ");
                     entradaEventos = scanner.nextLine();
                     gestionEventos.eliminarEventoPorNombre(entradaEventos);
-                    gestionEventos.guardarEventosJson(); //GUARDA LAS MODIFICACIONES
+                    gestionEventos.guardarJson(); //GUARDA LAS MODIFICACIONES
                 }
                 case 5 -> //salir
                         retener = false;
@@ -662,7 +662,7 @@ public class GestionHotel
                 case 5 -> retener = false;
                 default -> System.out.println("Opcion no valida");
             }
-            gestionHabitaciones.guardarHabitacionJson();
+            gestionHabitaciones.guardarJson();
             opcion=0;
         }
     }
@@ -701,7 +701,7 @@ public class GestionHotel
 
             case 3:
                 gestionReservas.generarReserva(cliente);
-                gestionReservas.cargarReservasJson();
+                gestionReservas.cargarJson();
                 break;
 
             case 4:
@@ -726,7 +726,7 @@ public class GestionHotel
                 break;
 
         }
-        this.gestionReservas.cargarReservasJson();
+        this.gestionReservas.cargarJson();
     }
 
 }

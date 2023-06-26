@@ -3,7 +3,7 @@ package sistemaHotelUtn.generales;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-abstract public class Gestion<T> {
+abstract public class Gestion<T> implements gestionClases{
     private ArrayList<T> lista = new ArrayList<>();
 
     public void agregar(T elem) {
