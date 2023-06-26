@@ -10,6 +10,8 @@ import sistemaHotelUtn.gestionHabitaciones.GestionHabitaciones;
 import sistemaHotelUtn.gestionHabitaciones.Habitacion;
 import sistemaHotelUtn.gestionHabitaciones.ServiciosHabitacion;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
+import sistemaHotelUtn.gestionServiciosGastronomicos.GestionServiciosGastronomicos;
+import sistemaHotelUtn.gestionServiciosGastronomicos.ServicioGastronomia;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class GestionHotel
     private GestionReservas gestionReservas;
     private GestionEventos gestionEventos;
     private GestionHabitaciones gestionHabitaciones;
+
+    private GestionServiciosGastronomicos gestionServiciosGastronomicos;
     private Usuario usuarioActual = null;
 
     Scanner scanner = new Scanner(System.in);
@@ -43,7 +47,7 @@ public class GestionHotel
 
         this.gestionReservas = new GestionReservas();
 
-
+        this.gestionServiciosGastronomicos = new GestionServiciosGastronomicos();
     }
 
 
@@ -394,19 +398,23 @@ public class GestionHotel
             System.out.println("[6] Dar de baja a un cliente");
             System.out.println("[7] Ver todos los empleados");
             System.out.println("[8] Ver todas las reservas");
-            System.out.println("[9] Salir");
+            System.out.println("[9] Ver todos los Servicios Gastronomicos");
+            System.out.println("[10] Agregar Servicio Gastronomico");
+            System.out.println("[11] Modificar Servicio Gastronomico");
+            System.out.println("[12] Eliminar Servicio Gastronomico");
+            System.out.println("[13] Salir");
 
             while( opcion == 0 )
             {
                 try
                 {
-                    System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6, 7, 8, 9 ) --> ");
+                    System.out.print("\nIngrese su opción (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13) --> ");
                     scanner.reset();
                     entrada = scanner.nextLine();
 
                     opcion = Integer.parseInt(entrada);
 
-                    if( opcion < 1 || opcion > 9)
+                    if( opcion < 1 || opcion > 13)
                     {
 
                         throw new IllegalArgumentException();
@@ -467,7 +475,35 @@ public class GestionHotel
 
                 case 8 -> System.out.println(gestionReservas.getLista());
 
-                case 9 -> retener = false;
+                case 9 -> System.out.println(gestionServiciosGastronomicos.listar());//fijarseeee
+
+                case 10 ->{
+                    ServicioGastronomia servicioGastronomia = gestionServiciosGastronomicos.crearElemento();
+                    gestionServiciosGastronomicos.agregar(servicioGastronomia);
+                    gestionServiciosGastronomicos.guardarJson();
+                }
+
+                case 11 ->{
+                    boolean bool = gestionServiciosGastronomicos.modificar("Canelones");
+                    if(bool){
+                        System.out.println("Modificacion realizada");
+                    }
+                    else{
+                        System.out.println("No se encontro servicio");
+                    }
+                }
+
+                case 12 -> {
+                    boolean bool = gestionServiciosGastronomicos.eliminar("Trago");
+                    if(bool){
+                        System.out.println("Se ha eliminado");
+                    }
+                    else{
+                        System.out.println("No se encontro servicio");
+                    }
+                }
+
+                case 13 -> retener = false;
 
 
             }

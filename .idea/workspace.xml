@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5eb36ebb-0ffb-4ebd-89c7-fbf0c0881c69" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Gestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Gestion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEmpleados/GestionEmpleados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEmpleados/GestionEmpleados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEventos/GestionEventos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEventos/GestionEventos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionHabitaciones/GestionHabitaciones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionHabitaciones/GestionHabitaciones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionReservas/GestionReservas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionReservas/GestionReservas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/GestionServiciosGastronomicos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionServiciosGastronomicos/GestionServiciosGastronomicos.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
