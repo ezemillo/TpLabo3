@@ -109,6 +109,14 @@ public class Reserva implements Serializable {
         Reserva.ultimoId = ultimoId;
     }
 
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public String toString() {
         return "{" +

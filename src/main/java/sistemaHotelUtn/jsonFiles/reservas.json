@@ -14,7 +14,7 @@
     "dni" : "123",
     "domicilio" : "saturno 12",
     "telefono" : "123",
-    "saldo" : 0.0,
+    "saldo" : 9000.0,
     "estaActivo" : true
   },
   "habitacion" : {
@@ -25,7 +25,7 @@
     "serviciosHabitacion" : [ "CABLE", "WIFI", "JACUZZI", "BANIERA" ]
   },
   "montoPagar" : 9000.0,
-  "estaActiva" : false
+  "estaActiva" : true
 }, {
   "id" : 1,
   "diaCheckIn" : null,
@@ -42,7 +42,7 @@
     "dni" : "123",
     "domicilio" : "saturno 12",
     "telefono" : "123",
-    "saldo" : 0.0,
+    "saldo" : 0.00,
     "estaActivo" : true
   },
   "habitacion" : {
@@ -70,7 +70,7 @@
     "dni" : "123",
     "domicilio" : "saturno 12",
     "telefono" : "123",
-    "saldo" : 500.0,
+    "saldo" : 6000.0,
     "estaActivo" : true
   },
   "habitacion" : {
@@ -98,7 +98,7 @@
     "dni" : "124",
     "domicilio" : "urano 12",
     "telefono" : "123",
-    "saldo" : 500.0,
+    "saldo" : 35000.0,
     "estaActivo" : true
   },
   "habitacion" : {
@@ -126,7 +126,7 @@
     "dni" : "11111",
     "domicilio" : "Falsa123",
     "telefono" : "223",
-    "saldo" : 0.0,
+    "saldo" : 15000.0,
     "estaActivo" : true
   },
   "habitacion" : {

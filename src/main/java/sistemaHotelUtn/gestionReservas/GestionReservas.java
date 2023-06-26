@@ -158,8 +158,8 @@ public class GestionReservas extends Gestion<Reserva> {
         Habitacion nuevaHabitacion = gestionHabitaciones.obtenerHabitacion(choice);//obtengo habitacion o null
 
         if (nuevaHabitacion != null) {//si la habitacion no es null...
-            //Reserva nuevaReserva = new Reserva();
-            if (cliente != null) {//fijarse con un cliente null
+
+            if (cliente != null) {
 
                 if (cliente.isEstaActivo()) {
 
@@ -172,7 +172,7 @@ public class GestionReservas extends Gestion<Reserva> {
             } else {//en este caso el cliente es null
                 GestionClientes gestionClientes = new GestionClientes();
 
-                cliente = gestionClientes.crearElemento();//tengo que guardar el cliente y la reserva
+                cliente = gestionClientes.crearElemento();
                 comprobarYreservar(cliente, nuevaHabitacion);
 
                 gestionClientes.agregar(cliente);
@@ -189,10 +189,8 @@ public class GestionReservas extends Gestion<Reserva> {
     private void comprobarYreservar(Cliente cliente, Habitacion habitacion) {
         System.out.println("Ingrese la fecha de checkIn dd-mm-aaaa");
         LocalDate checkIn = solicitarLocalDate();
-        //nuevaReserva.setDiaCheckIn(solicitarLocalDate());
         System.out.println("Ingrese la fecha de checkOut dd-mm-aaaa");
         LocalDate checkOut = solicitarLocalDate();
-        //nuevaReserva.setDiaCheckOut(solicitarLocalDate());
 
 
         if (isDisponiblePorFecha(habitacion.getId(), checkIn, checkOut)) {
@@ -215,9 +213,8 @@ public class GestionReservas extends Gestion<Reserva> {
         }
     }
 
-    public long cantidadDias(LocalDate diaCheckIn, LocalDate diaCheckOut) {
+    private long cantidadDias(LocalDate diaCheckIn, LocalDate diaCheckOut) {
         // Calcular la diferencia en días
-
         return ChronoUnit.DAYS.between(diaCheckIn, diaCheckOut);
     }
 

@@ -316,7 +316,7 @@ public class GestionHotel
     }
 
 
-    public void mostrarMenuCliente(Cliente cliente) {
+    private void mostrarMenuCliente(Cliente cliente) {
         boolean retener = true;
         int opcion = 0;
         String entrada = "";
@@ -383,7 +383,7 @@ public class GestionHotel
         }
     }
 
-    public void mostrarMenuEmpleado(Empleado empleado) {
+    private void mostrarMenuEmpleado(Empleado empleado) {
         boolean retener = true;
         int opcion = 0;
         String entrada = "";
@@ -604,11 +604,9 @@ public class GestionHotel
                     System.out.print("\nIngrese su opción (1, 2, 3, 4, 5) --> ");
                     scanner.reset();
                     entrada = scanner.nextLine();
-                    //cambiado de String a int
                     opcion=Integer.parseInt(entrada);
-                    //opcion = Integer.parseInt(entrada);
-                    //FIJARSE DANDO UNA ENTRADA ERRONEA
-                    if( opcion < 1 || opcion > 5)//aca podria manejar una exception propia
+
+                    if( opcion < 1 || opcion > 5)
                     {
 
                         throw new IllegalArgumentException();
@@ -712,7 +710,7 @@ public class GestionHotel
         System.out.println("[3] Realizar una nueva reserva");
         System.out.println("[4] Ver mis reservas activas");
         System.out.println("[5] Cancelar mis reservas");
-        System.out.println("[6] Ordenar servicio a la habitacion");
+        System.out.println("[6] Pagar - Ordenar servicio a la habitacion");
         System.out.println("[7] Salir");
 
         System.out.print("\nIngrese su opción (1, 2, 3, 4 ,5) --> ");
@@ -725,7 +723,6 @@ public class GestionHotel
                 System.out.println("Habitaciones con las que cuenta el hotel: ");
                 System.out.println(gestionHabitaciones.listar());
                 break;
-
             case 2:
                 System.out.println("Fecha de checkin:");
                 LocalDate checkin = gestionReservas.solicitarLocalDate();
@@ -734,33 +731,24 @@ public class GestionHotel
                 System.out.println("");
                 System.out.println(gestionReservas.verHabitacionesDisponiblesPorFechas(checkin,checkOut));
                 break;
-
             case 3:
                 gestionReservas.generarReserva(cliente);
                 gestionReservas.cargarJson();
                 break;
-
             case 4:
                 gestionReservas.verMisReservasActivas(cliente.getDni());
-
                 break;
-
             case 5:
-
                 gestionClientes.anularReserva(gestionReservas,cliente);
                 break;
             case 6:
-
                 cliente.modificarReserva(gestionClientes,cliente);
                 break;
-
             case 7: //salir
                 break;
-
             default:
                 System.out.println("Opción inválida");
                 break;
-
         }
         this.gestionReservas.cargarJson();
     }

@@ -68,17 +68,17 @@ public class Cliente extends Persona  {
 
 
 
-    public void modificarReserva(GestionClientes gestionClientes, Cliente cliente) {//anular reserva y agregar servicio, la idea es ponerlo en dos metodos diferentes
+    public void modificarReserva(GestionClientes gestionClientes, Cliente cliente) {
         System.out.println("Que desea hacer?");
         System.out.println("\n1.- Agregar Servicio\n2.- Pagar Reserva");
         int choice = new Scanner(System.in).nextInt();
-        //mandar una excepcion
+
         if (choice==1) {//metodo agregar servicio
 
-            GestionReservas gestionReservas = new GestionReservas();//lo mismo que arriba
+            GestionReservas gestionReservas = new GestionReservas();
             Reserva reserva=gestionReservas.buscarReserva(cliente.getDni());
 
-            System.out.println("Ingrese 1.- Para Plato del Dia\n2.- Para Cafeteria\n3.- Para Bar");//esto se puede mejorar por ENUM
+            System.out.println("Ingrese 1.- Para Plato del Dia\n2.- Para Cafeteria\n3.- Para Bar");
 
             int eleccion = new Scanner(System.in).nextInt();
 
@@ -111,7 +111,7 @@ public class Cliente extends Persona  {
         }
     }
 
-    public Reserva cargaServicio(String tipoServicio, Reserva reserva, int eleccion){
+    private Reserva cargaServicio(String tipoServicio, Reserva reserva, int eleccion){
         List<ServicioGastronomia> listadoServiciosGastronomicos;
         GestionServiciosGastronomicos gestionServiciosGastronomicos = new GestionServiciosGastronomicos();
 
@@ -132,7 +132,7 @@ public class Cliente extends Persona  {
         return reserva;
     }
 
-    public void pagarReserva (Cliente cliente){
+    private void pagarReserva (Cliente cliente){
         GestionReservas gestionReservas = new GestionReservas();
 
         gestionReservas.buscarReservaPagar(cliente.getDni());
@@ -141,7 +141,7 @@ public class Cliente extends Persona  {
         System.out.println("Muchas gracias.");
 
     }
-    public void buscarYmodificar (GestionClientes gestionClientes,String dni,double saldo){
+    private void buscarYmodificar (GestionClientes gestionClientes,String dni,double saldo){
 
         for (Cliente cliente:gestionClientes.getLista()){
             if(cliente.getDni().equals(dni)){

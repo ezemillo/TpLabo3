@@ -163,7 +163,7 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
 
     }
 
-    public void modifServicios(Habitacion target, Scanner scanner)
+    private void modifServicios(Habitacion target, Scanner scanner)
     {
         int opcionI;
         String opcionS;

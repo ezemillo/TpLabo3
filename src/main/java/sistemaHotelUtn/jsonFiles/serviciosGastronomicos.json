@@ -1,13 +1,37 @@
-[ {
-  "tipo" : "Cafeteria",
-  "nombre" : "cafe",
-  "precio" : 200.0
-}, {
+[{
   "tipo" : "Plato del Dia",
   "nombre" : "Pizza",
-  "precio" : 500.0
-}, {
+  "precio" : 3200.00
+},{
+  "tipo" : "Cafeteria",
+  "nombre" : "Cappuccino",
+  "precio" : 800.00
+},{
   "tipo" : "Bar",
-  "nombre" : "Trago",
-  "precio" : 600.0
-} ]
+  "nombre" : "Fernet",
+  "precio" : 1400.00
+},{
+  "tipo" : "Plato del Dia",
+  "nombre" : "Canelones",
+  "precio" : 2400.00
+},{
+  "tipo" : "Cafeteria",
+  "nombre" : "Latte",
+  "precio" : 700.00
+},{
+  "tipo" : "Bar",
+  "nombre" : "Whisky",
+  "precio" : 1400.00
+},{
+  "tipo" : "Plato del Dia",
+  "nombre" : "Parrillada",
+  "precio" : 4800.00
+},{
+  "tipo" : "Cafeteria",
+  "nombre" : "Merienda",
+  "precio" : 1800.00
+},{
+  "tipo" : "Bar",
+  "nombre" : "Cerveza",
+  "precio" : 500.00
+}]
