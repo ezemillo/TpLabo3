@@ -57,6 +57,8 @@ public class GestionEventos extends Gestion<Evento> implements CrearElementos<Ev
         int duracion = Integer.parseInt(scanner.nextLine());
         evento.setFechaHoraFin(inicioEvento.plusHours(duracion));
 
+        evento.setId(this.getUltimoIdDisponible());
+
         return evento;
     }
 

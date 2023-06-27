@@ -5,9 +5,9 @@
     "password" : "123",
     "tipoUsuario" : "CLIENTE"
   },
-  "nombre" : "SantiFK",
+  "nombre" : "santi",
   "apellido" : "blanco",
-  "dni" : "123",
+  "dni" : "41",
   "domicilio" : "saturno 12",
   "telefono" : "123",
   "saldo" : 0.0,
@@ -15,43 +15,29 @@
 }, {
   "id" : 2,
   "usuario" : {
-    "username" : "mhawke",
+    "username" : "juan",
     "password" : "123",
     "tipoUsuario" : "CLIENTE"
   },
-  "nombre" : "marian",
-  "apellido" : "hawke",
-  "dni" : "124",
-  "domicilio" : "urano 12",
+  "nombre" : "juan",
+  "apellido" : "perez",
+  "dni" : "123",
+  "domicilio" : "urano",
   "telefono" : "123",
   "saldo" : 0.0,
   "estaActivo" : true
 }, {
-  "id" : 0,
+  "id" : 3,
   "usuario" : {
-    "username" : "jespinoza",
-    "password" : "125",
+    "username" : "mmartinez",
+    "password" : "123",
     "tipoUsuario" : "CLIENTE"
   },
-  "nombre" : "Jorge",
-  "apellido" : "Espinoza",
-  "dni" : "11111",
-  "domicilio" : "Falsa123",
-  "telefono" : "223",
-  "saldo" : 0.0,
-  "estaActivo" : false
-}, {
-  "id" : 1,
-  "usuario" : {
-    "username" : "gchaldu",
-    "password" : "12345",
-    "tipoUsuario" : "CLIENTE"
-  },
-  "nombre" : "Gabriel",
-  "apellido" : "Chaldu",
-  "dni" : "27465223",
-  "domicilio" : "Salta 1111",
-  "telefono" : "154296883",
+  "nombre" : "maria",
+  "apellido" : "martinez",
+  "dni" : "123",
+  "domicilio" : "mercurio",
+  "telefono" : "123",
   "saldo" : 0.0,
   "estaActivo" : true
-}]
+} ]

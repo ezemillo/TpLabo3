@@ -34,16 +34,16 @@ public class GestionHotel
     public GestionHotel()
     {
         this.gestionClientes = new GestionClientes();
-
+        this.gestionClientes.cargarJson();
 
         this.gestionHabitaciones = new GestionHabitaciones();
-
+        this.gestionHabitaciones.cargarJson();
 
         this.gestionEventos = new GestionEventos();
-
+        this.gestionEventos.cargarJson();
 
         this.gestionEmpleados = new GestionEmpleados();
-
+        this.gestionEmpleados.cargarJson();
 
         this.gestionReservas = new GestionReservas();
 
@@ -179,7 +179,6 @@ public class GestionHotel
     {
         System.out.println("**** Registrar Nuevo Cliente **** ");
         Cliente nuevoCliente = gestionClientes.crearElemento();
-        nuevoCliente.asignarIdAutoincremental();
         System.out.println("\nSe agrego el nuevo cliente:");
         System.out.println(nuevoCliente);
         gestionClientes.agregar(nuevoCliente);
@@ -190,7 +189,6 @@ public class GestionHotel
     {
         System.out.println("**** Registrar Nuevo Empleado **** ");
         Empleado nuevoEmpleado = gestionEmpleados.crearElemento();
-        nuevoEmpleado.asignarIdAutoincremental();
         System.out.println("\nSe agrego el nuevo empleado:");
         System.out.println(nuevoEmpleado);
         gestionEmpleados.agregar(nuevoEmpleado);
@@ -370,7 +368,6 @@ public class GestionHotel
                     //el cliente solo puede ver los eventos
                     System.out.println("Eventos Proximos: ");
                     System.out.println(gestionEventos.listar()); // LOS MUESTRA
-                    System.out.println(gestionEventos.listar());
 
                     break;
 
@@ -555,7 +552,6 @@ public class GestionHotel
                 }
                 case 2 -> { //crear un nuevo evento
                     Evento nuevo = gestionEventos.crearElemento();
-                    nuevo.asignarIdAutoincremental();
                     System.out.println("** Se agregara el nuevo evento ** ");
                     System.out.println(nuevo);
                     gestionEventos.agregar(nuevo);
@@ -626,38 +622,9 @@ public class GestionHotel
 
             switch (opcion) {
                 case 1 -> {
-                    System.out.println("Ingrese el valor diario de la habitacion: ");
-                    Double precioDiario = scanner.nextDouble();
-                    System.out.println("Ingrese la capacidad maxima de la habitacion: ");
-                    int capacidadMaxima = scanner.nextInt();
-                    HashSet<ServiciosHabitacion> serviciosHabitaciones = new HashSet<ServiciosHabitacion>();
-                    System.out.println("La habiacion dispone de wifi? 1.Si 2.No");
-                    int wifi = scanner.nextInt();
-                    if (wifi == 1) {
-                        serviciosHabitaciones.add(ServiciosHabitacion.WIFI);
-                    }
-                    System.out.println("La habiacion dispone de Cable? 1.Si 2.No");
-                    int cable = scanner.nextInt();
-                    if (cable == 1) {
-                        serviciosHabitaciones.add(ServiciosHabitacion.CABLE);
-                    }
-                    System.out.println("La habiacion dispone de Bañera? 1.Si 2.No");
-                    int baniera = scanner.nextInt();
-                    if (baniera == 1) {
-                        serviciosHabitaciones.add(ServiciosHabitacion.BANIERA);
-                    }
-                    System.out.println("La habiacion dispone de Jacuzzi? 1.Si 2.No");
-                    int jacuzzi = scanner.nextInt();
-                    if (jacuzzi == 1) {
-                        serviciosHabitaciones.add(ServiciosHabitacion.JACUZZI);
-                    }
-                    System.out.println("Desea habilitar la Habitacion? 1.Si 2.No");
-                    int habilitar = scanner.nextInt();
-                    boolean activa = false;
-                    if (habilitar == 1) activa = true;
-                    //pedir info para la nueva habitacion
-
-                    gestionHabitaciones.agregar(new Habitacion(activa, precioDiario, capacidadMaxima, serviciosHabitaciones));
+                    Habitacion habitacion = gestionHabitaciones.crearElemento();
+                    gestionHabitaciones.agregar(habitacion);
+                    gestionHabitaciones.guardarJson();
                     System.out.println("Habitacion agregada con exito");
                 }
                 case 2 -> {

@@ -3,6 +3,8 @@ package sistemaHotelUtn.gestionHabitaciones;
 import sistemaHotelUtn.generales.Gestion;
 import sistemaHotelUtn.generales.Json.JsonRepo;
 import sistemaHotelUtn.generales.Persona;
+import sistemaHotelUtn.generales.TipoUsuario;
+import sistemaHotelUtn.gestionClientes.Cliente;
 import sistemaHotelUtn.gestionEmpleados.Empleado;
 import sistemaHotelUtn.gestionEventos.Evento;
 import sistemaHotelUtn.gestionReservas.GestionReservas;
@@ -12,15 +14,56 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Scanner;
 
-import static sistemaHotelUtn.gestionHabitaciones.Habitacion.setUltimoId;
 
 public class GestionHabitaciones extends Gestion<Habitacion> {
     public GestionHabitaciones() {
         cargarJson();
-        setUltimoId(this.getLista().size());
     }
 
+    public Habitacion crearElemento() {
+        Scanner scanner = new Scanner(System.in);
+        String entrada = "";
+        /*Pide informacion por la consola y crea un nuevo cliente listo para agregar a la lista*/
 
+        Habitacion habitacion = new Habitacion();
+        habitacion.setId(this.getUltimoIdDisponible());
+
+        System.out.println("Ingrese el valor diario de la habitacion: ");
+        Double precioDiario = scanner.nextDouble();
+        habitacion.setPrecioDiario(precioDiario);
+
+        System.out.println("Ingrese la capacidad maxima de la habitacion: ");
+        int capacidadMaxima = scanner.nextInt();
+        HashSet<ServiciosHabitacion> serviciosHabitaciones = new HashSet<ServiciosHabitacion>();
+        System.out.println("La habiacion dispone de wifi? 1.Si 2.No");
+        int wifi = scanner.nextInt();
+        if (wifi == 1) {
+            serviciosHabitaciones.add(ServiciosHabitacion.WIFI);
+        }
+        System.out.println("La habiacion dispone de Cable? 1.Si 2.No");
+        int cable = scanner.nextInt();
+        if (cable == 1) {
+            serviciosHabitaciones.add(ServiciosHabitacion.CABLE);
+        }
+        System.out.println("La habiacion dispone de Bañera? 1.Si 2.No");
+        int baniera = scanner.nextInt();
+        if (baniera == 1) {
+            serviciosHabitaciones.add(ServiciosHabitacion.BANIERA);
+        }
+        System.out.println("La habiacion dispone de Jacuzzi? 1.Si 2.No");
+        int jacuzzi = scanner.nextInt();
+        if (jacuzzi == 1) {
+            serviciosHabitaciones.add(ServiciosHabitacion.JACUZZI);
+        }
+        System.out.println("Desea habilitar la Habitacion? 1.Si 2.No");
+        int habilitar = scanner.nextInt();
+        boolean activa = false;
+        if (habilitar == 1) activa = true;
+        //pedir info para la nueva habitacion
+
+
+        return habitacion;
+    }
 
     public Habitacion buscarHabitacion(int ID) {
         for (Habitacion habitacion:this.getLista()) {

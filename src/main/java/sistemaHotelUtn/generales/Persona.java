@@ -6,7 +6,6 @@ public abstract class Persona implements Serializable {
 
     // region Atributos
     private int id = 0;
-    private static int ultimoId = 0;
     private Usuario usuario = new Usuario();
     private boolean idEstaAsignado = false;
     private String nombre;
@@ -69,13 +68,9 @@ public abstract class Persona implements Serializable {
         return id;
     }
 
-    public void asignarIdAutoincremental()
+    public void setId(int id)
     {
-        if( ! idEstaAsignado )
-        {
-            this.id = ++Persona.ultimoId;
-            this.idEstaAsignado = true;
-        }
+        this.id = id;
     }
 
     public String getNombre() {

@@ -39,4 +39,7 @@ abstract public class Gestion<T> implements gestionClases{
         return lista;
     }
 
+    public int getUltimoIdDisponible() {
+        return this.lista.size() + 1;
+    }
 }

@@ -53,13 +53,9 @@ public class Evento {
         return id;
     }
 
-    public void asignarIdAutoincremental()
+    public void setId(int id)
     {
-        if( ! idEstaAsignado )
-        {
-            this.id = ++Evento.contadorEventos;
-            this.idEstaAsignado = true;
-        }
+        this.id = id;
     }
 
     public String getNombreEvento() {

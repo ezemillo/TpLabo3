@@ -55,6 +55,8 @@ public class GestionClientes extends Gestion<Cliente> implements CrearElementos<
         String password = scanner.nextLine();
         nuevo.generarUsuario(username, password, TipoUsuario.CLIENTE);
 
+        nuevo.setId(this.getUltimoIdDisponible());
+
         return nuevo;
     }
 

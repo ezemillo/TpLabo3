@@ -53,6 +53,8 @@ public class GestionEmpleados extends Gestion<Empleado> implements CrearElemento
         String password = scanner.nextLine();
         nuevo.generarUsuario(username, password, TipoUsuario.EMPLEADO);
 
+        nuevo.setId(this.getUltimoIdDisponible());
+
         return nuevo;
     }
 

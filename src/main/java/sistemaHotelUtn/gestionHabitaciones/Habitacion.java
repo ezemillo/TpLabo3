@@ -13,7 +13,6 @@ public class Habitacion implements Serializable {
 
     //region Atributos
     private int id;
-    private static int ultimoId;
     private boolean esReservable;
     private Double precioDiario;
     private int capacidadMax;
@@ -29,7 +28,6 @@ public class Habitacion implements Serializable {
                       HashSet<ServiciosHabitacion> serviciosHabitacion) {
 
         this.esReservable = esReservable;
-        this.id=ultimoId++;
         this.precioDiario = precioDiario;
         this.capacidadMax = capacidadMax;
         this.serviciosHabitacion = serviciosHabitacion;
@@ -39,6 +37,11 @@ public class Habitacion implements Serializable {
     //region Getters y Setters
     public int getId() {
         return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     public boolean getEsReservable() {
@@ -61,9 +64,6 @@ public class Habitacion implements Serializable {
         return capacidadMax;
     }
 
-    public static void setUltimoId(int ultimoId) {
-        Habitacion.ultimoId = ultimoId;
-    }
 
     public void setCapacidadMax(int capacidadMax) {
         this.capacidadMax = capacidadMax;
