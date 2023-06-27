@@ -6,21 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5eb36ebb-0ffb-4ebd-89c7-fbf0c0881c69" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Gestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Gestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/GestionHotel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Json/JsonRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Json/JsonRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/generales/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionClientes/GestionClientes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEmpleados/GestionEmpleados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEmpleados/GestionEmpleados.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEventos/Evento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEventos/Evento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEventos/GestionEventos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionEventos/GestionEventos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionHabitaciones/GestionHabitaciones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionHabitaciones/GestionHabitaciones.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionHabitaciones/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/gestionHabitaciones/Habitacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/clientes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/clientes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/empleados.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/empleados.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/eventos.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/eventos.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/habitaciones.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/habitaciones.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/reservas.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sistemaHotelUtn/jsonFiles/reservas.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

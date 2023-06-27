@@ -34,6 +34,8 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
 
         System.out.println("Ingrese la capacidad maxima de la habitacion: ");
         int capacidadMaxima = scanner.nextInt();
+        habitacion.setCapacidadMax(capacidadMaxima);
+
         HashSet<ServiciosHabitacion> serviciosHabitaciones = new HashSet<ServiciosHabitacion>();
         System.out.println("La habiacion dispone de wifi? 1.Si 2.No");
         int wifi = scanner.nextInt();
@@ -55,11 +57,14 @@ public class GestionHabitaciones extends Gestion<Habitacion> {
         if (jacuzzi == 1) {
             serviciosHabitaciones.add(ServiciosHabitacion.JACUZZI);
         }
+        habitacion.setServiciosHabitacion(serviciosHabitaciones);
+
         System.out.println("Desea habilitar la Habitacion? 1.Si 2.No");
         int habilitar = scanner.nextInt();
         boolean activa = false;
         if (habilitar == 1) activa = true;
-        //pedir info para la nueva habitacion
+
+        habitacion.setEsReservable(activa);
 
 
         return habitacion;
